@@ -20,6 +20,26 @@ class _NotesHomePageState extends State<NotesHomePage> {
   final TextEditingController _tasksSearchController = TextEditingController();
   final PageController _pageController = PageController();
 
+  // Selection state
+  bool _isNotesSelectionMode = false;
+  int _selectedNotesCount = 0;
+  VoidCallback? _onExitSelection;
+  VoidCallback? _onSelectAll;
+
+  void _onNotesSelectionChanged(
+    bool isSelectionMode,
+    int selectedCount,
+    VoidCallback? onExitSelection,
+    VoidCallback? onSelectAll,
+  ) {
+    setState(() {
+      _isNotesSelectionMode = isSelectionMode;
+      _selectedNotesCount = selectedCount;
+      _onExitSelection = onExitSelection;
+      _onSelectAll = onSelectAll;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,31 +58,12 @@ class _NotesHomePageState extends State<NotesHomePage> {
             children: [
               // Add some top padding for status bar
               const SizedBox(height: 30),
-              // Tab Navigation
+              // Tab Navigation or Selection Header
               Container(
                 margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _buildTabIcon(
-                      icon: CupertinoIcons.doc_text,
-                      selectedIcon: CupertinoIcons.doc_text_fill,
-                      label: 'Notes',
-                      isSelected: state.selectedTabIndex == 0,
-                      onTap: () =>
-                          context.read<TabBloc>().add(const TabChanged(0)),
-                    ),
-                    const SizedBox(width: 10),
-                    _buildTabIcon(
-                      icon: CupertinoIcons.list_bullet,
-                      selectedIcon: CupertinoIcons.list_bullet_below_rectangle,
-                      label: 'Tasks',
-                      isSelected: state.selectedTabIndex == 1,
-                      onTap: () =>
-                          context.read<TabBloc>().add(const TabChanged(1)),
-                    ),
-                  ],
-                ),
+                child: _isNotesSelectionMode && state.selectedTabIndex == 0
+                    ? _buildSelectionHeader()
+                    : _buildTabNavigation(state),
               ),
               // Content with PageView for swipe functionality
               Expanded(
@@ -73,7 +74,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
                     context.read<TabBloc>().add(TabChanged(index));
                   },
                   children: [
-                    const NotesPage(),
+                    NotesPage(onSelectionChanged: _onNotesSelectionChanged),
                     _buildTasksPage(),
                   ],
                 ),
@@ -121,6 +122,55 @@ class _NotesHomePageState extends State<NotesHomePage> {
           );
         },
       ),
+    );
+  }
+
+  Widget _buildSelectionHeader() {
+    return Row(
+      children: [
+        IconButton(
+          onPressed: _onExitSelection,
+          icon: const Icon(Icons.close),
+          iconSize: 24,
+        ),
+        const SizedBox(width: 8),
+        Text(
+          '$_selectedNotesCount item${_selectedNotesCount != 1 ? 's' : ''} selected',
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const Spacer(),
+        IconButton(
+          onPressed: _onSelectAll,
+          icon: const Icon(Icons.select_all),
+          iconSize: 24,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTabNavigation(TabState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildTabIcon(
+          icon: CupertinoIcons.doc_text,
+          selectedIcon: CupertinoIcons.doc_text_fill,
+          label: 'Notes',
+          isSelected: state.selectedTabIndex == 0,
+          onTap: () => context.read<TabBloc>().add(const TabChanged(0)),
+        ),
+        const SizedBox(width: 10),
+        _buildTabIcon(
+          icon: CupertinoIcons.list_bullet,
+          selectedIcon: CupertinoIcons.list_bullet_below_rectangle,
+          label: 'Tasks',
+          isSelected: state.selectedTabIndex == 1,
+          onTap: () => context.read<TabBloc>().add(const TabChanged(1)),
+        ),
+      ],
     );
   }
 

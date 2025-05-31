@@ -19,6 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<VerifyPassword>(_onVerifyPassword);
     on<LockApp>(_onLockApp);
     on<ResetApp>(_onResetApp);
+    on<ClearAuthData>(_onClearAuthData);
   }
 
   Future<void> _onCheckFirstTimeSetup(
@@ -29,10 +30,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final isPasswordSet = await _storageService.isPasswordSet();
 
       if (isPasswordSet) {
-        emit(state.copyWith(
-          status: AuthStatus.locked,
-          isPasswordSet: true,
-        ));
+        // Check if we can access the stored data (validate format compatibility)
+        final storedHash = await _storageService.getPasswordHash();
+        final salt = await _storageService.getSalt();
+
+        if (storedHash == null || salt == null) {
+          print('🔐 Invalid auth data detected - clearing and resetting');
+          await _storageService.clearAuthenticationData();
+          emit(state.copyWith(
+            status: AuthStatus.firstTimeSetup,
+            isPasswordSet: false,
+          ));
+        } else {
+          emit(state.copyWith(
+            status: AuthStatus.locked,
+            isPasswordSet: true,
+          ));
+        }
       } else {
         emit(state.copyWith(
           status: AuthStatus.firstTimeSetup,
@@ -87,10 +101,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
+      print('🔐 Starting password verification for: ${event.password}');
+
       final storedHash = await _storageService.getPasswordHash();
       final salt = await _storageService.getSalt();
 
+      print(
+          '🔐 Retrieved stored data - hash: ${storedHash != null}, salt: ${salt != null}');
+
       if (storedHash == null || salt == null) {
+        print('🔐 Authentication data not found');
         emit(state.copyWith(
           status: AuthStatus.locked,
           errorMessage: 'Authentication data not found',
@@ -98,31 +118,40 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         return;
       }
 
+      print('🔐 Starting password verification...');
       final isValid = await _cryptoService.verifyPassword(
         event.password,
         storedHash,
         salt,
       );
+      print('🔐 Password verification complete - valid: $isValid');
 
       if (isValid) {
+        print('🔐 Password valid - generating master key...');
         // Regenerate master key for this session
         final masterKey = await _cryptoService.deriveMasterKey(
           event.password,
           salt,
         );
         await _storageService.storeMasterKey(masterKey);
+        print('🔐 Master key generated and stored');
 
+        print('🔐 Emitting unlocked state...');
         emit(state.copyWith(
           status: AuthStatus.unlocked,
           errorMessage: null,
         ));
+        print('🔐 Unlocked state emitted successfully');
       } else {
+        print('🔐 Password invalid');
         emit(state.copyWith(
           status: AuthStatus.locked,
-          errorMessage: 'Invalid password',
+          errorMessage:
+              'Invalid password - ${DateTime.now().millisecondsSinceEpoch}',
         ));
       }
     } catch (e) {
+      print('🔐 Password verification error: $e');
       emit(state.copyWith(
         status: AuthStatus.locked,
         errorMessage: 'Authentication failed: ${e.toString()}',
@@ -154,6 +183,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     } catch (e) {
       emit(state.copyWith(
         errorMessage: 'Failed to reset app: ${e.toString()}',
+      ));
+    }
+  }
+
+  Future<void> _onClearAuthData(
+    ClearAuthData event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      await _storageService.clearAuthenticationData();
+
+      emit(const AuthState.initial());
+    } catch (e) {
+      emit(state.copyWith(
+        errorMessage: 'Failed to clear authentication data: ${e.toString()}',
       ));
     }
   }

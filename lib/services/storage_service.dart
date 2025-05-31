@@ -120,6 +120,16 @@ class StorageService {
     await _prefs.clear();
   }
 
+  Future<void> clearAuthenticationData() async {
+    await initialize();
+
+    // Clear only authentication related data
+    await _secureStorage.delete(key: _passwordHashKey);
+    await _secureStorage.delete(key: _saltKey);
+    await _secureStorage.delete(key: _masterKeyKey);
+    await _prefs.remove(_passwordSetKey);
+  }
+
   // Backup and restore
   Future<String> exportBackupData() async {
     final passwordHash = await getPasswordHash();

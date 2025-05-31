@@ -10,9 +10,16 @@ import '../authentication/bloc/auth_bloc.dart';
 import '../authentication/bloc/auth_event.dart';
 import '../authentication/bloc/auth_state.dart';
 import 'add_edit_notes_page.dart';
+import 'secure_area_page.dart';
 
 class NotesPage extends StatefulWidget {
-  const NotesPage({super.key});
+  final Function(
+      bool isSelectionMode,
+      int selectedCount,
+      VoidCallback? onExitSelection,
+      VoidCallback? onSelectAll)? onSelectionChanged;
+
+  const NotesPage({super.key, this.onSelectionChanged});
 
   @override
   State<NotesPage> createState() => _NotesPageState();
@@ -21,6 +28,8 @@ class NotesPage extends StatefulWidget {
 class _NotesPageState extends State<NotesPage> {
   final TextEditingController _searchController = TextEditingController();
   Timer? _debounceTimer;
+  bool _isSelectionMode = false;
+  Set<String> _selectedNoteIds = {};
 
   @override
   void initState() {
@@ -41,7 +50,7 @@ class _NotesPageState extends State<NotesPage> {
     // Cancel previous timer
     _debounceTimer?.cancel();
 
-    // Only check password after user stops typing for 800ms
+    // Only check password after user stops typing for 300ms
     if (searchText.trim().isNotEmpty) {
       _debounceTimer = Timer(const Duration(milliseconds: 300), () {
         if (mounted && searchText.trim().isNotEmpty) {
@@ -51,21 +60,97 @@ class _NotesPageState extends State<NotesPage> {
     }
   }
 
+  void _enterSelectionMode(String noteId) {
+    setState(() {
+      _isSelectionMode = true;
+      _selectedNoteIds.add(noteId);
+    });
+    _notifySelectionChanged();
+  }
+
+  void _exitSelectionMode() {
+    setState(() {
+      _isSelectionMode = false;
+      _selectedNoteIds.clear();
+    });
+    _notifySelectionChanged();
+  }
+
+  void _toggleNoteSelection(String noteId) {
+    setState(() {
+      if (_selectedNoteIds.contains(noteId)) {
+        _selectedNoteIds.remove(noteId);
+        if (_selectedNoteIds.isEmpty) {
+          _isSelectionMode = false;
+        }
+      } else {
+        _selectedNoteIds.add(noteId);
+      }
+    });
+    _notifySelectionChanged();
+  }
+
+  void _selectAllNotes() {
+    final state = context.read<NotesBloc>().state;
+    final visibleNotes =
+        state.filteredNotes.where((note) => !note.isPasswordNote).toList();
+    setState(() {
+      _selectedNoteIds = visibleNotes.map((note) => note.id).toSet();
+    });
+    _notifySelectionChanged();
+  }
+
+  void _notifySelectionChanged() {
+    if (widget.onSelectionChanged != null) {
+      widget.onSelectionChanged!(
+        _isSelectionMode,
+        _selectedNoteIds.length,
+        _exitSelectionMode,
+        _selectAllNotes,
+      );
+    }
+  }
+
+  void _deleteSelectedNotes() {
+    for (String noteId in _selectedNoteIds) {
+      context.read<NotesBloc>().add(DeleteNote(noteId));
+    }
+    _exitSelectionMode();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state.status == AuthStatus.unlocked &&
             _searchController.text.trim().isNotEmpty) {
-          // Password was correct from search bar, clear search and show success
+          // Password was correct from search bar, clear search and navigate to secure area
           _searchController.clear();
-          _showSnackBar('Hidden area access granted!');
+
+          // Navigate to secure area (replace current screen for security)
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (newContext) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(
+                    value: context.read<AuthBloc>(),
+                  ),
+                  BlocProvider.value(
+                    value: context.read<NotesBloc>(),
+                  ),
+                ],
+                child: const SecureAreaPage(),
+              ),
+            ),
+          );
         }
       },
       child: Column(
         children: [
           _buildSearchBar(),
           Expanded(child: _buildNotesContent()),
+          if (_isSelectionMode) _buildBottomActionBar(),
         ],
       ),
     );
@@ -80,21 +165,28 @@ class _NotesPageState extends State<NotesPage> {
       child: Container(
         height: 40,
         decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.1),
+          color: _isSelectionMode
+              ? Colors.grey.withOpacity(0.05)
+              : Colors.grey.withOpacity(0.1),
           borderRadius: BorderRadius.circular(25),
         ),
         child: TextField(
           controller: _searchController,
+          enabled: !_isSelectionMode,
           textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             hintText: 'Search notes',
             hintStyle: TextStyle(
-              color: Colors.black.withOpacity(0.5),
+              color: _isSelectionMode
+                  ? Colors.black.withOpacity(0.3)
+                  : Colors.black.withOpacity(0.5),
               fontSize: 14,
             ),
             prefixIcon: Icon(
               Icons.search,
-              color: Colors.black.withOpacity(0.5),
+              color: _isSelectionMode
+                  ? Colors.black.withOpacity(0.3)
+                  : Colors.black.withOpacity(0.5),
               size: 18,
             ),
             border: InputBorder.none,
@@ -218,10 +310,12 @@ class _NotesPageState extends State<NotesPage> {
   }
 
   Widget _buildNoteCard(Note note) {
+    final isSelected = _selectedNoteIds.contains(note.id);
+
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isSelected ? Colors.orange.withOpacity(0.1) : Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -231,7 +325,10 @@ class _NotesPageState extends State<NotesPage> {
           ),
         ],
         border: Border.all(
-          color: Colors.grey.withOpacity(0.1),
+          color: isSelected
+              ? const Color(0xFFFFA726)
+              : Colors.grey.withOpacity(0.1),
+          width: isSelected ? 2 : 1,
         ),
       ),
       child: Material(
@@ -239,117 +336,117 @@ class _NotesPageState extends State<NotesPage> {
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           onTap: () {
-            // Navigate to edit note page
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (newContext) => MultiBlocProvider(
-                  providers: [
-                    BlocProvider.value(
-                      value: context.read<AuthBloc>(),
-                    ),
-                    BlocProvider.value(
-                      value: context.read<NotesBloc>(),
-                    ),
-                  ],
-                  child: AddEditNotesPage(note: note),
+            if (_isSelectionMode) {
+              _toggleNoteSelection(note.id);
+            } else {
+              // Navigate to edit note page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (newContext) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider.value(
+                        value: context.read<AuthBloc>(),
+                      ),
+                      BlocProvider.value(
+                        value: context.read<NotesBloc>(),
+                      ),
+                    ],
+                    child: AddEditNotesPage(note: note),
+                  ),
                 ),
-              ),
-            );
+              );
+            }
+          },
+          onLongPress: () {
+            if (!_isSelectionMode) {
+              _enterSelectionMode(note.id);
+            }
           },
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Row(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        note.title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                // Selection indicator
+                if (_isSelectionMode) ...[
+                  Container(
+                    width: 24,
+                    height: 24,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: isSelected
+                          ? const Color(0xFFFFA726)
+                          : Colors.transparent,
+                      border: Border.all(
+                        color:
+                            isSelected ? const Color(0xFFFFA726) : Colors.grey,
+                        width: 2,
                       ),
                     ),
-                    if (note.isPasswordNote) ...[
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 6,
-                          vertical: 2,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFFFA726).withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Icon(
-                          CupertinoIcons.lock_shield,
-                          size: 12,
-                          color: const Color(0xFFFFA726),
-                        ),
-                      ),
-                    ],
-                    const SizedBox(width: 8),
-                    PopupMenuButton<String>(
-                      icon: Icon(
-                        Icons.more_vert,
-                        color: Colors.grey[600],
-                        size: 20,
-                      ),
-                      onSelected: (value) {
-                        if (value == 'delete') {
-                          _showDeleteDialog(note);
-                        }
-                      },
-                      itemBuilder: (context) => [
-                        const PopupMenuItem(
-                          value: 'delete',
-                          child: Row(
-                            children: [
-                              Icon(Icons.delete, color: Colors.red),
-                              SizedBox(width: 8),
-                              Text('Delete'),
-                            ],
+                    child: isSelected
+                        ? const Icon(
+                            Icons.check,
+                            size: 16,
+                            color: Colors.white,
+                          )
+                        : null,
+                  ),
+                  const SizedBox(width: 12),
+                ],
+
+                // Note content
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              note.title,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black.withOpacity(0.8),
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
+                        ],
+                      ),
+                      if (note.content.isNotEmpty) ...[
+                        const SizedBox(height: 8),
+                        Text(
+                          note.content,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey[600],
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
-                    ),
-                  ],
-                ),
-                if (note.content.isNotEmpty) ...[
-                  const SizedBox(height: 8),
-                  Text(
-                    note.content,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[600],
-                    ),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    Icon(
-                      CupertinoIcons.time,
-                      size: 14,
-                      color: Colors.grey[500],
-                    ),
-                    const SizedBox(width: 4),
-                    Text(
-                      _formatDate(note.updatedAt),
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.grey[500],
+                      const SizedBox(height: 12),
+                      Row(
+                        children: [
+                          Icon(
+                            CupertinoIcons.time,
+                            size: 14,
+                            color: Colors.grey[500],
+                          ),
+                          const SizedBox(width: 4),
+                          Text(
+                            _formatDate(note.updatedAt),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[500],
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -359,27 +456,78 @@ class _NotesPageState extends State<NotesPage> {
     );
   }
 
-  void _showDeleteDialog(Note note) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Delete Note'),
-        content: Text('Are you sure you want to delete "${note.title}"?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+  Widget _buildBottomActionBar() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            blurRadius: 8,
+            offset: const Offset(0, -2),
           ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              context.read<NotesBloc>().add(DeleteNote(note.id));
-              _showSnackBar('Note deleted');
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _buildActionButton(
+            icon: Icons.visibility_off,
+            label: 'Hide',
+            onTap: () {
+              // TODO: Implement hide functionality
+              _showSnackBar('Hide functionality coming soon');
             },
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.red,
+          ),
+          _buildActionButton(
+            icon: Icons.push_pin_outlined,
+            label: 'Pin',
+            onTap: () {
+              // TODO: Implement pin functionality
+              _showSnackBar('Pin functionality coming soon');
+            },
+          ),
+          _buildActionButton(
+            icon: Icons.delete_outline,
+            label: 'Delete',
+            onTap: _deleteSelectedNotes,
+          ),
+          _buildActionButton(
+            icon: Icons.drive_file_move_outline,
+            label: 'Move to',
+            onTap: () {
+              // TODO: Implement move functionality
+              _showSnackBar('Move functionality coming soon');
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildActionButton({
+    required IconData icon,
+    required String label,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 24,
+            color: Colors.grey[700],
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              color: Colors.grey[700],
             ),
-            child: const Text('Delete'),
           ),
         ],
       ),

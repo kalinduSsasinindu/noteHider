@@ -1,5 +1,3 @@
-
-
 import 'package:equatable/equatable.dart';
 
 abstract class AuthEvent extends Equatable {
@@ -37,4 +35,8 @@ class LockApp extends AuthEvent {
 
 class ResetApp extends AuthEvent {
   const ResetApp();
+}
+
+class ClearAuthData extends AuthEvent {
+  const ClearAuthData();
 }

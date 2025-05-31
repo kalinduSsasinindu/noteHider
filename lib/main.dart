@@ -55,25 +55,28 @@ class MyApp extends StatelessWidget {
               scaffoldBackgroundColor: Colors.grey[50],
               useMaterial3: false,
             ),
-            home: MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (context) => TabBloc(),
-                ),
-                BlocProvider(
-                  create: (context) => AuthBloc(
-                    cryptoService: cryptoService,
-                    storageService: storageService,
-                  )..add(const CheckFirstTimeSetup()),
-                ),
-                BlocProvider(
-                  create: (context) => NotesBloc(
-                    storageService: storageService,
+            initialRoute: '/',
+            routes: {
+              '/': (context) => MultiBlocProvider(
+                    providers: [
+                      BlocProvider(
+                        create: (context) => TabBloc(),
+                      ),
+                      BlocProvider(
+                        create: (context) => AuthBloc(
+                          cryptoService: cryptoService,
+                          storageService: storageService,
+                        )..add(const CheckFirstTimeSetup()),
+                      ),
+                      BlocProvider(
+                        create: (context) => NotesBloc(
+                          storageService: storageService,
+                        ),
+                      ),
+                    ],
+                    child: const NotesHomePage(),
                   ),
-                ),
-              ],
-              child: const NotesHomePage(),
-            ),
+            },
             debugShowCheckedModeBanner: false,
           );
         },

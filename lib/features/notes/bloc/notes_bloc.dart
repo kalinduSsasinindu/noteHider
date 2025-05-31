@@ -74,11 +74,13 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         notes: updatedNotes,
         filteredNotes: updatedNotes,
         errorMessage: null,
+        isAddNotesLoading: false,
       ));
     } catch (e) {
       emit(state.copyWith(
         status: NotesStatus.error,
         errorMessage: 'Failed to save note: ${e.toString()}',
+        isAddNotesLoading: false,
       ));
     }
   }

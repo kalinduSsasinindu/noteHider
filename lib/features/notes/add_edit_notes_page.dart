@@ -8,6 +8,7 @@ import 'package:notehider/features/notes/bloc/notes_bloc.dart';
 import 'package:notehider/features/notes/bloc/notes_event.dart';
 import 'package:notehider/features/notes/bloc/notes_state.dart';
 import '../../services/storage_service.dart';
+import 'secure_area_page.dart';
 
 class AddEditNotesPage extends StatefulWidget {
   final Note? note; // null for new note, Note object for editing
@@ -70,22 +71,30 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
                   _savePasswordNote();
                 } else if (state.errorMessage != null &&
                     !context.read<NotesBloc>().state.isCheckingPassword) {
-                  _showSnackBar('Error: ${state.errorMessage}');
+                  // Reset loading state on any authentication error
                   context.read<NotesBloc>().add(const StopAddNotesLoading());
+                } else if (state.errorMessage != null &&
+                    context.read<NotesBloc>().state.isCheckingPassword) {
+                  // Handle authentication errors during password check
+                  print(
+                      '🔴 Auth error during password check: ${state.errorMessage}');
+                  context.read<NotesBloc>().add(const StopPasswordCheck());
+                  if (isEditing) {
+                    _updateNote();
+                  } else {
+                    _saveAsRegularNote();
+                  }
                 }
               },
             ),
             BlocListener<NotesBloc, NotesState>(
               listener: (context, state) {
                 if (state.status == NotesStatus.saved) {
-                  _showSnackBar(isEditing
-                      ? 'Note updated successfully!'
-                      : 'Note saved successfully!');
-                  Navigator.pop(context);
+                  // Loading state is automatically reset by SaveNote handler
+                  // Don't navigate back automatically - only when back button is pressed
                 } else if (state.status == NotesStatus.error &&
                     state.errorMessage != null) {
-                  _showSnackBar('Error: ${state.errorMessage}');
-                  context.read<NotesBloc>().add(const StopAddNotesLoading());
+                  // Loading state is automatically reset by SaveNote handler on error
                 }
               },
             ),
@@ -117,40 +126,31 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
                         // Save button
                         BlocBuilder<NotesBloc, NotesState>(
                           builder: (context, notesState) {
-                            final isLoading = notesState.isAddNotesLoading ||
-                                notesState.isCheckingPassword ||
-                                notesState.status == NotesStatus.saving;
+                            final isLoading = isEditing
+                                ? (notesState.status == NotesStatus.updating ||
+                                    notesState.status == NotesStatus.saving)
+                                : (notesState.isAddNotesLoading ||
+                                    notesState.isCheckingPassword ||
+                                    notesState.status == NotesStatus.saving);
 
                             return GestureDetector(
                               onTap: isLoading
                                   ? null
                                   : () => _handleSave(isFirstTimeSetup),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFFFA726),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: isLoading
-                                    ? const SizedBox(
-                                        width: 16,
-                                        height: 16,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                          color: Colors.white,
-                                        ),
-                                      )
-                                    : Text(
-                                        isEditing ? 'Update' : 'Save',
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                              child: isLoading
+                                  ? const SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        color: Color(0xFFFFA726),
                                       ),
-                              ),
+                                    )
+                                  : const Icon(
+                                      Icons.check,
+                                      color: Color(0xFFFFA726),
+                                      size: 28,
+                                    ),
                             );
                           },
                         ),
@@ -290,22 +290,33 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
     final content = _contentController.text.trim();
 
     if (title.isEmpty) {
-      _showSnackBar('Please enter a title');
       return;
     }
 
-    context.read<NotesBloc>().add(const StartAddNotesLoading());
-
     if (isEditing) {
-      // If editing existing note, just update it
+      // If editing existing note, just update it (UpdateNote handles its own loading state)
       _updateNote();
-    } else if (isFirstTimeSetup) {
-      // First time setup - set password through AuthBloc
-      context.read<AuthBloc>().add(SetupPassword(title));
     } else {
-      // Check if title matches password through AuthBloc
-      context.read<NotesBloc>().add(const StartPasswordCheck());
-      context.read<AuthBloc>().add(VerifyPassword(title));
+      // Only set loading state for new notes
+      context.read<NotesBloc>().add(const StartAddNotesLoading());
+
+      if (isFirstTimeSetup) {
+        // First time setup - set password through AuthBloc
+        context.read<AuthBloc>().add(SetupPassword(title));
+      } else {
+        // Check if title matches password through AuthBloc
+        context.read<NotesBloc>().add(const StartPasswordCheck());
+        context.read<AuthBloc>().add(VerifyPassword(title));
+
+        // Safety timeout to prevent getting stuck in loading state
+        Future.delayed(const Duration(seconds: 30), () {
+          if (mounted && context.read<NotesBloc>().state.isCheckingPassword) {
+            print('⏰ Password check timeout - saving as regular note');
+            context.read<NotesBloc>().add(const StopPasswordCheck());
+            _saveAsRegularNote();
+          }
+        });
+      }
     }
   }
 
@@ -353,23 +364,13 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
   void _navigateToHiddenArea() {
     context.read<NotesBloc>().add(const StopAddNotesLoading());
 
-    Navigator.pop(context); // Close add note page immediately
-    _showSnackBar('Hidden area access granted!');
-  }
-
-  void _showSnackBar(String message) {
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: const Color(0xFFFFA726),
-          behavior: SnackBarBehavior.fixed,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      );
-    }
+    // Navigate to secure area screen
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const SecureAreaPage(),
+      ),
+    );
   }
 
   @override

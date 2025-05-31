@@ -5,10 +5,7 @@ import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/random/fortuna_random.dart';
-import 'package:pointycastle/digests/sha3.dart';
-import 'package:pointycastle/key_derivators/pbkdf2.dart';
-import 'package:pointycastle/key_derivators/api.dart';
-import 'package:pointycastle/macs/hmac.dart';
+
 
 class CryptoService {
   static const int _saltLength = 32;
@@ -36,8 +33,8 @@ class CryptoService {
   Future<String> hashPassword(String password, Uint8List salt) async {
     final passwordBytes = utf8.encode(password);
 
-    // Use PBKDF2 with high iteration count
-    final hash = _pbkdf2(passwordBytes, salt, 100000, _keyLength);
+    // Use PBKDF2 with moderate iteration count for mobile performance
+    final hash = _pbkdf2(passwordBytes, salt, 10000, _keyLength);
 
     return base64.encode(hash);
   }
@@ -55,7 +52,7 @@ class CryptoService {
   /// Derives master key for file encryption using PBKDF2
   Future<Uint8List> deriveMasterKey(String password, Uint8List salt) async {
     final passwordBytes = utf8.encode(password);
-    return _pbkdf2(passwordBytes, salt, 100000, _keyLength);
+    return _pbkdf2(passwordBytes, salt, 10000, _keyLength);
   }
 
   /// Manual PBKDF2 implementation using SHA-256
