@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/tab_bloc.dart';
 import 'bloc/tab_event.dart';
 import 'bloc/tab_state.dart';
+import 'features/notes/add_notes_page.dart';
 
 class NotesHomePage extends StatefulWidget {
   const NotesHomePage({super.key});
@@ -82,7 +83,18 @@ class _NotesHomePageState extends State<NotesHomePage> {
       floatingActionButton: BlocBuilder<TabBloc, TabState>(
         builder: (context, state) {
           return FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              if (state.selectedTabType == TabType.notes) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddNotesPage(),
+                  ),
+                );
+              } else {
+                // TODO: Add new task functionality
+              }
+            },
             backgroundColor: const Color(0xFFFFA726),
             child: Icon(
               state.selectedTabType == TabType.notes

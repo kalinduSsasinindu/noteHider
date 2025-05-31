@@ -36,6 +36,24 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_bloc: ^8.1.6
   equatable: ^2.0.5
+  
+  # 🔐 Cutting-edge Security & Encryption
+  crypto: ^3.0.3
+  encrypt: ^5.0.3
+  pointycastle: ^3.7.4
+  
+  # 📱 Secure Storage & Biometrics
+  flutter_secure_storage: ^9.0.0
+  local_auth: ^2.1.7
+  shared_preferences: ^2.2.2
+  
+  # 📁 File Management
+  path_provider: ^2.1.2
+  path: ^1.8.3
+  
+  # 🛠️ Utilities
+  uuid: ^4.3.3
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
