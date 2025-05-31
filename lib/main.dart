@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:notehider/bloc_observer.dart';
+import 'package:notehider/features/authentication/bloc/auth_event.dart';
 import 'package:notehider/homepage.dart';
 import 'package:notehider/bloc/tab_bloc.dart';
+import 'package:notehider/features/authentication/bloc/auth_bloc.dart';
+import 'package:notehider/features/notes/bloc/notes_bloc.dart';
+import 'package:notehider/services/crypto_service.dart';
+import 'package:notehider/services/storage_service.dart';
 
 void main() {
   // Initialize the BlocObserver
@@ -29,19 +35,49 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'NoteHider',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-        primaryColor: const Color(0xFFFFA726),
-        scaffoldBackgroundColor: Colors.grey[50],
-        useMaterial3: false,
+    return MultiProvider(
+      providers: [
+        // Provide services at the app level
+        Provider<CryptoService>(
+          create: (_) => CryptoService(),
+        ),
+        Provider<StorageService>(
+          create: (_) => StorageService(),
+        ),
+      ],
+      child: Consumer2<CryptoService, StorageService>(
+        builder: (context, cryptoService, storageService, child) {
+          return MaterialApp(
+            title: 'NoteHider',
+            theme: ThemeData(
+              primarySwatch: Colors.orange,
+              primaryColor: const Color(0xFFFFA726),
+              scaffoldBackgroundColor: Colors.grey[50],
+              useMaterial3: false,
+            ),
+            home: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => TabBloc(),
+                ),
+                BlocProvider(
+                  create: (context) => AuthBloc(
+                    cryptoService: cryptoService,
+                    storageService: storageService,
+                  )..add(const CheckFirstTimeSetup()),
+                ),
+                BlocProvider(
+                  create: (context) => NotesBloc(
+                    storageService: storageService,
+                  ),
+                ),
+              ],
+              child: const NotesHomePage(),
+            ),
+            debugShowCheckedModeBanner: false,
+          );
+        },
       ),
-      home: BlocProvider(
-        create: (context) => TabBloc(),
-        child: const NotesHomePage(),
-      ),
-      debugShowCheckedModeBanner: false,
     );
   }
 }

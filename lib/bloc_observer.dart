@@ -1,33 +1,43 @@
 // ignore_for_file: avoid_print
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
 
   @override
-  void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
+  void onCreate(BlocBase bloc) {
+    super.onCreate(bloc);
+    print('📦 Bloc Created: ${bloc.runtimeType}');
+  }
+
+  @override
+  void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
-    print(event);
+    print('🔔 Event: ${bloc.runtimeType} - $event');
   }
 
   @override
-  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
-    print(error);
-    super.onError(bloc, error, stackTrace);
-  }
-
-  @override
-  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+  void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    print(change);
+    print('🔄 State Change: ${bloc.runtimeType} - $change');
   }
 
   @override
-  void onTransition(
-    Bloc<dynamic, dynamic> bloc,
-    Transition<dynamic, dynamic> transition,
-  ) {
+  void onTransition(Bloc bloc, Transition transition) {
     super.onTransition(bloc, transition);
-    print(transition);
+    print('⚡ Transition: ${bloc.runtimeType} - $transition');
+  }
+
+  @override
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    super.onError(bloc, error, stackTrace);
+    print('❌ Error: ${bloc.runtimeType} - $error');
+    print('📍 Stack Trace: $stackTrace');
+  }
+
+  @override
+  void onClose(BlocBase bloc) {
+    super.onClose(bloc);
+    print('🗑️ Bloc Closed: ${bloc.runtimeType}');
   }
 }

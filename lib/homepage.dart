@@ -4,7 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc/tab_bloc.dart';
 import 'bloc/tab_event.dart';
 import 'bloc/tab_state.dart';
-import 'features/notes/add_notes_page.dart';
+import 'features/notes/add_edit_notes_page.dart';
+import 'features/notes/notes_page.dart';
+import 'features/authentication/bloc/auth_bloc.dart';
+import 'features/notes/bloc/notes_bloc.dart';
 
 class NotesHomePage extends StatefulWidget {
   const NotesHomePage({super.key});
@@ -14,7 +17,6 @@ class NotesHomePage extends StatefulWidget {
 }
 
 class _NotesHomePageState extends State<NotesHomePage> {
-  final TextEditingController _notesSearchController = TextEditingController();
   final TextEditingController _tasksSearchController = TextEditingController();
   final PageController _pageController = PageController();
 
@@ -71,7 +73,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
                     context.read<TabBloc>().add(TabChanged(index));
                   },
                   children: [
-                    _buildNotesPage(),
+                    const NotesPage(),
                     _buildTasksPage(),
                   ],
                 ),
@@ -88,7 +90,20 @@ class _NotesHomePageState extends State<NotesHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AddNotesPage(),
+                    builder: (newContext) => MultiBlocProvider(
+                      providers: [
+                        BlocProvider.value(
+                          value: context.read<AuthBloc>(),
+                        ),
+                        BlocProvider.value(
+                          value: context.read<TabBloc>(),
+                        ),
+                        BlocProvider.value(
+                          value: context.read<NotesBloc>(),
+                        ),
+                      ],
+                      child: const AddEditNotesPage(),
+                    ),
                   ),
                 );
               } else {
@@ -143,7 +158,7 @@ class _NotesHomePageState extends State<NotesHomePage> {
         ),
         child: TextField(
           controller: controller,
-          textAlignVertical: TextAlignVertical.center, // Keep this
+          textAlignVertical: TextAlignVertical.center,
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(
@@ -156,20 +171,11 @@ class _NotesHomePageState extends State<NotesHomePage> {
               size: 18,
             ),
             border: InputBorder.none,
-            isDense: true, // Makes it more compact
-            contentPadding: EdgeInsets.zero, // Let icon/text center vertically
+            isDense: true,
+            contentPadding: EdgeInsets.zero,
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildNotesPage() {
-    return Column(
-      children: [
-        _buildSearchBar(_notesSearchController, 'Search notes'),
-        Expanded(child: _buildNotesContent()),
-      ],
     );
   }
 
@@ -179,38 +185,6 @@ class _NotesHomePageState extends State<NotesHomePage> {
         _buildSearchBar(_tasksSearchController, 'Search tasks'),
         Expanded(child: _buildTasksContent()),
       ],
-    );
-  }
-
-  Widget _buildNotesContent() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 80,
-            height: 80,
-            decoration: BoxDecoration(
-              color: const Color(0xFFFFF3C4),
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: const Icon(
-              Icons.folder_open,
-              size: 40,
-              color: Color(0xFFFFA726),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Text(
-            'No notes here yet',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey[600],
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ],
-      ),
     );
   }
 
@@ -248,7 +222,6 @@ class _NotesHomePageState extends State<NotesHomePage> {
 
   @override
   void dispose() {
-    _notesSearchController.dispose();
     _tasksSearchController.dispose();
     _pageController.dispose();
     super.dispose();

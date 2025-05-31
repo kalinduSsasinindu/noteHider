@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:notehider/bloc/auth_event.dart';
-import 'package:notehider/bloc/auth_state.dart';
+import 'package:notehider/features/authentication/bloc/auth_event.dart';
+import 'package:notehider/features/authentication/bloc/auth_state.dart';
 import 'package:notehider/services/crypto_service.dart';
 import 'package:notehider/services/storage_service.dart';
 
@@ -92,6 +92,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
       if (storedHash == null || salt == null) {
         emit(state.copyWith(
+          status: AuthStatus.locked,
           errorMessage: 'Authentication data not found',
         ));
         return;
@@ -117,11 +118,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
       } else {
         emit(state.copyWith(
+          status: AuthStatus.locked,
           errorMessage: 'Invalid password',
         ));
       }
     } catch (e) {
       emit(state.copyWith(
+        status: AuthStatus.locked,
         errorMessage: 'Authentication failed: ${e.toString()}',
       ));
     }
