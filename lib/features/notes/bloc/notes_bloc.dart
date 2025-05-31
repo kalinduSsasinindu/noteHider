@@ -31,7 +31,8 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     try {
       emit(state.copyWith(status: NotesStatus.loading));
 
-      final notes = await _storageService.getNotes();
+      final notesData = await _storageService.getNotes();
+      final notes = notesData.map((data) => Note.fromJson(data)).toList();
 
       emit(state.copyWith(
         status: NotesStatus.loaded,
@@ -65,9 +66,14 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         isPasswordNote: event.isPasswordNote,
       );
 
-      final existingNotes = await _storageService.getNotes();
+      final existingNotesData = await _storageService.getNotes();
+      final existingNotes =
+          existingNotesData.map((data) => Note.fromJson(data)).toList();
       final updatedNotes = [...existingNotes, note];
-      await _storageService.storeNotes(updatedNotes);
+
+      // Convert notes to Map format for military-grade storage
+      final notesData = updatedNotes.map((note) => note.toJson()).toList();
+      await _storageService.storeNotes(notesData);
 
       emit(state.copyWith(
         status: NotesStatus.saved,
@@ -92,7 +98,10 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     try {
       emit(state.copyWith(status: NotesStatus.updating));
 
-      final existingNotes = await _storageService.getNotes();
+      final existingNotesData = await _storageService.getNotes();
+      final existingNotes =
+          existingNotesData.map((data) => Note.fromJson(data)).toList();
+
       final updatedNotes = existingNotes.map((note) {
         if (note.id == event.note.id) {
           return event.note;
@@ -100,7 +109,9 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         return note;
       }).toList();
 
-      await _storageService.storeNotes(updatedNotes);
+      // Convert notes to Map format for military-grade storage
+      final notesData = updatedNotes.map((note) => note.toJson()).toList();
+      await _storageService.storeNotes(notesData);
 
       emit(state.copyWith(
         status: NotesStatus.saved,
@@ -123,11 +134,15 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     try {
       emit(state.copyWith(status: NotesStatus.loading));
 
-      final existingNotes = await _storageService.getNotes();
+      final existingNotesData = await _storageService.getNotes();
+      final existingNotes =
+          existingNotesData.map((data) => Note.fromJson(data)).toList();
       final updatedNotes =
           existingNotes.where((note) => note.id != event.noteId).toList();
 
-      await _storageService.storeNotes(updatedNotes);
+      // Convert notes to Map format for military-grade storage
+      final notesData = updatedNotes.map((note) => note.toJson()).toList();
+      await _storageService.storeNotes(notesData);
 
       emit(state.copyWith(
         status: NotesStatus.loaded,

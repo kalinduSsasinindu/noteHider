@@ -42,7 +42,9 @@ class MyApp extends StatelessWidget {
           create: (_) => CryptoService(),
         ),
         Provider<StorageService>(
-          create: (_) => StorageService(),
+          create: (context) => StorageService(
+            cryptoService: context.read<CryptoService>(),
+          ),
         ),
       ],
       child: Consumer2<CryptoService, StorageService>(

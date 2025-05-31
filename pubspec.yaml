@@ -1,5 +1,5 @@
 name: notehider
-description: "A new Flutter project."
+description: A secure notes application with hidden functionality.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -19,7 +19,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.3 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -30,31 +30,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.6
-  flutter_bloc: ^8.1.6
   provider: ^6.1.2
+  flutter_bloc: ^8.1.3
   equatable: ^2.0.5
-  
-  # 🔐 Cutting-edge Security & Encryption
-  crypto: ^3.0.3
-  encrypt: ^5.0.3
-  pointycastle: ^3.7.4
-  
-  # 📱 Secure Storage & Biometrics
-  flutter_secure_storage: ^9.0.0
-  local_auth: ^2.1.7
   shared_preferences: ^2.2.2
+  flutter_secure_storage: ^9.0.0
+  uuid: ^4.1.0
+  cupertino_icons: ^1.0.2
+  crypto: ^3.0.3
+  encrypt: ^5.0.1
+  pointycastle: ^3.7.3
+  # Military-grade security features
+  local_auth: ^2.1.6
+  device_info_plus: ^9.1.0
+  # Time formatting
+  intl: ^0.19.0
   
   # 📁 File Management
   path_provider: ^2.1.2
   path: ^1.8.3
   
   # 🛠️ Utilities
-  uuid: ^4.3.3
-  intl: ^0.19.0
+  # Advanced security features
+  package_info_plus: ^4.2.0
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +63,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
