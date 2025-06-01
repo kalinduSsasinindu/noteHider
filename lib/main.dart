@@ -18,6 +18,8 @@ import 'package:notehider/services/tamper_detection_service.dart';
 import 'package:notehider/services/auto_wipe_service.dart';
 import 'package:notehider/services/decoy_system_service.dart';
 import 'package:notehider/services/file_manager_service.dart';
+import 'package:notehider/features/authentication/bloc/auth_coordinator.dart';
+import 'package:notehider/features/authentication/bloc/multi_factor_auth_bloc.dart';
 
 void main() async {
   // Initialize the BlocObserver
@@ -182,15 +184,21 @@ class MyApp extends StatelessWidget {
                     create: (context) => AuthBloc(
                       cryptoService: cryptoService,
                       storageService: storageService,
+                    )..add(const CheckFirstTimeSetup()),
+                  ),
+                  BlocProvider(
+                    create: (context) => MultiFactorAuthBloc(
                       biometricService: biometricService,
                       locationService: locationService,
                       totpService: totpService,
-                      tamperDetectionService: tamperDetectionService,
-                      autoWipeService: autoWipeService,
-                      decoySystemService: decoySystemService,
-                      fileManagerService: fileManagerService,
-                      securityConfigService: securityConfigService,
-                    )..add(const CheckFirstTimeSetup()),
+                    ),
+                  ),
+                  BlocProvider(
+                    create: (context) => AuthCoordinator(
+                      authBloc: context.read<AuthBloc>(),
+                      multiFactorAuthBloc: context.read<MultiFactorAuthBloc>(),
+                      storageService: storageService,
+                    ),
                   ),
                   BlocProvider(
                     create: (context) => NotesBloc(

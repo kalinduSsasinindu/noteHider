@@ -5,16 +5,13 @@ import 'package:provider/provider.dart';
 import '../authentication/bloc/auth_bloc.dart';
 import '../authentication/bloc/auth_state.dart';
 import '../authentication/bloc/auth_event.dart';
+import '../authentication/bloc/auth_coordinator.dart';
 import '../../services/security_config_service.dart';
 
 /// 🛡️ SECURITY TAB PAGE
 ///
-/// Security configuration and monitoring interface with:
-/// • Security score and status display
-/// • Individual feature toggles and configuration
-/// • Security profile switching
-/// • Real-time security monitoring
-/// • Feature testing capabilities
+/// Security configuration and monitoring interface
+/// Now includes additional security layer configuration via AuthCoordinator
 class SecurityTabPage extends StatefulWidget {
   const SecurityTabPage({super.key});
 
@@ -26,52 +23,68 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        return Scaffold(
-          backgroundColor: Colors.black,
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Security Score Card
-                _buildSecurityScoreCard(state),
-
-                const SizedBox(height: 24),
-
-                // Quick Profile Switch
-                _buildQuickProfileSwitch(state),
-
-                const SizedBox(height: 32),
-
-                // Security Features
-                _buildSecurityFeatures(state),
-
-                const SizedBox(height: 32),
-
-                // Advanced Settings
-                _buildAdvancedSettings(state),
-              ],
-            ),
-          ),
+      builder: (context, authState) {
+        return Builder(
+          builder: (context) {
+            try {
+              return BlocBuilder<AuthCoordinator, AuthCoordinatorState>(
+                builder: (context, coordinatorState) {
+                  return _buildScaffold(authState, coordinatorState);
+                },
+              );
+            } catch (e) {
+              // AuthCoordinator not available, use default state
+              print('⚠️ AuthCoordinator not available in SecurityTabPage: $e');
+              const defaultCoordinatorState = AuthCoordinatorState.initial();
+              return _buildScaffold(authState, defaultCoordinatorState);
+            }
+          },
         );
       },
     );
   }
 
-  Widget _buildSecurityScoreCard(AuthState state) {
-    final score = state.securityMetrics.securityScore;
-    final level = state.securityMetrics.securityLevel;
-    final threatLevel = state.securityMetrics.threatLevel;
+  Widget _buildScaffold(
+      AuthState authState, AuthCoordinatorState coordinatorState) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Enhanced Security Status Card
+            _buildEnhancedSecurityCard(authState, coordinatorState),
 
+            const SizedBox(height: 24),
+
+            // Security Profile Configuration
+            _buildSecurityProfileSection(coordinatorState),
+
+            const SizedBox(height: 24),
+
+            // Basic Settings
+            _buildBasicSettings(authState),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEnhancedSecurityCard(
+      AuthState authState, AuthCoordinatorState coordinatorState) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        gradient: _getSecurityGradient(level),
+        gradient: const LinearGradient(
+          colors: [Color(0xFF424242), Color(0xFF616161)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: _getSecurityColor(level).withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -86,7 +99,7 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Security Score',
+                    'Security Status',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16,
@@ -95,18 +108,11 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    score.toStringAsFixed(1),
+                    coordinatorState.canAccessSecureArea ? 'SECURE' : 'PENDING',
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 48,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    '/ 10.0',
-                    style: TextStyle(
-                      color: Colors.white.withOpacity(0.7),
-                      fontSize: 16,
                     ),
                   ),
                 ],
@@ -118,7 +124,9 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Icon(
-                  _getSecurityIcon(level),
+                  coordinatorState.canAccessSecureArea
+                      ? Icons.security
+                      : Icons.security_outlined,
                   color: Colors.white,
                   size: 32,
                 ),
@@ -133,7 +141,7 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      _getSecurityLevelText(level),
+                      'Profile: ${coordinatorState.currentSecurityProfile?.toUpperCase() ?? 'BASIC'}',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -142,7 +150,7 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      state.threatIndicator,
+                      'Password: ${authState.isPasswordSet ? "✅" : "❌"} | Additional: ${coordinatorState.multiFactorCompleted ? "✅" : "⚪"}',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 14,
@@ -151,13 +159,6 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
                   ],
                 ),
               ),
-              Text(
-                '${state.securityMetrics.enabledFeaturesCount} features active',
-                style: TextStyle(
-                  color: Colors.white.withOpacity(0.8),
-                  fontSize: 14,
-                ),
-              ),
             ],
           ),
         ],
@@ -165,91 +166,143 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
     );
   }
 
-  Widget _buildQuickProfileSwitch(AuthState state) {
-    final currentProfile = state.securityMetrics.currentSecurityProfile;
-
+  Widget _buildSecurityProfileSection(AuthCoordinatorState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Security Profile',
+          'Security Profiles',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const SizedBox(height: 16),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              _buildProfileCard(
-                  'basic', 'Basic', 6.5, currentProfile == 'basic'),
-              const SizedBox(width: 12),
-              _buildProfileCard('professional', 'Professional', 8.0,
-                  currentProfile == 'professional'),
-              const SizedBox(width: 12),
-              _buildProfileCard(
-                  'military', 'Military', 9.5, currentProfile == 'military'),
-              const SizedBox(width: 12),
-              _buildProfileCard(
-                  'paranoid', 'Paranoid', 10.0, currentProfile == 'paranoid'),
-            ],
+        const SizedBox(height: 8),
+        Text(
+          'Configure additional security layers for enhanced protection',
+          style: TextStyle(
+            color: Colors.white.withOpacity(0.7),
+            fontSize: 14,
           ),
+        ),
+        const SizedBox(height: 16),
+
+        // Security Profile Options
+        _buildProfileOption(
+          'Basic',
+          'Password only authentication',
+          Icons.lock,
+          Colors.blue,
+          state.currentSecurityProfile == 'basic',
+          () => _enableSecurityProfile('basic'),
+        ),
+        const SizedBox(height: 12),
+        _buildProfileOption(
+          'Professional',
+          'Password + Biometric authentication',
+          Icons.fingerprint,
+          Colors.green,
+          state.currentSecurityProfile == 'professional',
+          () => _enableSecurityProfile('professional'),
+        ),
+        const SizedBox(height: 12),
+        _buildProfileOption(
+          'Military',
+          'Password + Biometric + Location + TOTP',
+          Icons.shield,
+          Colors.orange,
+          state.currentSecurityProfile == 'military',
+          () => _enableSecurityProfile('military'),
+        ),
+        const SizedBox(height: 12),
+        _buildProfileOption(
+          'Paranoid',
+          'All security features enabled',
+          Icons.gpp_maybe,
+          Colors.red,
+          state.currentSecurityProfile == 'paranoid',
+          () => _enableSecurityProfile('paranoid'),
         ),
       ],
     );
   }
 
-  Widget _buildProfileCard(
-      String profileId, String name, double score, bool isSelected) {
+  Widget _buildProfileOption(
+    String title,
+    String description,
+    IconData icon,
+    Color color,
+    bool isSelected,
+    VoidCallback onTap,
+  ) {
     return GestureDetector(
-      onTap: () {
-        if (!isSelected) {
-          context
-              .read<AuthBloc>()
-              .add(SwitchSecurityProfile(newProfileType: profileId));
-        }
-      },
+      onTap: onTap,
       child: Container(
-        width: 120,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFFFFA726) : Colors.grey[900],
+          color: isSelected ? color.withOpacity(0.2) : Colors.grey[900],
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? const Color(0xFFFFA726) : Colors.grey[800]!,
-            width: 2,
+            color: isSelected ? color : Colors.grey[800]!,
+            width: isSelected ? 2 : 1,
           ),
         ),
-        child: Column(
+        child: Row(
           children: [
-            Text(
-              name,
-              style: TextStyle(
-                color: isSelected ? Colors.black : Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: isSelected ? color.withOpacity(0.3) : Colors.grey[800],
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                icon,
+                color: isSelected ? color : const Color(0xFFFFA726),
+                size: 24,
               ),
             ),
-            const SizedBox(height: 8),
-            Text(
-              score.toString(),
-              style: TextStyle(
-                color: isSelected ? Colors.black : const Color(0xFFFFA726),
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        title,
+                        style: TextStyle(
+                          color: isSelected ? color : Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      if (isSelected) ...[
+                        const SizedBox(width: 8),
+                        Icon(
+                          Icons.check_circle,
+                          color: color,
+                          size: 16,
+                        ),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    description,
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.7),
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             ),
-            Text(
-              '/10',
-              style: TextStyle(
-                color: isSelected
-                    ? Colors.black.withOpacity(0.7)
-                    : Colors.white.withOpacity(0.5),
-                fontSize: 12,
-              ),
+            Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.white.withOpacity(0.5),
+              size: 16,
             ),
           ],
         ),
@@ -257,158 +310,12 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
     );
   }
 
-  Widget _buildSecurityFeatures(AuthState state) {
+  Widget _buildBasicSettings(AuthState state) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Security Features',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        const SizedBox(height: 16),
-        _buildFeatureCard(
-          'biometric',
-          'Biometric Authentication',
-          'Fingerprint and face recognition',
-          Icons.fingerprint,
-          state.securityMetrics.isFeatureActive('biometric'),
-        ),
-        const SizedBox(height: 12),
-        _buildFeatureCard(
-          'location',
-          'Location Security',
-          'Safe zone verification',
-          Icons.location_on,
-          state.securityMetrics.isFeatureActive('location'),
-        ),
-        const SizedBox(height: 12),
-        _buildFeatureCard(
-          'totp',
-          'TOTP Authentication',
-          'Time-based one-time passwords',
-          Icons.security,
-          state.securityMetrics.isFeatureActive('totp'),
-        ),
-        const SizedBox(height: 12),
-        _buildFeatureCard(
-          'tamper_detection',
-          'Tamper Detection',
-          'App integrity monitoring',
-          Icons.shield,
-          state.securityMetrics.isFeatureActive('tamper_detection'),
-        ),
-        const SizedBox(height: 12),
-        _buildFeatureCard(
-          'auto_wipe',
-          'Auto-Wipe System',
-          'Emergency data destruction',
-          Icons.delete_forever,
-          state.securityMetrics.isFeatureActive('auto_wipe'),
-        ),
-        const SizedBox(height: 12),
-        _buildFeatureCard(
-          'decoy_system',
-          'Decoy System',
-          'Honeypots and fake data',
-          Icons.theater_comedy,
-          state.securityMetrics.isFeatureActive('decoy_system'),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildFeatureCard(String featureId, String title, String subtitle,
-      IconData icon, bool isActive) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.grey[900],
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-          color: isActive ? const Color(0xFFFFA726) : Colors.grey[800]!,
-        ),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: isActive
-                  ? const Color(0xFFFFA726).withOpacity(0.2)
-                  : Colors.grey[800],
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(
-              icon,
-              color: isActive ? const Color(0xFFFFA726) : Colors.grey[500],
-              size: 24,
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.7),
-                    fontSize: 14,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(TestSecurityFeature(featureId));
-                },
-                icon: const Icon(
-                  Icons.play_arrow,
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
-              Switch(
-                value: isActive,
-                onChanged: (value) {
-                  context.read<AuthBloc>().add(ToggleSecurityFeature(
-                        featureType: featureId,
-                        enabled: value,
-                      ));
-                },
-                activeColor: const Color(0xFFFFA726),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildAdvancedSettings(AuthState state) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Advanced Settings',
+          'Basic Settings',
           style: TextStyle(
             color: Colors.white,
             fontSize: 20,
@@ -417,39 +324,26 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
         ),
         const SizedBox(height: 16),
         _buildSettingCard(
-          'Session Timeout',
-          '${state.securityMetrics.sessionTimeoutMinutes} minutes',
-          Icons.timer,
+          'Lock App',
+          'Immediately lock the application',
+          Icons.lock,
           () {
-            // TODO: Show session timeout dialog
+            try {
+              context.read<AuthCoordinator>().add(const LockApplication());
+            } catch (e) {
+              // Fallback to AuthBloc if AuthCoordinator is not available
+              try {
+                context.read<AuthBloc>().add(const LockApp());
+              } catch (e2) {
+                print('⚠️ No auth system available for lock: $e2');
+              }
+            }
           },
         ),
         const SizedBox(height: 12),
         _buildSettingCard(
-          'Emergency Protocols',
-          state.securityMetrics.emergencyProtocolActive
-              ? 'Enabled'
-              : 'Disabled',
-          Icons.emergency,
-          () {
-            context.read<AuthBloc>().add(ToggleEmergencyProtocols(
-                  enabled: !state.securityMetrics.emergencyProtocolActive,
-                ));
-          },
-        ),
-        const SizedBox(height: 12),
-        _buildSettingCard(
-          'Export Configuration',
-          'Backup security settings',
-          Icons.file_download,
-          () {
-            context.read<AuthBloc>().add(const ExportSecurityConfiguration());
-          },
-        ),
-        const SizedBox(height: 12),
-        _buildSettingCard(
-          'Reset to Defaults',
-          'Restore factory settings',
+          'Reset App',
+          'Clear all data and restart',
           Icons.restore,
           () {
             _showResetConfirmation();
@@ -520,17 +414,29 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
     );
   }
 
+  void _enableSecurityProfile(String profileType) {
+    try {
+      context
+          .read<AuthCoordinator>()
+          .add(EnableAdditionalSecurity(profileType));
+      _showSnackBar('Configuring $profileType security profile...');
+    } catch (e) {
+      print('⚠️ AuthCoordinator not available for security profile change: $e');
+      _showSnackBar('Security profile configuration not available');
+    }
+  }
+
   void _showResetConfirmation() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.grey[900],
         title: const Text(
-          'Reset Security Configuration?',
+          'Reset Application?',
           style: TextStyle(color: Colors.white),
         ),
         content: const Text(
-          'This will reset all security settings to defaults. This action cannot be undone.',
+          'This will clear all data and reset the app to initial state. This action cannot be undone.',
           style: TextStyle(color: Colors.white70),
         ),
         actions: [
@@ -541,7 +447,7 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              context.read<AuthBloc>().add(const ResetSecurityConfiguration());
+              context.read<AuthBloc>().add(const ResetApp());
             },
             child: const Text(
               'Reset',
@@ -553,77 +459,18 @@ class _SecurityTabPageState extends State<SecurityTabPage> {
     );
   }
 
-  LinearGradient _getSecurityGradient(SecurityLevel level) {
-    switch (level) {
-      case SecurityLevel.militaryGrade:
-        return const LinearGradient(
-          colors: [Color(0xFF1B5E20), Color(0xFF2E7D32)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      case SecurityLevel.professional:
-        return const LinearGradient(
-          colors: [Color(0xFF0D47A1), Color(0xFF1565C0)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      case SecurityLevel.strong:
-        return const LinearGradient(
-          colors: [Color(0xFFE65100), Color(0xFFFF9800)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      default:
-        return const LinearGradient(
-          colors: [Color(0xFF424242), Color(0xFF616161)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-    }
-  }
-
-  Color _getSecurityColor(SecurityLevel level) {
-    switch (level) {
-      case SecurityLevel.militaryGrade:
-        return const Color(0xFF2E7D32);
-      case SecurityLevel.professional:
-        return const Color(0xFF1565C0);
-      case SecurityLevel.strong:
-        return const Color(0xFFFF9800);
-      default:
-        return const Color(0xFF616161);
-    }
-  }
-
-  IconData _getSecurityIcon(SecurityLevel level) {
-    switch (level) {
-      case SecurityLevel.militaryGrade:
-        return Icons.military_tech;
-      case SecurityLevel.professional:
-        return Icons.verified_user;
-      case SecurityLevel.strong:
-        return Icons.security;
-      default:
-        return Icons.shield;
-    }
-  }
-
-  String _getSecurityLevelText(SecurityLevel level) {
-    switch (level) {
-      case SecurityLevel.militaryGrade:
-        return 'MILITARY-GRADE';
-      case SecurityLevel.professional:
-        return 'PROFESSIONAL';
-      case SecurityLevel.strong:
-        return 'STRONG';
-      case SecurityLevel.moderate:
-        return 'MODERATE';
-      case SecurityLevel.weak:
-        return 'WEAK';
-      case SecurityLevel.compromised:
-        return 'COMPROMISED';
-      default:
-        return 'UNKNOWN';
+  void _showSnackBar(String message) {
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(message),
+          backgroundColor: const Color(0xFFFFA726),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      );
     }
   }
 }

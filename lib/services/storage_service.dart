@@ -1459,6 +1459,29 @@ class StorageService {
       print('🚨 Failed to clear device binding: $e');
     }
   }
+
+  /// 🛡️ STORE SECURITY PROFILE
+  Future<void> storeSecurityProfile(String securityProfile) async {
+    await _ensureInitialized();
+    try {
+      await _prefs!.setString('security_profile', securityProfile);
+      print('✅ Security profile stored: $securityProfile');
+    } catch (e) {
+      print('🚨 Failed to store security profile: $e');
+      throw SecurityException('Failed to store security profile');
+    }
+  }
+
+  /// 🛡️ GET SECURITY PROFILE
+  Future<String?> getSecurityProfile() async {
+    await _ensureInitialized();
+    try {
+      return _prefs!.getString('security_profile');
+    } catch (e) {
+      print('🚨 Failed to get security profile: $e');
+      return null;
+    }
+  }
 }
 
 // Note model for regular notes (disguise)

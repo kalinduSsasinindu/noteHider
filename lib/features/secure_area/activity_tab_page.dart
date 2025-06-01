@@ -4,15 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../authentication/bloc/auth_bloc.dart';
 import '../authentication/bloc/auth_state.dart';
 import '../authentication/bloc/auth_event.dart';
+import '../authentication/bloc/auth_coordinator.dart';
 
 /// 📊 ACTIVITY TAB PAGE
 ///
-/// Security monitoring and activity dashboard with:
-/// • Real-time threat status
-/// • Security event timeline
-/// • Activity metrics and statistics
-/// • Emergency action controls
-/// • Security audit logs
+/// Enhanced activity monitoring interface with AuthCoordinator integration
+/// Shows basic authentication activity and security profile changes
 class ActivityTabPage extends StatefulWidget {
   const ActivityTabPage({super.key});
 
@@ -22,54 +19,166 @@ class ActivityTabPage extends StatefulWidget {
 
 class _ActivityTabPageState extends State<ActivityTabPage> {
   String _selectedFilter = 'all';
+  List<Map<String, dynamic>> _recentActivities = [];
 
   final List<Map<String, dynamic>> _filters = [
     {'id': 'all', 'name': 'All Activity', 'icon': Icons.list},
-    {'id': 'security', 'name': 'Security Events', 'icon': Icons.security},
-    {'id': 'threats', 'name': 'Threats', 'icon': Icons.warning},
     {'id': 'auth', 'name': 'Authentication', 'icon': Icons.login},
-    {'id': 'files', 'name': 'File Access', 'icon': Icons.folder},
+    {'id': 'security', 'name': 'Security Config', 'icon': Icons.security},
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _loadRecentActivities();
+  }
+
+  void _loadRecentActivities() {
+    // Simulate recent activities - in real app this would come from storage
+    _recentActivities = [
+      {
+        'type': 'secure_area_access',
+        'title': 'Secure Area Access',
+        'description': 'Successfully entered secure area',
+        'icon': Icons.security,
+        'color': Colors.green,
+        'timestamp': DateTime.now().subtract(const Duration(minutes: 2)),
+      },
+      {
+        'type': 'password_auth',
+        'title': 'Password Authentication',
+        'description': 'Master password verified',
+        'icon': Icons.key,
+        'color': Colors.blue,
+        'timestamp': DateTime.now().subtract(const Duration(minutes: 3)),
+      },
+    ];
+  }
+
+  @override
   Widget build(BuildContext context) {
+    return Builder(
+      builder: (context) {
+        // Check if AuthCoordinator is available
+        try {
+          final coordinator = context.read<AuthCoordinator>();
+          // If available, use the full listener
+          return BlocListener<AuthCoordinator, AuthCoordinatorState>(
+            listener: (context, coordinatorState) {
+              // Track security profile changes
+              if (coordinatorState.status ==
+                  AuthCoordinatorStatus.configuringAdditionalSecurity) {
+                _addActivity(
+                  'Security Profile Change',
+                  'Configuring ${coordinatorState.currentSecurityProfile} security profile',
+                  Icons.shield,
+                  Colors.orange,
+                );
+              } else if (coordinatorState.status ==
+                  AuthCoordinatorStatus.fullyAuthenticated) {
+                if (coordinatorState.multiFactorCompleted) {
+                  _addActivity(
+                    'Multi-Factor Authentication',
+                    'All security factors completed successfully',
+                    Icons.verified_user,
+                    Colors.green,
+                  );
+                }
+              }
+            },
+            child: _buildContent(),
+          );
+        } catch (e) {
+          // AuthCoordinator not available, show basic content
+          print('⚠️ AuthCoordinator not available in ActivityTabPage: $e');
+          return _buildContent();
+        }
+      },
+    );
+  }
+
+  Widget _buildContent() {
     return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        return Scaffold(
-          backgroundColor: Colors.black,
-          body: Column(
-            children: [
-              // Threat Status Card
-              _buildThreatStatusCard(state),
-
-              // Activity Filters
-              _buildActivityFilters(),
-
-              // Activity Timeline
-              Expanded(
-                child: _buildActivityTimeline(state),
-              ),
-            ],
-          ),
-          floatingActionButton: _buildEmergencyFAB(),
+      builder: (context, authState) {
+        // Try to get AuthCoordinator state, but handle gracefully if not available
+        return Builder(
+          builder: (context) {
+            try {
+              return BlocBuilder<AuthCoordinator, AuthCoordinatorState>(
+                builder: (context, coordinatorState) {
+                  return _buildScaffold(authState, coordinatorState);
+                },
+              );
+            } catch (e) {
+              // AuthCoordinator not available, use default state
+              print('⚠️ AuthCoordinator not available for BlocBuilder: $e');
+              const defaultCoordinatorState = AuthCoordinatorState.initial();
+              return _buildScaffold(authState, defaultCoordinatorState);
+            }
+          },
         );
       },
     );
   }
 
-  Widget _buildThreatStatusCard(AuthState state) {
-    final threatLevel = state.securityMetrics.threatLevel;
-    final lastAudit = state.securityMetrics.lastSecurityAudit;
+  Widget _buildScaffold(
+      AuthState authState, AuthCoordinatorState coordinatorState) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Column(
+        children: [
+          // Enhanced Status Card
+          _buildEnhancedStatusCard(authState, coordinatorState),
 
+          // Activity Filters
+          _buildActivityFilters(),
+
+          // Activity Content
+          Expanded(
+            child: _buildActivityContent(authState, coordinatorState),
+          ),
+        ],
+      ),
+      floatingActionButton: _buildBasicActionsFAB(),
+    );
+  }
+
+  void _addActivity(
+      String title, String description, IconData icon, Color color) {
+    if (mounted) {
+      setState(() {
+        _recentActivities.insert(0, {
+          'type': 'security_change',
+          'title': title,
+          'description': description,
+          'icon': icon,
+          'color': color,
+          'timestamp': DateTime.now(),
+        });
+
+        // Keep only last 20 activities
+        if (_recentActivities.length > 20) {
+          _recentActivities = _recentActivities.take(20).toList();
+        }
+      });
+    }
+  }
+
+  Widget _buildEnhancedStatusCard(
+      AuthState authState, AuthCoordinatorState coordinatorState) {
     return Container(
       margin: const EdgeInsets.all(24),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: _getThreatGradient(threatLevel),
+        gradient: const LinearGradient(
+          colors: [Color(0xFF424242), Color(0xFF616161)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: _getThreatColor(threatLevel).withOpacity(0.3),
+            color: Colors.grey.withOpacity(0.3),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),
@@ -86,7 +195,9 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
-                  _getThreatIcon(threatLevel),
+                  coordinatorState.canAccessSecureArea
+                      ? Icons.check_circle
+                      : Icons.info,
                   color: Colors.white,
                   size: 24,
                 ),
@@ -97,7 +208,9 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      state.threatIndicator,
+                      coordinatorState.canAccessSecureArea
+                          ? '✅ SECURE ACCESS GRANTED'
+                          : '⚪ AUTHENTICATION PENDING',
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
@@ -106,25 +219,13 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      _getThreatDescription(threatLevel),
+                      'Profile: ${coordinatorState.currentSecurityProfile?.toUpperCase() ?? 'BASIC'}',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 14,
                       ),
                     ),
                   ],
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  context.read<AuthBloc>().add(const PerformSecurityAudit());
-                },
-                child: const Text(
-                  'Scan',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
                 ),
               ),
             ],
@@ -134,23 +235,23 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
             children: [
               Expanded(
                 child: _buildStatusMetric(
-                  'Active Threats',
-                  '${state.securityMetrics.activeThreats.length}',
-                  Icons.warning,
+                  'Password',
+                  authState.isPasswordSet ? 'SET' : 'NOT SET',
+                  Icons.lock,
                 ),
               ),
               Expanded(
                 child: _buildStatusMetric(
-                  'Failed Attempts',
-                  '${state.securityMetrics.failedAttempts}',
-                  Icons.block,
+                  'Additional Auth',
+                  coordinatorState.multiFactorCompleted ? 'ACTIVE' : 'BASIC',
+                  Icons.fingerprint,
                 ),
               ),
               Expanded(
                 child: _buildStatusMetric(
-                  'Last Scan',
-                  lastAudit != null ? _formatTime(lastAudit) : 'Never',
-                  Icons.schedule,
+                  'Security Mode',
+                  coordinatorState.canAccessSecureArea ? 'SECURE' : 'LOCKED',
+                  Icons.shield,
                 ),
               ),
             ],
@@ -160,33 +261,160 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
     );
   }
 
-  Widget _buildStatusMetric(String label, String value, IconData icon) {
-    return Column(
+  Widget _buildActivityContent(
+      AuthState authState, AuthCoordinatorState coordinatorState) {
+    final filteredActivities = _getFilteredActivities();
+
+    return ListView(
+      padding: const EdgeInsets.all(24),
       children: [
-        Icon(
-          icon,
-          color: Colors.white.withOpacity(0.7),
-          size: 16,
-        ),
-        const SizedBox(height: 4),
-        Text(
-          value,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        Text(
-          label,
+        const Text(
+          'Recent Activity',
           style: TextStyle(
-            color: Colors.white.withOpacity(0.7),
-            fontSize: 12,
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
           ),
-          textAlign: TextAlign.center,
         ),
+
+        const SizedBox(height: 16),
+
+        // Recent activity items
+        ...filteredActivities.map((activity) => _buildActivityItem(
+              activity['title'],
+              activity['description'],
+              activity['icon'],
+              activity['color'],
+              activity['timestamp'],
+            )),
+
+        // If no activities
+        if (filteredActivities.isEmpty)
+          Container(
+            padding: const EdgeInsets.all(40),
+            child: Column(
+              children: [
+                Icon(
+                  Icons.history,
+                  size: 60,
+                  color: Colors.grey[600],
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'No activity found',
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Activity will appear here as you use the app',
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 14,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+
+        const SizedBox(height: 100), // Space for FAB
       ],
     );
+  }
+
+  List<Map<String, dynamic>> _getFilteredActivities() {
+    if (_selectedFilter == 'all') {
+      return _recentActivities;
+    } else if (_selectedFilter == 'auth') {
+      return _recentActivities
+          .where((activity) =>
+              activity['type'] == 'password_auth' ||
+              activity['type'] == 'secure_area_access')
+          .toList();
+    } else if (_selectedFilter == 'security') {
+      return _recentActivities
+          .where((activity) => activity['type'] == 'security_change')
+          .toList();
+    }
+    return _recentActivities;
+  }
+
+  Widget _buildActivityItem(String title, String subtitle, IconData icon,
+      Color color, DateTime timestamp) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.grey[900],
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey[800]!),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(
+              icon,
+              color: color,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  subtitle,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.5),
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Text(
+            _formatTimestamp(timestamp),
+            style: TextStyle(
+              color: Colors.white.withOpacity(0.4),
+              fontSize: 11,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String _formatTimestamp(DateTime timestamp) {
+    final now = DateTime.now();
+    final difference = now.difference(timestamp);
+
+    if (difference.inMinutes < 60) {
+      return '${difference.inMinutes}m ago';
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours}h ago';
+    } else {
+      return '${difference.inDays}d ago';
+    }
   }
 
   Widget _buildActivityFilters() {
@@ -244,236 +472,19 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
     );
   }
 
-  Widget _buildActivityTimeline(AuthState state) {
-    return ListView(
-      padding: const EdgeInsets.all(24),
-      children: [
-        // Security metrics summary
-        _buildMetricsGrid(state),
-
-        const SizedBox(height: 24),
-
-        const Text(
-          'Recent Activity',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-
-        const SizedBox(height: 16),
-
-        // Activity items
-        ...state.securityLog
-            .take(10)
-            .map((logEntry) => _buildActivityItem(logEntry))
-            .toList(),
-
-        if (state.securityLog.isEmpty) _buildEmptyState(),
-
-        const SizedBox(height: 100), // Space for FAB
-      ],
-    );
-  }
-
-  Widget _buildMetricsGrid(AuthState state) {
-    return GridView.count(
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      childAspectRatio: 1.2,
-      children: [
-        _buildMetricCard(
-          'Security Score',
-          '${state.securityMetrics.securityScore.toStringAsFixed(1)}/10',
-          Icons.security,
-          _getScoreColor(state.securityMetrics.securityScore),
-        ),
-        _buildMetricCard(
-          'Active Features',
-          '${state.securityMetrics.enabledFeaturesCount}',
-          Icons.verified_user,
-          const Color(0xFFFFA726),
-        ),
-        _buildMetricCard(
-          'Device Status',
-          state.isDeviceBound ? 'Bound' : 'Unbound',
-          Icons.devices,
-          state.isDeviceBound ? Colors.green : Colors.orange,
-        ),
-        _buildMetricCard(
-          'Session Time',
-          '${state.securityMetrics.sessionTimeoutMinutes}m',
-          Icons.timer,
-          Colors.blue,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildMetricCard(
-      String title, String value, IconData icon, Color color) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.grey[900],
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey[800]!),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Icon(
-              icon,
-              color: color,
-              size: 24,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            value,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            title,
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-              fontSize: 12,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildActivityItem(String logEntry) {
-    // Parse log entry (simplified)
-    final icon = _getActivityIcon(logEntry);
-    final color = _getActivityColor(logEntry);
-    final time = DateTime.now().subtract(Duration(minutes: 5)); // Placeholder
-
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.grey[900],
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey[800]!),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Icon(
-              icon,
-              color: color,
-              size: 20,
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  logEntry,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  _formatTime(time),
-                  style: TextStyle(
-                    color: Colors.white.withOpacity(0.5),
-                    fontSize: 12,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        children: [
-          const SizedBox(height: 40),
-          Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-              color: Colors.grey[900],
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Icon(
-              Icons.timeline,
-              color: Colors.white.withOpacity(0.5),
-              size: 30,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'No activity yet',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.7),
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Security events will appear here',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.5),
-              fontSize: 14,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildEmergencyFAB() {
+  Widget _buildBasicActionsFAB() {
     return FloatingActionButton.extended(
-      onPressed: _showEmergencyOptions,
-      backgroundColor: Colors.red,
-      icon: const Icon(Icons.emergency, color: Colors.white),
+      onPressed: _showBasicActions,
+      backgroundColor: const Color(0xFFFFA726),
+      icon: const Icon(Icons.settings, color: Colors.black),
       label: const Text(
-        'Emergency',
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600),
+        'Actions',
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
       ),
     );
   }
 
-  void _showEmergencyOptions() {
+  void _showBasicActions() {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.grey[900],
@@ -495,7 +506,7 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
             ),
             const SizedBox(height: 24),
             const Text(
-              'Emergency Actions',
+              'Basic Actions',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -503,27 +514,7 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
               ),
             ),
             const SizedBox(height: 24),
-            _buildEmergencyOption(
-              'Security Scan',
-              'Run immediate threat detection',
-              Icons.security,
-              Colors.orange,
-              () {
-                Navigator.pop(context);
-                context.read<AuthBloc>().add(const PerformSecurityAudit());
-              },
-            ),
-            _buildEmergencyOption(
-              'Emergency Wipe',
-              'Destroy all data immediately',
-              Icons.delete_forever,
-              Colors.red,
-              () {
-                Navigator.pop(context);
-                _showWipeConfirmation();
-              },
-            ),
-            _buildEmergencyOption(
+            _buildActionOption(
               'Lock App',
               'Immediately lock the application',
               Icons.lock,
@@ -533,13 +524,23 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
                 context.read<AuthBloc>().add(const LockApp());
               },
             ),
+            _buildActionOption(
+              'Reset App',
+              'Clear all data and restart',
+              Icons.restore,
+              Colors.red,
+              () {
+                Navigator.pop(context);
+                _showResetConfirmation();
+              },
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildEmergencyOption(String title, String subtitle, IconData icon,
+  Widget _buildActionOption(String title, String subtitle, IconData icon,
       Color color, VoidCallback onTap) {
     return ListTile(
       onTap: onTap,
@@ -579,17 +580,17 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
     );
   }
 
-  void _showWipeConfirmation() {
+  void _showResetConfirmation() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: Colors.grey[900],
         title: const Text(
-          'Emergency Wipe',
+          'Reset Application',
           style: TextStyle(color: Colors.red),
         ),
         content: const Text(
-          'This will permanently destroy all encrypted data. This action cannot be undone.',
+          'This will clear all data and reset the app to initial state. This action cannot be undone.',
           style: TextStyle(color: Colors.white70),
         ),
         actions: [
@@ -600,12 +601,10 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              context
-                  .read<AuthBloc>()
-                  .add(const TriggerEmergencyProtocol('Manual emergency wipe'));
+              context.read<AuthBloc>().add(const ResetApp());
             },
             child: const Text(
-              'WIPE NOW',
+              'RESET NOW',
               style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
             ),
           ),
@@ -614,118 +613,33 @@ class _ActivityTabPageState extends State<ActivityTabPage> {
     );
   }
 
-  // Helper methods
-  LinearGradient _getThreatGradient(ThreatLevel level) {
-    switch (level) {
-      case ThreatLevel.critical:
-      case ThreatLevel.emergency:
-        return const LinearGradient(
-          colors: [Color(0xFFB71C1C), Color(0xFFD32F2F)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      case ThreatLevel.high:
-        return const LinearGradient(
-          colors: [Color(0xFFE65100), Color(0xFFFF9800)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      case ThreatLevel.medium:
-        return const LinearGradient(
-          colors: [Color(0xFFF57F17), Color(0xFFFFEB3B)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-      default:
-        return const LinearGradient(
-          colors: [Color(0xFF1B5E20), Color(0xFF2E7D32)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        );
-    }
-  }
-
-  Color _getThreatColor(ThreatLevel level) {
-    switch (level) {
-      case ThreatLevel.critical:
-      case ThreatLevel.emergency:
-        return Colors.red;
-      case ThreatLevel.high:
-        return Colors.orange;
-      case ThreatLevel.medium:
-        return Colors.yellow;
-      default:
-        return Colors.green;
-    }
-  }
-
-  IconData _getThreatIcon(ThreatLevel level) {
-    switch (level) {
-      case ThreatLevel.critical:
-      case ThreatLevel.emergency:
-        return Icons.dangerous;
-      case ThreatLevel.high:
-        return Icons.warning;
-      case ThreatLevel.medium:
-        return Icons.info;
-      default:
-        return Icons.verified_user;
-    }
-  }
-
-  String _getThreatDescription(ThreatLevel level) {
-    switch (level) {
-      case ThreatLevel.emergency:
-        return 'Immediate action required';
-      case ThreatLevel.critical:
-        return 'Severe security threat detected';
-      case ThreatLevel.high:
-        return 'Security concern detected';
-      case ThreatLevel.medium:
-        return 'Minor security issue';
-      case ThreatLevel.low:
-        return 'Minimal security risk';
-      default:
-        return 'All systems secure';
-    }
-  }
-
-  Color _getScoreColor(double score) {
-    if (score >= 9.0) return Colors.green;
-    if (score >= 7.0) return Colors.orange;
-    if (score >= 5.0) return Colors.yellow;
-    return Colors.red;
-  }
-
-  IconData _getActivityIcon(String logEntry) {
-    if (logEntry.contains('authenticated') || logEntry.contains('login'))
-      return Icons.login;
-    if (logEntry.contains('threat') || logEntry.contains('detected'))
-      return Icons.warning;
-    if (logEntry.contains('security') || logEntry.contains('audit'))
-      return Icons.security;
-    if (logEntry.contains('file') || logEntry.contains('encrypted'))
-      return Icons.folder;
-    return Icons.info;
-  }
-
-  Color _getActivityColor(String logEntry) {
-    if (logEntry.contains('threat') || logEntry.contains('failed'))
-      return Colors.red;
-    if (logEntry.contains('warning') || logEntry.contains('suspicious'))
-      return Colors.orange;
-    if (logEntry.contains('success') || logEntry.contains('completed'))
-      return Colors.green;
-    return const Color(0xFFFFA726);
-  }
-
-  String _formatTime(DateTime time) {
-    final now = DateTime.now();
-    final difference = now.difference(time);
-
-    if (difference.inMinutes < 1) return 'Just now';
-    if (difference.inMinutes < 60) return '${difference.inMinutes}m ago';
-    if (difference.inHours < 24) return '${difference.inHours}h ago';
-    return '${difference.inDays}d ago';
+  Widget _buildStatusMetric(String label, String value, IconData icon) {
+    return Column(
+      children: [
+        Icon(
+          icon,
+          color: Colors.white.withOpacity(0.7),
+          size: 16,
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+        Text(
+          label,
+          style: TextStyle(
+            color: Colors.white.withOpacity(0.7),
+            fontSize: 10,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
+    );
   }
 }

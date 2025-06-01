@@ -9,10 +9,6 @@ import 'package:notehider/models/security_config.dart';
 import 'package:notehider/models/security_profiles.dart';
 import 'package:notehider/services/storage_service.dart';
 import 'package:notehider/services/crypto_service.dart';
-import 'package:notehider/features/authentication/bloc/auth_state.dart'
-    show SecurityMetrics, DeviceBindingStatus, ThreatLevel;
-import 'package:notehider/features/authentication/bloc/auth_state.dart'
-    as auth_state;
 
 class SecurityConfigService {
   final StorageService _storageService;
@@ -198,23 +194,17 @@ class SecurityConfigService {
     return currentProfile.isFeatureEnabled(featureType);
   }
 
-  /// 📊 GET SECURITY METRICS
-  SecurityMetrics getSecurityMetrics() {
-    return SecurityMetrics(
-      securityLevel: _mapToSecurityLevel(currentProfile.securityScore),
-      securityScore: currentProfile.securityScore,
-      deviceBinding: isFeatureEnabled(SecurityFeatureType.deviceBinding)
-          ? DeviceBindingStatus.bound
-          : DeviceBindingStatus.notInitialized,
-      threatLevel: ThreatLevel.none,
-      failedAttempts: 0,
-      lastSecurityAudit: DateTime.now(),
-      activeThreats: [],
-      deviceCharacteristics: {},
-      quantumResistant: false,
-      biometricAvailable: isFeatureEnabled(SecurityFeatureType.biometricAuth),
-      emergencyProtocolActive: false,
-    );
+  /// 📊 GET SECURITY STATUS SUMMARY
+  Map<String, dynamic> getSecurityStatusSummary() {
+    return {
+      'profileType': currentProfile.type.name,
+      'securityScore': currentProfile.securityScore,
+      'enabledFeatures': currentProfile.features.values
+          .where((f) => f.enabled)
+          .map((f) => f.type.name)
+          .toList(),
+      'lastUpdated': currentConfig.lastUpdated.toIso8601String(),
+    };
   }
 
   /// 🔄 RESET TO DEFAULT CONFIGURATION
@@ -475,17 +465,6 @@ class SecurityConfigService {
         message: 'Location services not available: $e',
       );
     }
-  }
-
-  /// Map security score to security level
-  auth_state.SecurityLevel _mapToSecurityLevel(double score) {
-    if (score >= 9.5) return auth_state.SecurityLevel.militaryGrade;
-    if (score >= 8.6) return auth_state.SecurityLevel.professional;
-    if (score >= 8.0) return auth_state.SecurityLevel.strong;
-    if (score >= 6.0) return auth_state.SecurityLevel.moderate;
-    if (score >= 4.0) return auth_state.SecurityLevel.weak;
-    if (score >= 0.0) return auth_state.SecurityLevel.compromised;
-    return auth_state.SecurityLevel.unknown;
   }
 
   /// Notify all listeners of configuration changes
