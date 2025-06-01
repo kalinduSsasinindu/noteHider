@@ -47,7 +47,9 @@ class LocationService {
       final permission = await _checkLocationPermission();
       if (permission != LocationPermission.always &&
           permission != LocationPermission.whileInUse) {
-        throw LocationException('Location permission not granted');
+        print('⚠️ Location permission not granted - service will be disabled');
+        _isInitialized = true; // Initialize in disabled state
+        return;
       }
 
       // Load saved data
@@ -55,10 +57,12 @@ class LocationService {
       await _loadLastPosition();
 
       _isInitialized = true;
-      print('🌍 Location service initialized');
+      print('🌍 Location service initialized successfully');
     } catch (e) {
-      print('🚨 Location service initialization failed: $e');
-      rethrow;
+      print('⚠️ Location service initialization failed: $e');
+      print('📱 Location service will be disabled but app will continue');
+      _isInitialized = true; // Initialize in disabled state
+      // Don't rethrow - allow app to continue without location features
     }
   }
 
@@ -66,6 +70,7 @@ class LocationService {
   Future<LocationPermission> _checkLocationPermission() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
+      print('📍 Location services are disabled on device');
       throw LocationException('Location services are disabled');
     }
 
@@ -73,14 +78,17 @@ class LocationService {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
+        print('🚫 Location permissions are denied by user');
         throw LocationException('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
+      print('🚫 Location permissions are permanently denied');
       throw LocationException('Location permissions are permanently denied');
     }
 
+    print('✅ Location permissions granted: $permission');
     return permission;
   }
 
@@ -448,6 +456,41 @@ class LocationService {
     if (!_isInitialized) {
       await initialize();
     }
+  }
+
+  /// 📊 CHECK IF LOCATION SERVICE IS AVAILABLE
+  Future<bool> isLocationServiceAvailable() async {
+    if (!_isInitialized) return false;
+
+    try {
+      // Check if location services are enabled
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) return false;
+
+      // Check permissions
+      LocationPermission permission = await Geolocator.checkPermission();
+      return permission == LocationPermission.always ||
+          permission == LocationPermission.whileInUse;
+    } catch (e) {
+      print('⚠️ Error checking location service availability: $e');
+      return false;
+    }
+  }
+
+  /// 📍 GET SERVICE STATUS
+  Future<Map<String, dynamic>> getServiceStatus() async {
+    final isAvailable = await isLocationServiceAvailable();
+    final serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    final permission = await Geolocator.checkPermission();
+
+    return {
+      'initialized': _isInitialized,
+      'available': isAvailable,
+      'serviceEnabled': serviceEnabled,
+      'permission': permission.name,
+      'safeZonesCount': _safeZones.length,
+      'lastUpdate': _lastLocationUpdate?.toIso8601String(),
+    };
   }
 
   LocationError _mapLocationException(dynamic e) {

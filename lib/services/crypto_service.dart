@@ -4,8 +4,12 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:notehider/models/file_models.dart';
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/random/fortuna_random.dart';
+import 'package:pointycastle/digests/sha256.dart';
+import 'package:pointycastle/block/aes.dart';
+import 'package:pointycastle/block/modes/gcm.dart';
 import 'package:flutter/foundation.dart' as foundation;
 
 /// 🎖️ MILITARY-GRADE CRYPTOGRAPHIC SERVICE
@@ -38,10 +42,15 @@ class CryptoService {
   int _operationCount = 0;
   DateTime? _lastSecurityAudit;
 
+  // Service state
+  bool _isInitialized = false;
+  Uint8List? _key;
+
   CryptoService() {
     // Initialize secure random with maximum entropy
     _initializeSecureRandom();
     _scheduleSecurityAudit();
+    _isInitialized = true;
 
     print(
         '🎖️ Military-grade crypto initialized - Mobile optimized: $_pbkdf2Iterations iterations, $_keyStretchingRounds rounds');
@@ -52,6 +61,11 @@ class CryptoService {
     // Use maximum entropy seed (256 bits - required by Fortuna PRNG)
     final seed = List<int>.generate(32, (i) => Random.secure().nextInt(256));
     _secureRandom.seed(KeyParameter(Uint8List.fromList(seed)));
+  }
+
+  /// 🔑 SET MASTER KEY
+  void setMasterKey(Uint8List masterKey) {
+    _key = Uint8List.fromList(masterKey);
   }
 
   /// 🔐 MILITARY-GRADE PASSWORD HASHING
@@ -293,6 +307,15 @@ class CryptoService {
     return _secureRandom.nextBytes(_ephemeralKeyLength);
   }
 
+  /// 🔧 CIPHER UTILITIES
+  Uint8List _generateIV() {
+    return _secureRandom.nextBytes(_ivLength);
+  }
+
+  BlockCipher _createCipher() {
+    return GCMBlockCipher(AESEngine());
+  }
+
   /// ⏱️ CONSTANT-TIME COMPARISON (Anti-Timing Attack)
   bool _constantTimeEquals(List<int> a, List<int> b) {
     if (a.length != b.length) return false;
@@ -413,17 +436,29 @@ class CryptoService {
     return Uint8List.fromList(encrypter.decryptBytes(encrypted, iv: iv));
   }
 
-  // Legacy file encryption methods remain the same...
+  // Updated file encryption methods with new FileMetadata structure
   Future<EncryptedFile> encryptFile({
     required String fileName,
     required Uint8List fileData,
     required Uint8List masterKey,
   }) async {
+    final now = DateTime.now();
+    final fileId = _generateUniqueId();
+    final fileHash = sha256.convert(fileData).toString();
+
+    // Create new FileMetadata with all required fields
     final metadata = FileMetadata(
+      id: fileId,
       originalName: fileName,
-      size: fileData.length,
-      timestamp: DateTime.now(),
-      checksum: sha256.convert(fileData).toString(),
+      displayName: fileName,
+      encryptedPath: 'encrypted/$fileId',
+      type: _getFileTypeFromName(fileName),
+      sizeBytes: fileData.length,
+      createdAt: now,
+      modifiedAt: now,
+      lastAccessedAt: now,
+      mimeType: _getMimeTypeFromName(fileName),
+      fileHash: fileHash,
     );
 
     final metadataJson = jsonEncode(metadata.toJson());
@@ -438,7 +473,7 @@ class CryptoService {
     return EncryptedFile(
       encryptedData: encryptedData,
       encryptedMetadata: encryptedMetadata,
-      id: _generateUniqueId(),
+      id: fileId,
     );
   }
 
@@ -461,7 +496,7 @@ class CryptoService {
 
     // Verify file integrity
     final currentChecksum = sha256.convert(decryptedData).toString();
-    if (currentChecksum != metadata.checksum) {
+    if (currentChecksum != metadata.fileHash) {
       throw Exception('File integrity check failed');
     }
 
@@ -470,6 +505,81 @@ class CryptoService {
       data: decryptedData,
       metadata: metadata,
     );
+  }
+
+  /// 📁 FILE TYPE DETECTION
+  FileType _getFileTypeFromName(String fileName) {
+    final extension = fileName.split('.').last.toLowerCase();
+
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+      case 'png':
+      case 'gif':
+      case 'bmp':
+      case 'webp':
+        return FileType.image;
+      case 'mp4':
+      case 'avi':
+      case 'mov':
+      case 'mkv':
+      case 'flv':
+      case 'wmv':
+        return FileType.video;
+      case 'mp3':
+      case 'wav':
+      case 'flac':
+      case 'aac':
+      case 'm4a':
+        return FileType.audio;
+      case 'pdf':
+      case 'doc':
+      case 'docx':
+      case 'xls':
+      case 'xlsx':
+      case 'ppt':
+      case 'pptx':
+        return FileType.document;
+      case 'zip':
+      case 'rar':
+      case '7z':
+      case 'tar':
+      case 'gz':
+        return FileType.archive;
+      case 'txt':
+      case 'md':
+      case 'rtf':
+        return FileType.text;
+      default:
+        return FileType.other;
+    }
+  }
+
+  /// 🎭 MIME TYPE DETECTION
+  String _getMimeTypeFromName(String fileName) {
+    final extension = fileName.split('.').last.toLowerCase();
+
+    switch (extension) {
+      case 'jpg':
+      case 'jpeg':
+        return 'image/jpeg';
+      case 'png':
+        return 'image/png';
+      case 'gif':
+        return 'image/gif';
+      case 'mp4':
+        return 'video/mp4';
+      case 'pdf':
+        return 'application/pdf';
+      case 'txt':
+        return 'text/plain';
+      case 'mp3':
+        return 'audio/mpeg';
+      case 'zip':
+        return 'application/zip';
+      default:
+        return 'application/octet-stream';
+    }
   }
 
   String generateSecureToken(int length) {
@@ -487,6 +597,45 @@ class CryptoService {
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final random = _secureRandom.nextUint32();
     return '${timestamp}_$random';
+  }
+
+  /// 🔗 CONVENIENCE METHODS FOR FILE MANAGER
+  Future<Uint8List> encryptBytes(Uint8List data) async {
+    if (_key == null) {
+      throw Exception('Master key not set');
+    }
+    final encryptedData = await encryptData(data, _key!);
+    return encryptedData.encryptedBytes;
+  }
+
+  Future<Uint8List> decryptBytes(Uint8List encryptedBytes) async {
+    if (_key == null) {
+      throw Exception('Master key not set');
+    }
+
+    // Extract IV and encrypted content
+    if (encryptedBytes.length < 16) {
+      throw Exception('Invalid encrypted data length');
+    }
+
+    final iv = encryptedBytes.sublist(0, 16);
+    final authTag = encryptedBytes.sublist(encryptedBytes.length - 16);
+    final cipherText = encryptedBytes.sublist(16, encryptedBytes.length - 16);
+
+    final encryptedData = EncryptedData(
+      encryptedBytes: Uint8List.fromList([...cipherText, ...authTag]),
+      iv: iv,
+      authTag: authTag,
+    );
+
+    return await decryptData(encryptedData, _key!);
+  }
+
+  /// 🧮 HASH DATA FOR INTEGRITY
+  Future<String> hashData(Uint8List data) async {
+    final digest = SHA256Digest();
+    final hash = digest.process(data);
+    return hash.map((b) => b.toRadixString(16).padLeft(2, '0')).join();
   }
 }
 
@@ -637,34 +786,6 @@ class EncryptedFile {
           authTag: base64.decode(json['encryptedMetadata']['authTag']),
         ),
         id: json['id'],
-      );
-}
-
-class FileMetadata {
-  final String originalName;
-  final int size;
-  final DateTime timestamp;
-  final String checksum;
-
-  FileMetadata({
-    required this.originalName,
-    required this.size,
-    required this.timestamp,
-    required this.checksum,
-  });
-
-  Map<String, dynamic> toJson() => {
-        'originalName': originalName,
-        'size': size,
-        'timestamp': timestamp.toIso8601String(),
-        'checksum': checksum,
-      };
-
-  factory FileMetadata.fromJson(Map<String, dynamic> json) => FileMetadata(
-        originalName: json['originalName'],
-        size: json['size'],
-        timestamp: DateTime.parse(json['timestamp']),
-        checksum: json['checksum'],
       );
 }
 
