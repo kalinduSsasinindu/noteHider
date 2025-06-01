@@ -3,6 +3,14 @@ import 'package:notehider/features/authentication/bloc/auth_event.dart';
 import 'package:notehider/features/authentication/bloc/auth_state.dart';
 import 'package:notehider/services/crypto_service.dart';
 import 'package:notehider/services/storage_service.dart';
+import 'package:notehider/services/biometric_service.dart';
+import 'package:notehider/services/location_service.dart';
+import 'package:notehider/services/totp_service.dart';
+import 'package:notehider/services/tamper_detection_service.dart';
+import 'package:notehider/services/auto_wipe_service.dart';
+import 'package:notehider/services/decoy_system_service.dart';
+import 'package:notehider/services/file_manager_service.dart';
+import 'package:notehider/services/security_config_service.dart';
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:crypto/crypto.dart';
@@ -17,11 +25,20 @@ import 'dart:async';
 /// • Security audit capabilities
 /// • Emergency protocols
 /// • Quantum threat preparation
-/// • Biometric readiness
-/// • Advanced security metrics
+/// • Multi-factor authentication
+/// • Individual security feature management
+/// • Flexible security profile configuration
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CryptoService _cryptoService;
   final StorageService _storageService;
+  final BiometricService _biometricService;
+  final LocationService _locationService;
+  final TOTPService _totpService;
+  final TamperDetectionService _tamperDetectionService;
+  final AutoWipeService _autoWipeService;
+  final DecoySystemService _decoySystemService;
+  final FileManagerService _fileManagerService;
+  final SecurityConfigService _securityConfigService;
   final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
 
   // Security monitoring
@@ -34,11 +51,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   int _suspiciousActivityCount = 0;
   final List<String> _activeThreats = [];
 
+  // Multi-factor authentication state
+  String? _pendingPassword;
+  final Set<String> _completedAuthFactors = {};
+  final Set<String> _requiredAuthFactors = {};
+
   AuthBloc({
     required CryptoService cryptoService,
     required StorageService storageService,
+    required BiometricService biometricService,
+    required LocationService locationService,
+    required TOTPService totpService,
+    required TamperDetectionService tamperDetectionService,
+    required AutoWipeService autoWipeService,
+    required DecoySystemService decoySystemService,
+    required FileManagerService fileManagerService,
+    required SecurityConfigService securityConfigService,
   })  : _cryptoService = cryptoService,
         _storageService = storageService,
+        _biometricService = biometricService,
+        _locationService = locationService,
+        _totpService = totpService,
+        _tamperDetectionService = tamperDetectionService,
+        _autoWipeService = autoWipeService,
+        _decoySystemService = decoySystemService,
+        _fileManagerService = fileManagerService,
+        _securityConfigService = securityConfigService,
         super(const AuthState.initial()) {
     // Existing events
     on<CheckFirstTimeSetup>(_onCheckFirstTimeSetup);
@@ -60,6 +98,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<UpdateSecurityConfig>(_onUpdateSecurityConfig);
     on<VerifyQuantumResistance>(_onVerifyQuantumResistance);
     on<ClearDeviceBinding>(_onClearDeviceBinding);
+
+    // 🚀 ENHANCED MULTI-FACTOR AUTHENTICATION EVENTS
+    on<SetupMultiFactorAuth>(_onSetupMultiFactorAuth);
+    on<VerifyEnhancedAuth>(_onVerifyEnhancedAuth);
+    on<RequestBiometricAuth>(_onRequestBiometricAuth);
+    on<VerifyTOTPCode>(_onVerifyTOTPCode);
+    on<VerifyLocationSecurity>(_onVerifyLocationSecurity);
+    on<UpdateSecurityProfile>(_onUpdateSecurityProfile);
+    on<SkipSecuritySetup>(_onSkipSecuritySetup);
+    on<CompleteSecuritySetup>(_onCompleteSecuritySetup);
+
+    // 🔧 INDIVIDUAL SECURITY FEATURE MANAGEMENT EVENTS
+    on<ToggleSecurityFeature>(_onToggleSecurityFeature);
+    on<ConfigureSecurityFeature>(_onConfigureSecurityFeature);
+    on<TestSecurityFeature>(_onTestSecurityFeature);
+    on<SwitchSecurityProfile>(_onSwitchSecurityProfile);
+    on<ResetSecurityConfiguration>(_onResetSecurityConfiguration);
+    on<ToggleEmergencyProtocols>(_onToggleEmergencyProtocols);
+    on<UpdateSessionSecurity>(_onUpdateSessionSecurity);
+    on<RequestSecurityStatus>(_onRequestSecurityStatus);
+    on<ExportSecurityConfiguration>(_onExportSecurityConfiguration);
+    on<ImportSecurityConfiguration>(_onImportSecurityConfiguration);
 
     // Initialize security subsystems
     _initializeSecurity();
@@ -695,6 +755,136 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         errorMessage: 'Failed to clear device binding: ${e.toString()}',
       ));
     }
+  }
+
+  // 🚀 ENHANCED MULTI-FACTOR AUTHENTICATION EVENTS
+
+  Future<void> _onSetupMultiFactorAuth(
+    SetupMultiFactorAuth event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onVerifyEnhancedAuth(
+    VerifyEnhancedAuth event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onRequestBiometricAuth(
+    RequestBiometricAuth event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onVerifyTOTPCode(
+    VerifyTOTPCode event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onVerifyLocationSecurity(
+    VerifyLocationSecurity event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onUpdateSecurityProfile(
+    UpdateSecurityProfile event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onSkipSecuritySetup(
+    SkipSecuritySetup event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onCompleteSecuritySetup(
+    CompleteSecuritySetup event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  // 🔧 INDIVIDUAL SECURITY FEATURE MANAGEMENT EVENTS
+
+  Future<void> _onToggleSecurityFeature(
+    ToggleSecurityFeature event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onConfigureSecurityFeature(
+    ConfigureSecurityFeature event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onTestSecurityFeature(
+    TestSecurityFeature event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onSwitchSecurityProfile(
+    SwitchSecurityProfile event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onResetSecurityConfiguration(
+    ResetSecurityConfiguration event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onToggleEmergencyProtocols(
+    ToggleEmergencyProtocols event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onUpdateSessionSecurity(
+    UpdateSessionSecurity event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onRequestSecurityStatus(
+    RequestSecurityStatus event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onExportSecurityConfiguration(
+    ExportSecurityConfiguration event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
+  }
+
+  Future<void> _onImportSecurityConfiguration(
+    ImportSecurityConfiguration event,
+    Emitter<AuthState> emit,
+  ) async {
+    // Implementation needed
   }
 
   // 🛡️ SECURITY UTILITY METHODS

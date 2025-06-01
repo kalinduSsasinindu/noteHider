@@ -8,6 +8,18 @@ enum AuthStatus {
   securityLockdown, // Emergency security lockdown active
   deviceCompromised, // Device integrity compromised
   quantumThreat, // Quantum computing threat detected
+  // 🚀 ENHANCED AUTHENTICATION STATES
+  securitySetupInProgress, // User is setting up security features
+  multiFactorAuthRequired, // User needs to complete additional auth factors
+  biometricAuthRequired, // User needs to provide biometric authentication
+  totpAuthRequired, // User needs to provide TOTP code
+  locationAuthRequired, // User needs location verification
+  securitySetupCompleted, // Security setup wizard completed
+  // 🔧 SECURITY MANAGEMENT STATES
+  securityFeatureConfiguring, // User is configuring a specific feature
+  securityFeatureTesting, // Testing a security feature
+  securityProfileSwitching, // Switching between security profiles
+  securityStatusUpdating, // Updating security configuration
 }
 
 /// 🎖️ MILITARY-GRADE SECURITY STATUS
@@ -51,6 +63,18 @@ class SecurityMetrics {
   final bool quantumResistant;
   final bool biometricAvailable;
   final bool emergencyProtocolActive;
+  // 🔧 INDIVIDUAL FEATURE STATUS
+  final String
+      currentSecurityProfile; // 'basic', 'professional', 'military', 'paranoid'
+  final Map<String, bool> enabledFeatures; // Feature name → enabled status
+  final Map<String, Map<String, dynamic>>
+      featureConfigurations; // Feature name → configuration
+  final Map<String, DateTime> lastFeatureTests; // Feature name → last test time
+  final Map<String, String>
+      featureStatuses; // Feature name → status ('working', 'failed', 'not_configured')
+  final int sessionTimeoutMinutes;
+  final bool requireReauthForSensitiveActions;
+  final bool enableContinuousMonitoring;
 
   const SecurityMetrics({
     this.securityLevel = SecurityLevel.unknown,
@@ -64,6 +88,14 @@ class SecurityMetrics {
     this.quantumResistant = false,
     this.biometricAvailable = false,
     this.emergencyProtocolActive = false,
+    this.currentSecurityProfile = 'basic',
+    this.enabledFeatures = const {},
+    this.featureConfigurations = const {},
+    this.lastFeatureTests = const {},
+    this.featureStatuses = const {},
+    this.sessionTimeoutMinutes = 30,
+    this.requireReauthForSensitiveActions = false,
+    this.enableContinuousMonitoring = false,
   });
 
   SecurityMetrics copyWith({
@@ -78,6 +110,14 @@ class SecurityMetrics {
     bool? quantumResistant,
     bool? biometricAvailable,
     bool? emergencyProtocolActive,
+    String? currentSecurityProfile,
+    Map<String, bool>? enabledFeatures,
+    Map<String, Map<String, dynamic>>? featureConfigurations,
+    Map<String, DateTime>? lastFeatureTests,
+    Map<String, String>? featureStatuses,
+    int? sessionTimeoutMinutes,
+    bool? requireReauthForSensitiveActions,
+    bool? enableContinuousMonitoring,
   }) {
     return SecurityMetrics(
       securityLevel: securityLevel ?? this.securityLevel,
@@ -93,7 +133,44 @@ class SecurityMetrics {
       biometricAvailable: biometricAvailable ?? this.biometricAvailable,
       emergencyProtocolActive:
           emergencyProtocolActive ?? this.emergencyProtocolActive,
+      currentSecurityProfile:
+          currentSecurityProfile ?? this.currentSecurityProfile,
+      enabledFeatures: enabledFeatures ?? this.enabledFeatures,
+      featureConfigurations:
+          featureConfigurations ?? this.featureConfigurations,
+      lastFeatureTests: lastFeatureTests ?? this.lastFeatureTests,
+      featureStatuses: featureStatuses ?? this.featureStatuses,
+      sessionTimeoutMinutes:
+          sessionTimeoutMinutes ?? this.sessionTimeoutMinutes,
+      requireReauthForSensitiveActions: requireReauthForSensitiveActions ??
+          this.requireReauthForSensitiveActions,
+      enableContinuousMonitoring:
+          enableContinuousMonitoring ?? this.enableContinuousMonitoring,
     );
+  }
+
+  /// Get count of enabled security features
+  int get enabledFeaturesCount =>
+      enabledFeatures.values.where((enabled) => enabled).length;
+
+  /// Get count of working security features
+  int get workingFeaturesCount =>
+      featureStatuses.values.where((status) => status == 'working').length;
+
+  /// Check if a specific feature is enabled and working
+  bool isFeatureActive(String featureType) {
+    return (enabledFeatures[featureType] ?? false) &&
+        (featureStatuses[featureType] ?? 'not_configured') == 'working';
+  }
+
+  /// Get list of active security features
+  List<String> get activeSecurityFeatures {
+    return enabledFeatures.entries
+        .where((entry) =>
+            entry.value &&
+            (featureStatuses[entry.key] ?? 'not_configured') == 'working')
+        .map((entry) => entry.key)
+        .toList();
   }
 }
 

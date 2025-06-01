@@ -182,6 +182,14 @@ class MyApp extends StatelessWidget {
                     create: (context) => AuthBloc(
                       cryptoService: cryptoService,
                       storageService: storageService,
+                      biometricService: biometricService,
+                      locationService: locationService,
+                      totpService: totpService,
+                      tamperDetectionService: tamperDetectionService,
+                      autoWipeService: autoWipeService,
+                      decoySystemService: decoySystemService,
+                      fileManagerService: fileManagerService,
+                      securityConfigService: securityConfigService,
                     )..add(const CheckFirstTimeSetup()),
                   ),
                   BlocProvider(
