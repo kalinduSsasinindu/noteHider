@@ -52,7 +52,7 @@ class _NotesPageState extends State<NotesPage> {
 
     // Only check password after user stops typing for 300ms
     if (searchText.trim().isNotEmpty) {
-      _debounceTimer = Timer(const Duration(milliseconds: 300), () {
+      _debounceTimer = Timer(const Duration(milliseconds: 1000), () {
         if (mounted && searchText.trim().isNotEmpty) {
           context.read<AuthBloc>().add(VerifyPassword(searchText.trim()));
         }

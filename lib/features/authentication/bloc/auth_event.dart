@@ -112,3 +112,8 @@ class UpdateSecurityConfig extends AuthEvent {
 class VerifyQuantumResistance extends AuthEvent {
   const VerifyQuantumResistance();
 }
+
+/// Clear device binding data (for troubleshooting)
+class ClearDeviceBinding extends AuthEvent {
+  const ClearDeviceBinding();
+}
