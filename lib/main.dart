@@ -10,6 +10,7 @@ import 'package:notehider/features/authentication/bloc/auth_bloc.dart';
 import 'package:notehider/features/notes/bloc/notes_bloc.dart';
 import 'package:notehider/services/crypto_service.dart';
 import 'package:notehider/services/storage_service.dart';
+import 'package:notehider/services/security_config_service.dart';
 
 void main() {
   // Initialize the BlocObserver
@@ -46,9 +47,16 @@ class MyApp extends StatelessWidget {
             cryptoService: context.read<CryptoService>(),
           ),
         ),
+        Provider<SecurityConfigService>(
+          create: (context) => SecurityConfigService(
+            storageService: context.read<StorageService>(),
+            cryptoService: context.read<CryptoService>(),
+          ),
+        ),
       ],
-      child: Consumer2<CryptoService, StorageService>(
-        builder: (context, cryptoService, storageService, child) {
+      child: Consumer3<CryptoService, StorageService, SecurityConfigService>(
+        builder: (context, cryptoService, storageService, securityConfigService,
+            child) {
           return MaterialApp(
             title: 'NoteHider',
             theme: ThemeData(
