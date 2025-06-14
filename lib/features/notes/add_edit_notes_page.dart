@@ -8,7 +8,8 @@ import 'package:notehider/features/notes/bloc/notes_bloc.dart';
 import 'package:notehider/features/notes/bloc/notes_event.dart';
 import 'package:notehider/features/notes/bloc/notes_state.dart';
 import '../../services/storage_service.dart';
-import 'secure_area_page.dart';
+import '../../features/secure_area/secure_area_main_page.dart';
+import 'package:notehider/features/authentication/bloc/auth_coordinator.dart';
 
 class AddEditNotesPage extends StatefulWidget {
   final Note? note; // null for new note, Note object for editing
@@ -48,7 +49,7 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
                 print(
                     '🔍 AuthBloc State: ${state.status}, error: ${state.errorMessage}');
 
-                if (state.status == AuthStatus.unlocked &&
+                if (state.status == AuthStatus.authenticated &&
                     context.read<NotesBloc>().state.isCheckingPassword) {
                   // Password was verified successfully, navigate to hidden area
                   print('✅ Password correct - navigating to hidden area');
@@ -64,7 +65,7 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
                   } else {
                     _saveAsRegularNote();
                   }
-                } else if (state.status == AuthStatus.unlocked &&
+                } else if (state.status == AuthStatus.authenticated &&
                     !context.read<NotesBloc>().state.isCheckingPassword) {
                   // First time password setup completed, save password note
                   print('🆕 First time setup complete - saving password note');
@@ -368,7 +369,17 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => const SecureAreaPage(),
+        builder: (newContext) => MultiBlocProvider(
+          providers: [
+            BlocProvider.value(
+              value: context.read<AuthBloc>(),
+            ),
+            BlocProvider.value(
+              value: context.read<AuthCoordinator>(),
+            ),
+          ],
+          child: const SecureAreaMainPage(),
+        ),
       ),
     );
   }

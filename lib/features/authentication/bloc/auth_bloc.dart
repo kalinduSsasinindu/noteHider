@@ -1,9 +1,19 @@
+import 'dart:typed_data';
 import 'package:bloc/bloc.dart';
 import 'package:notehider/features/authentication/bloc/auth_event.dart';
 import 'package:notehider/features/authentication/bloc/auth_state.dart';
 import 'package:notehider/services/crypto_service.dart';
 import 'package:notehider/services/storage_service.dart';
 
+/// 🔐 CORE AUTHENTICATION BLOC
+///
+/// Simplified authentication bloc that handles only core authentication:
+/// • Password setup and verification
+/// • App locking/unlocking
+/// • Authentication state management
+///
+/// Security operations have been moved to SecurityBloc
+/// Multi-factor authentication has been moved to MultiFactorAuthBloc
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final CryptoService _cryptoService;
   final StorageService _storageService;
@@ -27,26 +37,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      final isPasswordSet = await _storageService.isPasswordSet();
+      emit(state.copyWith(status: AuthStatus.loading));
 
-      if (isPasswordSet) {
-        // Check if we can access the stored data (validate format compatibility)
-        final storedHash = await _storageService.getPasswordHash();
-        final salt = await _storageService.getSalt();
+      await _storageService.initialize();
+      final hasPassword = await _storageService.hasStoredPassword();
 
-        if (storedHash == null || salt == null) {
-          print('🔐 Invalid auth data detected - clearing and resetting');
-          await _storageService.clearAuthenticationData();
-          emit(state.copyWith(
-            status: AuthStatus.firstTimeSetup,
-            isPasswordSet: false,
-          ));
-        } else {
-          emit(state.copyWith(
-            status: AuthStatus.locked,
-            isPasswordSet: true,
-          ));
-        }
+      if (hasPassword) {
+        emit(state.copyWith(
+          status: AuthStatus.locked,
+          isPasswordSet: true,
+        ));
       } else {
         emit(state.copyWith(
           status: AuthStatus.firstTimeSetup,
@@ -55,7 +55,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     } catch (e) {
       emit(state.copyWith(
-        errorMessage: 'Failed to check setup status',
+        status: AuthStatus.error,
+        errorMessage: 'Setup check failed: $e',
       ));
     }
   }
@@ -65,33 +66,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      // Generate salt and hash password with Argon2
-      final salt = _cryptoService.generateSalt();
-      final hashedPassword = await _cryptoService.hashPassword(
-        event.password,
-        salt,
-      );
+      emit(state.copyWith(status: AuthStatus.loading));
 
-      // Store the hashed password and salt securely
-      await _storageService.storePasswordHash(hashedPassword);
-      await _storageService.storeSalt(salt);
-      await _storageService.setPasswordSetFlag(true);
+      // Use the existing setupPassword method from StorageService
+      await _storageService.setupPassword(event.password);
 
-      // Generate master key for file encryption
-      final masterKey = await _cryptoService.deriveMasterKey(
-        event.password,
-        salt,
-      );
-      await _storageService.storeMasterKey(masterKey);
+      // Get the master key that was generated during setup
+      final masterKey = await _storageService.getMasterKey();
+      if (masterKey != null) {
+        _cryptoService.setMasterKey(masterKey);
+      }
 
       emit(state.copyWith(
-        status: AuthStatus.unlocked,
+        status: AuthStatus.authenticated,
         isPasswordSet: true,
         errorMessage: null,
       ));
     } catch (e) {
       emit(state.copyWith(
-        errorMessage: 'Failed to setup password: ${e.toString()}',
+        status: AuthStatus.error,
+        errorMessage: 'Password setup failed: $e',
       ));
     }
   }
@@ -101,60 +95,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      print('🔐 Starting password verification for: ${event.password}');
+      emit(state.copyWith(status: AuthStatus.loading));
 
-      final storedHash = await _storageService.getPasswordHash();
-      final salt = await _storageService.getSalt();
-
-      print(
-          '🔐 Retrieved stored data - hash: ${storedHash != null}, salt: ${salt != null}');
-
-      if (storedHash == null || salt == null) {
-        print('🔐 Authentication data not found');
-        emit(state.copyWith(
-          status: AuthStatus.locked,
-          errorMessage: 'Authentication data not found',
-        ));
-        return;
-      }
-
-      print('🔐 Starting password verification...');
-      final isValid = await _cryptoService.verifyPassword(
-        event.password,
-        storedHash,
-        salt,
-      );
-      print('🔐 Password verification complete - valid: $isValid');
+      // Use the existing verifyPassword method from StorageService
+      final isValid = await _storageService.verifyPassword(event.password);
 
       if (isValid) {
-        print('🔐 Password valid - generating master key...');
-        // Regenerate master key for this session
-        final masterKey = await _cryptoService.deriveMasterKey(
-          event.password,
-          salt,
-        );
-        await _storageService.storeMasterKey(masterKey);
-        print('🔐 Master key generated and stored');
+        // Get the master key for decryption
+        final masterKey = await _storageService.getMasterKey();
+        if (masterKey != null) {
+          _cryptoService.setMasterKey(masterKey);
+        }
 
-        print('🔐 Emitting unlocked state...');
         emit(state.copyWith(
-          status: AuthStatus.unlocked,
+          status: AuthStatus.authenticated,
           errorMessage: null,
         ));
-        print('🔐 Unlocked state emitted successfully');
       } else {
-        print('🔐 Password invalid');
         emit(state.copyWith(
           status: AuthStatus.locked,
-          errorMessage:
-              'Invalid password - ${DateTime.now().millisecondsSinceEpoch}',
+          errorMessage: 'Invalid password',
         ));
       }
     } catch (e) {
-      print('🔐 Password verification error: $e');
       emit(state.copyWith(
-        status: AuthStatus.locked,
-        errorMessage: 'Authentication failed: ${e.toString()}',
+        status: AuthStatus.error,
+        errorMessage: 'Password verification failed: $e',
       ));
     }
   }
@@ -163,13 +129,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     LockApp event,
     Emitter<AuthState> emit,
   ) async {
-    // Clear sensitive data from memory
-    await _storageService.clearSessionData();
+    try {
+      // Clear the master key from memory for security
+      _cryptoService.setMasterKey(Uint8List(0));
 
-    emit(state.copyWith(
-      status: AuthStatus.locked,
-      errorMessage: null,
-    ));
+      emit(state.copyWith(
+        status: AuthStatus.locked,
+        errorMessage: null,
+      ));
+    } catch (e) {
+      emit(state.copyWith(
+        status: AuthStatus.error,
+        errorMessage: 'Lock operation failed: $e',
+      ));
+    }
   }
 
   Future<void> _onResetApp(
@@ -177,12 +150,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
+      emit(state.copyWith(status: AuthStatus.loading));
+
+      // Clear all stored data
       await _storageService.clearAllData();
+
+      // Clear crypto keys
+      _cryptoService.setMasterKey(Uint8List(0));
 
       emit(const AuthState.initial());
     } catch (e) {
       emit(state.copyWith(
-        errorMessage: 'Failed to reset app: ${e.toString()}',
+        status: AuthStatus.error,
+        errorMessage: 'Reset failed: $e',
       ));
     }
   }
@@ -192,12 +172,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     try {
-      await _storageService.clearAuthenticationData();
+      emit(state.copyWith(status: AuthStatus.loading));
+
+      // Clear authentication data
+      await _storageService.clearAllData();
+      _cryptoService.setMasterKey(Uint8List(0));
 
       emit(const AuthState.initial());
     } catch (e) {
       emit(state.copyWith(
-        errorMessage: 'Failed to clear authentication data: ${e.toString()}',
+        status: AuthStatus.error,
+        errorMessage: 'Failed to clear authentication data: $e',
       ));
     }
   }

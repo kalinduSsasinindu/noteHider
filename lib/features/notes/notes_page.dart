@@ -9,8 +9,9 @@ import '../../services/storage_service.dart';
 import '../authentication/bloc/auth_bloc.dart';
 import '../authentication/bloc/auth_event.dart';
 import '../authentication/bloc/auth_state.dart';
+import '../authentication/bloc/auth_coordinator.dart';
 import 'add_edit_notes_page.dart';
-import 'secure_area_page.dart';
+import '../../features/secure_area/secure_area_main_page.dart';
 
 class NotesPage extends StatefulWidget {
   final Function(
@@ -52,7 +53,7 @@ class _NotesPageState extends State<NotesPage> {
 
     // Only check password after user stops typing for 300ms
     if (searchText.trim().isNotEmpty) {
-      _debounceTimer = Timer(const Duration(milliseconds: 300), () {
+      _debounceTimer = Timer(const Duration(milliseconds: 1000), () {
         if (mounted && searchText.trim().isNotEmpty) {
           context.read<AuthBloc>().add(VerifyPassword(searchText.trim()));
         }
@@ -122,7 +123,7 @@ class _NotesPageState extends State<NotesPage> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
-        if (state.status == AuthStatus.unlocked &&
+        if (state.status == AuthStatus.authenticated &&
             _searchController.text.trim().isNotEmpty) {
           // Password was correct from search bar, clear search and navigate to secure area
           _searchController.clear();
@@ -137,10 +138,10 @@ class _NotesPageState extends State<NotesPage> {
                     value: context.read<AuthBloc>(),
                   ),
                   BlocProvider.value(
-                    value: context.read<NotesBloc>(),
+                    value: context.read<AuthCoordinator>(),
                   ),
                 ],
-                child: const SecureAreaPage(),
+                child: const SecureAreaMainPage(),
               ),
             ),
           );

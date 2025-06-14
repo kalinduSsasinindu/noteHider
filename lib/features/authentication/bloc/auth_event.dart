@@ -1,8 +1,16 @@
 import 'package:equatable/equatable.dart';
 
+/// 🔐 CORE AUTHENTICATION EVENTS
+///
+/// Simplified events for core authentication only:
+/// • Password setup and verification
+/// • App locking/unlocking
+/// • Authentication state management
+///
+/// Security events moved to SecurityBloc
+/// Multi-factor auth events moved to MultiFactorAuthBloc
 abstract class AuthEvent extends Equatable {
   const AuthEvent();
-
   @override
   List<Object> get props => [];
 }
@@ -13,18 +21,14 @@ class CheckFirstTimeSetup extends AuthEvent {
 
 class SetupPassword extends AuthEvent {
   final String password;
-
   const SetupPassword(this.password);
-
   @override
   List<Object> get props => [password];
 }
 
 class VerifyPassword extends AuthEvent {
   final String password;
-
   const VerifyPassword(this.password);
-
   @override
   List<Object> get props => [password];
 }

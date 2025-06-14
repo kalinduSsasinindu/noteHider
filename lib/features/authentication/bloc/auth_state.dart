@@ -1,15 +1,21 @@
 import 'package:equatable/equatable.dart';
 
-
-
-
-
-
+/// 🔐 CORE AUTHENTICATION STATE
+///
+/// Simplified state for core authentication only:
+/// • Password setup status
+/// • Authentication status
+/// • Error handling
+///
+/// Security state moved to SecurityBloc
+/// Multi-factor auth state moved to MultiFactorAuthBloc
 enum AuthStatus {
-  firstTimeSetup, // No password set yet
-  locked, // Password set, but user needs to authenticate
-  unlocked, // User authenticated, can access hidden area
-  normalMode, // User in regular notes mode
+  initial,
+  firstTimeSetup,
+  locked,
+  authenticated,
+  loading,
+  error,
 }
 
 class AuthState extends Equatable {
@@ -18,15 +24,12 @@ class AuthState extends Equatable {
   final String? errorMessage;
 
   const AuthState({
-    required this.status,
-    required this.isPasswordSet,
+    this.status = AuthStatus.initial,
+    this.isPasswordSet = false,
     this.errorMessage,
   });
 
-  const AuthState.initial()
-      : status = AuthStatus.firstTimeSetup,
-        isPasswordSet = false,
-        errorMessage = null;
+  const AuthState.initial() : this();
 
   AuthState copyWith({
     AuthStatus? status,
