@@ -16,34 +16,22 @@ const char* get_libsodium_version_string() {
     // This function from libsodium returns its version string.
     return sodium_version_string();
 }
-
-const char* hash_password(const char* password) {
-    char hashed_password[crypto_pwhash_STRBYTES];
-
-    // Use the default recommended limits for opslimit and memlimit.
+//we use the maximum limits for the password hash
+int hash_password(char *hashed_password, const char *password) {
     if (crypto_pwhash_str(hashed_password, password, strlen(password),
-                          crypto_pwhash_OPSLIMIT_INTERACTIVE,
-                          crypto_pwhash_MEMLIMIT_INTERACTIVE) != 0) {
-        return "{\"error\": \"Failed to hash password\"}";
+                          crypto_pwhash_OPSLIMIT_SENSITIVE, crypto_pwhash_MEMLIMIT_SENSITIVE) != 0) {
+        return -1; // Error
     }
-
-    // Allocate memory on the heap for the result and copy the hash.
-    char* result = (char*)malloc(strlen(hashed_password) + 1);
-    if (result == NULL) {
-        return "{\"error\": \"Memory allocation failed\"}";
-    }
-    strcpy(result, hashed_password);
-
-    return result;
+    return 0; // Success
 }
 
-bool verify_password(const char* hash, const char* password) {
-    if (crypto_pwhash_str_verify(hash, password, strlen(password)) != 0) {
+int verify_password(const char *hashed_password, const char *password) {
+    if (crypto_pwhash_str_verify(hashed_password, password, strlen(password)) != 0) {
         // Wrong password
-        return false;
+        return -1;
     }
     // Correct password
-    return true;
+    return 0;
 }
 
 void free_string(char* str) {
