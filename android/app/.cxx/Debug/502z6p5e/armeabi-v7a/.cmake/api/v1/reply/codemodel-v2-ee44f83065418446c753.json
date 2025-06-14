@@ -1,0 +1,841 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "_deps/libsodium-build",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-_deps.libsodium-build-Debug-dc6e46bb0c94546b7319.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/armeabi-v7a/_deps/libsodium-src",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "_deps/libsodium-build/test",
+					"jsonFile" : "directory-_deps.libsodium-build.test-Debug-93af34789e15a825f704.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/armeabi-v7a/_deps/libsodium-src/test",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54,
+						55,
+						56,
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68,
+						69,
+						70,
+						71,
+						72,
+						73,
+						74,
+						75,
+						76,
+						77,
+						78,
+						79,
+						80,
+						81
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "native_crypto",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2
+					],
+					"name" : "sodium",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54,
+						55,
+						56,
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68,
+						69,
+						70,
+						71,
+						72,
+						73,
+						74,
+						75,
+						76,
+						77,
+						78,
+						79,
+						80,
+						81
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "native_crypto_library::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-native_crypto_library-Debug-59dfdc50d0fa99c2e555.json",
+					"name" : "native_crypto_library",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "sodium::@bcc563657b3cb26f6c21",
+					"jsonFile" : "target-sodium-Debug-506d95c98990e9511ef7.json",
+					"name" : "sodium",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aegis128l::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aegis128l-Debug-09a36fa178f668a513ae.json",
+					"name" : "test_aead_aegis128l",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aegis256::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aegis256-Debug-45ab2156b9f01e87b840.json",
+					"name" : "test_aead_aegis256",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aes256gcm::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aes256gcm-Debug-628b387064b39942381e.json",
+					"name" : "test_aead_aes256gcm",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aes256gcm2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aes256gcm2-Debug-083e245952f7412cef30.json",
+					"name" : "test_aead_aes256gcm2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_chacha20poly1305::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_chacha20poly1305-Debug-43f4f4675d025028284d.json",
+					"name" : "test_aead_chacha20poly1305",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_chacha20poly13052::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_chacha20poly13052-Debug-81a843a592e14b4ff016.json",
+					"name" : "test_aead_chacha20poly13052",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_xchacha20poly1305::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_xchacha20poly1305-Debug-501b5a610405e84ad8fd.json",
+					"name" : "test_aead_xchacha20poly1305",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth-Debug-8b161291b55704931793.json",
+					"name" : "test_auth",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth2-Debug-dfd0c1d93c35778c74ff.json",
+					"name" : "test_auth2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth3-Debug-304f10640ecbd3c7aaff.json",
+					"name" : "test_auth3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth5::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth5-Debug-9d7e71dbef36a04945c5.json",
+					"name" : "test_auth5",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth6::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth6-Debug-914f107840ec00fd5e4d.json",
+					"name" : "test_auth6",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth7-Debug-ddbfed0f8d2c21615521.json",
+					"name" : "test_auth7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box-Debug-ab314f19c1f2202c7e00.json",
+					"name" : "test_box",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box2-Debug-3cd800ffeb8b84fdd8ed.json",
+					"name" : "test_box2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box7-Debug-b91f80de0c82ffb3d60b.json",
+					"name" : "test_box7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box8::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box8-Debug-56121ead9e854a862ca4.json",
+					"name" : "test_box8",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_easy::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_easy-Debug-20ff4fb397074cccbb3c.json",
+					"name" : "test_box_easy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_easy2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_easy2-Debug-f39886d7fb6c244e241a.json",
+					"name" : "test_box_easy2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_seal::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_seal-Debug-08953fb6bbc9551e0ddf.json",
+					"name" : "test_box_seal",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_seed::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_seed-Debug-e8e8f367ea21f518e3a3.json",
+					"name" : "test_box_seed",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_chacha20::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_chacha20-Debug-e83f4586307ebb1589b5.json",
+					"name" : "test_chacha20",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_codecs::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_codecs-Debug-f59507c0a4e48f1edadc.json",
+					"name" : "test_codecs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core1::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core1-Debug-afb58b9498e6d0d2a068.json",
+					"name" : "test_core1",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core2-Debug-680b895d2beca52cc8f4.json",
+					"name" : "test_core2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core3-Debug-fcbddbd2c36ccc62120f.json",
+					"name" : "test_core3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core4::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core4-Debug-6770d396b27d7d55055d.json",
+					"name" : "test_core4",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core5::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core5-Debug-7b9cd842723d048d7f25.json",
+					"name" : "test_core5",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core6::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core6-Debug-420cb95b65cc6da79ea1.json",
+					"name" : "test_core6",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core_ed25519::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core_ed25519-Debug-0e925d9955a36c22f82b.json",
+					"name" : "test_core_ed25519",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core_ristretto255::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core_ristretto255-Debug-c4454f691e9def3c4146.json",
+					"name" : "test_core_ristretto255",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_ed25519_convert::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_ed25519_convert-Debug-419bed1ed2b49fc38571.json",
+					"name" : "test_ed25519_convert",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_generichash::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_generichash-Debug-22abc11b5c7940b7f877.json",
+					"name" : "test_generichash",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_generichash2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_generichash2-Debug-e555297db83ea19db65d.json",
+					"name" : "test_generichash2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_generichash3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_generichash3-Debug-4f10c04f6958ced3a405.json",
+					"name" : "test_generichash3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_hash::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_hash-Debug-90d7f2e368596efe9dd3.json",
+					"name" : "test_hash",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_hash3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_hash3-Debug-39d11e06c2970fe26bcc.json",
+					"name" : "test_hash3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_kdf::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_kdf-Debug-35f9d7a695dbf1f26702.json",
+					"name" : "test_kdf",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_kdf_hkdf::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_kdf_hkdf-Debug-049dfe05b157fc9146f1.json",
+					"name" : "test_kdf_hkdf",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_keygen::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_keygen-Debug-dafec47e006402ebc61e.json",
+					"name" : "test_keygen",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_kx::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_kx-Debug-de0c785157677b628964.json",
+					"name" : "test_kx",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_metamorphic::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_metamorphic-Debug-ab180dcc70682265c773.json",
+					"name" : "test_metamorphic",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_misuse::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_misuse-Debug-56c495a873c90fc87ad3.json",
+					"name" : "test_misuse",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_onetimeauth::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_onetimeauth-Debug-581be6c05286b5c1b393.json",
+					"name" : "test_onetimeauth",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_onetimeauth2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_onetimeauth2-Debug-edeef3f4f59060a87617.json",
+					"name" : "test_onetimeauth2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_onetimeauth7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_onetimeauth7-Debug-7fb18ee52b9c156c9d86.json",
+					"name" : "test_onetimeauth7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_argon2i::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_argon2i-Debug-bc33cac1f828ba4ced72.json",
+					"name" : "test_pwhash_argon2i",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_argon2id::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_argon2id-Debug-21b198849342be83de29.json",
+					"name" : "test_pwhash_argon2id",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_scrypt::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_scrypt-Debug-35fef7132c1ede6b4189.json",
+					"name" : "test_pwhash_scrypt",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_scrypt_ll::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_scrypt_ll-Debug-63854f23b1b76f008068.json",
+					"name" : "test_pwhash_scrypt_ll",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_randombytes::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_randombytes-Debug-ebaa572482af02bbd9e0.json",
+					"name" : "test_randombytes",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult-Debug-be5e3badf525c018aecb.json",
+					"name" : "test_scalarmult",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult2-Debug-936defa45463870e0e26.json",
+					"name" : "test_scalarmult2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult5::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult5-Debug-2ddfbd99b3b24a1a9b28.json",
+					"name" : "test_scalarmult5",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult6::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult6-Debug-425b587fd1683ea93f16.json",
+					"name" : "test_scalarmult6",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult7-Debug-2e8b9ad8f301e2a667fb.json",
+					"name" : "test_scalarmult7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult8::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult8-Debug-eed13834ed43c8336e3d.json",
+					"name" : "test_scalarmult8",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult_ed25519::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult_ed25519-Debug-8cd7c50a391d107d6e90.json",
+					"name" : "test_scalarmult_ed25519",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult_ristretto255::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult_ristretto255-Debug-4d620f356b84bdda5111.json",
+					"name" : "test_scalarmult_ristretto255",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox-Debug-14d569b785b6439c7724.json",
+					"name" : "test_secretbox",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox2-Debug-3113e11471437685578a.json",
+					"name" : "test_secretbox2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox7-Debug-82526a207d9dcb69abfa.json",
+					"name" : "test_secretbox7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox8::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox8-Debug-3dea1aa1f45b03c75569.json",
+					"name" : "test_secretbox8",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox_easy::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox_easy-Debug-25c31ae17c6680764e15.json",
+					"name" : "test_secretbox_easy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox_easy2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox_easy2-Debug-19587240395499167fe0.json",
+					"name" : "test_secretbox_easy2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretstream_xchacha20poly1305::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretstream_xchacha20poly1305-Debug-7a6127fc1ea571cadbb9.json",
+					"name" : "test_secretstream_xchacha20poly1305",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_shorthash::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_shorthash-Debug-4abfe6c53979d6760634.json",
+					"name" : "test_shorthash",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sign::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sign-Debug-63bc36b11e20b9558b22.json",
+					"name" : "test_sign",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_siphashx24::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_siphashx24-Debug-ab513d605444b365e7c5.json",
+					"name" : "test_siphashx24",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_core::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_core-Debug-38db72c1852a062f137d.json",
+					"name" : "test_sodium_core",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_utils::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_utils-Debug-5dfdc1d46acadf16ccaa.json",
+					"name" : "test_sodium_utils",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_utils2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_utils2-Debug-07f2e203b6a79bb30519.json",
+					"name" : "test_sodium_utils2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_utils3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_utils3-Debug-dd7af66e1e8016b71b2d.json",
+					"name" : "test_sodium_utils3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_version::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_version-Debug-2c3cf7528b1e146c1f9b.json",
+					"name" : "test_sodium_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream-Debug-b75807f3d00a455cfb7e.json",
+					"name" : "test_stream",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream2-Debug-5adb318bb56bc91109fe.json",
+					"name" : "test_stream2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream3-Debug-10fed30b26bf26c943d0.json",
+					"name" : "test_stream3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream4::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream4-Debug-cd12d69c54dbaf3790d1.json",
+					"name" : "test_stream4",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_verify1::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_verify1-Debug-ecb131dd105a3cfe3330.json",
+					"name" : "test_verify1",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_xchacha20::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_xchacha20-Debug-0d7b6d4e7b6302617933.json",
+					"name" : "test_xchacha20",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/armeabi-v7a",
+		"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/src"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

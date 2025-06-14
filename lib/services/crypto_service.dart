@@ -11,6 +11,7 @@ import 'package:pointycastle/digests/sha256.dart';
 import 'package:pointycastle/block/aes.dart';
 import 'package:pointycastle/block/modes/gcm.dart';
 import 'package:flutter/foundation.dart' as foundation;
+import 'crypto_ffi.dart';
 
 /// 🎖️ MILITARY-GRADE CRYPTOGRAPHIC SERVICE
 ///
@@ -24,6 +25,8 @@ import 'package:flutter/foundation.dart' as foundation;
 /// • Key stretching with platform-adaptive rounds
 /// • Defense against quantum computing preparation
 class CryptoService {
+  final CryptoFFI _cryptoFFI = CryptoFFI();
+
   // 🔒 MOBILE-OPTIMIZED SECURITY CONSTANTS
   static const int _saltLength = 64; // 512-bit salt (military grade)
   static const int _keyLength = 32; // 256-bit keys
@@ -76,40 +79,20 @@ class CryptoService {
   /// • Key stretching with multiple rounds
   /// • Memory-hard operations
   Future<MilitaryHashResult> hashPasswordMilitary(String password) async {
-    final salt = _generateMilitarySalt();
-    final passwordBytes = utf8.encode(password);
+    final nativeHashString = _cryptoFFI.hashPassword(password);
 
-    try {
-      // Multiple rounds of key derivation for enhanced security
-      Uint8List hash = passwordBytes;
-
-      for (int round = 0; round < _keyStretchingRounds; round++) {
-        hash = _pbkdf2Military(hash, salt, _pbkdf2Iterations, _keyLength);
-        // Track memory for secure clearing
-        _trackMemoryForClearing(Uint8List.fromList(hash));
-      }
-
-      // Immediately clear password from memory
-      _secureClearBytes(passwordBytes);
-
-      final result = MilitaryHashResult(
-        hash: base64.encode(hash),
-        salt: salt,
-        algorithm: 'PBKDF2-SHA256-Military',
-        iterations: _pbkdf2Iterations,
-        rounds: _keyStretchingRounds,
-        version: 3, // Military grade version
-        timestamp: DateTime.now(),
-      );
-
-      _trackMemoryForClearing(salt);
-      _operationCount++;
-
-      return result;
-    } catch (e) {
-      _secureClearBytes(passwordBytes);
-      throw SecurityException('Military password hashing failed: $e');
-    }
+    // We will adapt the MilitaryHashResult to work with the native format.
+    // For now, we store the raw hash string in the 'hash' field. The other
+    // fields are placeholders.
+    return MilitaryHashResult(
+      hash: nativeHashString,
+      salt: Uint8List(0), // Salt is included in the native hash string
+      algorithm: 'Argon2id-Native',
+      iterations: 0, // Cost factors are included in the native hash string
+      rounds: 0,
+      version: 4, // Native implementation version
+      timestamp: DateTime.now(),
+    );
   }
 
   /// 🛡️ ENHANCED PASSWORD VERIFICATION
@@ -119,30 +102,9 @@ class CryptoService {
     String password,
     MilitaryHashResult stored,
   ) async {
-    final passwordBytes = utf8.encode(password);
-
-    try {
-      // Recreate the exact same derivation process
-      Uint8List hash = passwordBytes;
-
-      for (int round = 0; round < stored.rounds; round++) {
-        hash =
-            _pbkdf2Military(hash, stored.salt, stored.iterations, _keyLength);
-      }
-
-      final storedHashBytes = base64.decode(stored.hash);
-      final isValid = _constantTimeEquals(hash, storedHashBytes);
-
-      // Secure memory cleanup
-      _secureClearBytes(passwordBytes);
-      _secureClearBytes(hash);
-
-      _operationCount++;
-      return isValid;
-    } catch (e) {
-      _secureClearBytes(passwordBytes);
-      return false;
-    }
+    // The native verify function handles everything.
+    // The `stored.hash` field now contains the full hash string from libsodium.
+    return _cryptoFFI.verifyPassword(stored.hash, password);
   }
 
   /// ⚡ DUAL-LAYER ENCRYPTION WITH PERFECT FORWARD SECRECY

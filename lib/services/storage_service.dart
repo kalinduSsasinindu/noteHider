@@ -11,6 +11,7 @@ import 'package:flutter/foundation.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter/services.dart';
+import 'crypto_ffi.dart';
 
 /// 🎖️ ENHANCED MILITARY-GRADE STORAGE SERVICE
 ///
