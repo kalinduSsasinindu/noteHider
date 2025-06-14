@@ -16,22 +16,29 @@ const char* get_libsodium_version_string() {
     // This function from libsodium returns its version string.
     return sodium_version_string();
 }
-//we use the maximum limits for the password hash
-int hash_password(char *hashed_password, const char *password) {
-    if (crypto_pwhash_str(hashed_password, password, strlen(password),
-                          crypto_pwhash_OPSLIMIT_SENSITIVE, crypto_pwhash_MEMLIMIT_SENSITIVE) != 0) {
-        return -1; // Error
+
+// Hash password and return malloc'ed hash string (Argon2id). Caller must free
+// using free_string(). Returns NULL on failure.
+const char* hash_password(const char* password) {
+    if (sodium_init() < 0) return NULL;
+
+    char* out = malloc(crypto_pwhash_STRBYTES);
+    if (!out) return NULL;
+
+    if (crypto_pwhash_str(out,
+                          password,
+                          strlen(password),
+                          crypto_pwhash_OPSLIMIT_SENSITIVE,
+                          crypto_pwhash_MEMLIMIT_SENSITIVE) != 0) {
+        free(out);
+        return NULL;
     }
-    return 0; // Success
+    return out;
 }
 
-int verify_password(const char *hashed_password, const char *password) {
-    if (crypto_pwhash_str_verify(hashed_password, password, strlen(password)) != 0) {
-        // Wrong password
-        return -1;
-    }
-    // Correct password
-    return 0;
+bool verify_password(const char* hash, const char* password) {
+    if (sodium_init() < 0) return false;
+    return crypto_pwhash_str_verify(hash, password, strlen(password)) == 0;
 }
 
 void free_string(char* str) {

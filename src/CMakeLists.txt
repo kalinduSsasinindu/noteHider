@@ -17,6 +17,7 @@ add_library(
         native_crypto_library
         SHARED
         native_crypto.c
+        native_integrity.c
 )
 
 # Link our library against libsodium. This makes the libsodium functions

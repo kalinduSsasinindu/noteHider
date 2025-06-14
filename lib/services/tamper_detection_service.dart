@@ -16,6 +16,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
+import 'native_integrity_ffi.dart';
 
 class TamperDetectionService {
   // Secure storage for tamper detection data
@@ -888,6 +889,14 @@ class TamperDetectionService {
       int threatLevel = 0;
       final details = <String, dynamic>{};
       final issues = <String>[];
+
+      // Native integrity probe
+      final bitmask = NativeIntegrity.instance.probe();
+      if (bitmask != 0) {
+        issues.add('Native probe flags: 0x${bitmask.toRadixString(16)}');
+        threatLevel = 10;
+        details['nativeProbe'] = bitmask;
+      }
 
       // Quick root/jailbreak check
       if (_config.enableRootJailbreakDetection) {

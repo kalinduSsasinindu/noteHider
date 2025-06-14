@@ -118,8 +118,12 @@ class CryptoFFI {
   /// side-car file `<lib>.sha256`. Subsequent launches compare against the
   /// stored value and abort if it differs (indicating possible tampering).
   void _verifyDylibChecksum(String dylibPath) {
-    // Skip on iOS – we are statically linked within the executable.
-    if (Platform.isIOS) return;
+    // On mobile platforms the library lives inside the app sandbox at a
+    // runtime-determined path that File() can't access via a simple relative
+    // name. We keep the checksum lock for desktop platforms where the path is
+    // predictable. Mobile integrity is instead covered by Play Integrity /
+    // App Attest.
+    if (Platform.isIOS || Platform.isAndroid) return;
 
     final file = File(dylibPath);
     if (!file.existsSync()) {

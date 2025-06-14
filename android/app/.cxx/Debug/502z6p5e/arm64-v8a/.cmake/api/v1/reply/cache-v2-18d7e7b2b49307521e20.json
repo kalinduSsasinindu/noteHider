@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "x86_64"
+			"value" : "arm64-v8a"
 		},
 		{
 			"name" : "ANDROID_NDK",
@@ -63,7 +63,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "x86_64"
+			"value" : "arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_ANDROID_NDK",
@@ -115,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/x86_64"
+			"value" : "c:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -188,22 +188,6 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "C:/Users/kalin/AppData/Local/Android/Sdk/cmake/3.22.1/bin/ctest.exe"
-		},
-		{
-			"name" : "CMAKE_CXX_COMPILER",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "(This variable does not exist and should not be used)"
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : ""
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER_AR",
@@ -316,22 +300,6 @@
 			],
 			"type" : "STRING",
 			"value" : "-O2 -g -DNDEBUG"
-		},
-		{
-			"name" : "CMAKE_C_COMPILER",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "(This variable does not exist and should not be used)"
-				}
-			],
-			"type" : "UNINITIALIZED",
-			"value" : ""
 		},
 		{
 			"name" : "CMAKE_C_COMPILER_AR",
@@ -671,7 +639,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\Debug\\502z6p5e\\obj\\x86_64"
+			"value" : "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\Debug\\502z6p5e\\obj\\arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -943,7 +911,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\Debug\\502z6p5e\\obj\\x86_64"
+			"value" : "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\Debug\\502z6p5e\\obj\\arm64-v8a"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1183,11 +1151,11 @@
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "The CMake toolchain file"
+					"value" : "No help, variable specified on the command line."
 				}
 			],
-			"type" : "FILEPATH",
-			"value" : "C:/Users/kalin/AppData/Local/Android/Sdk/ndk/23.1.7779620/build/cmake/android.toolchain.cmake"
+			"type" : "UNINITIALIZED",
+			"value" : "C:\\Users\\kalin\\AppData\\Local\\Android\\sdk\\ndk\\23.1.7779620\\build\\cmake\\android.toolchain.cmake"
 		},
 		{
 			"name" : "CMAKE_VERBOSE_MAKEFILE",
@@ -1215,7 +1183,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/x86_64/_deps"
+			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps"
 		},
 		{
 			"name" : "FETCHCONTENT_FULLY_DISCONNECTED",
@@ -1339,7 +1307,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/x86_64"
+			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a"
 		},
 		{
 			"name" : "native_crypto_IS_TOP_LEVEL",
@@ -1375,7 +1343,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/x86_64/_deps/libsodium-build"
+			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-build"
 		},
 		{
 			"name" : "sodium_IS_TOP_LEVEL",
@@ -1399,7 +1367,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/x86_64/_deps/libsodium-src"
+			"value" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-src"
 		}
 	],
 	"kind" : "cache",
