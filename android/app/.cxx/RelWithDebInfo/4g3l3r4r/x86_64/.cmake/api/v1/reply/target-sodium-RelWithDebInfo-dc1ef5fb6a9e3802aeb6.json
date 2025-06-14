@@ -1,0 +1,1870 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "_deps/libsodium-build/libsodium.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_compile_definitions",
+			"target_include_directories",
+			"set_target_properties",
+			"target_sources"
+		],
+		"files" : 
+		[
+			"C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 283,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 276,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 271,
+				"parent" : 0
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 243,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -fexceptions -O2 -g -DNDEBUG -fPIC"
+				},
+				{
+					"fragment" : "-std=gnu99"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 2,
+					"define" : "CONFIGURED"
+				},
+				{
+					"backtrace" : 2,
+					"define" : "SODIUM_STATIC"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium"
+				}
+			],
+			"language" : "C",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					4
+				],
+				"standard" : "99"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				36,
+				38,
+				39,
+				41,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				64,
+				66,
+				68,
+				70,
+				72,
+				73,
+				74,
+				75,
+				76,
+				78,
+				84,
+				85,
+				86,
+				87,
+				88,
+				91,
+				95,
+				97,
+				100,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				109,
+				110,
+				111,
+				112,
+				113,
+				115,
+				116,
+				118,
+				124,
+				126,
+				128,
+				129,
+				131,
+				133,
+				135,
+				137,
+				143,
+				144,
+				218,
+				219,
+				220,
+				221,
+				222,
+				223,
+				224,
+				225,
+				226,
+				227,
+				228,
+				229,
+				230,
+				232,
+				233,
+				235,
+				236,
+				237,
+				238,
+				239,
+				240,
+				241,
+				242,
+				243,
+				244,
+				245,
+				246,
+				247,
+				248
+			],
+			"sysroot" : 
+			{
+				"path" : "C:/Users/kalin/AppData/Local/Android/Sdk/ndk/23.1.7779620/toolchains/llvm/prebuilt/windows-x86_64/sysroot"
+			}
+		}
+	],
+	"id" : "sodium::@bcc563657b3cb26f6c21",
+	"name" : "sodium",
+	"nameOnDisk" : "libsodium.a",
+	"paths" : 
+	{
+		"build" : "_deps/libsodium-build",
+		"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
+				8,
+				9,
+				10,
+				11,
+				12,
+				13,
+				14,
+				15,
+				16,
+				17,
+				18,
+				19,
+				20,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				36,
+				38,
+				39,
+				41,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				64,
+				66,
+				68,
+				70,
+				72,
+				73,
+				74,
+				75,
+				76,
+				78,
+				84,
+				85,
+				86,
+				87,
+				88,
+				91,
+				95,
+				97,
+				100,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				109,
+				110,
+				111,
+				112,
+				113,
+				115,
+				116,
+				118,
+				124,
+				126,
+				128,
+				129,
+				131,
+				133,
+				135,
+				137,
+				143,
+				144,
+				218,
+				219,
+				220,
+				221,
+				222,
+				223,
+				224,
+				225,
+				226,
+				227,
+				228,
+				229,
+				230,
+				232,
+				233,
+				235,
+				236,
+				237,
+				238,
+				239,
+				240,
+				241,
+				242,
+				243,
+				244,
+				245,
+				246,
+				247,
+				248
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				21,
+				22,
+				23,
+				24,
+				25,
+				26,
+				27,
+				28,
+				35,
+				37,
+				40,
+				42,
+				43,
+				44,
+				45,
+				61,
+				62,
+				63,
+				65,
+				67,
+				69,
+				71,
+				77,
+				79,
+				80,
+				81,
+				82,
+				83,
+				89,
+				90,
+				92,
+				93,
+				94,
+				96,
+				98,
+				99,
+				101,
+				108,
+				114,
+				117,
+				119,
+				120,
+				121,
+				122,
+				123,
+				125,
+				127,
+				130,
+				132,
+				134,
+				136,
+				138,
+				139,
+				140,
+				141,
+				142,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153,
+				154,
+				155,
+				156,
+				157,
+				158,
+				159,
+				160,
+				161,
+				162,
+				163,
+				164,
+				165,
+				166,
+				167,
+				168,
+				169,
+				170,
+				171,
+				172,
+				173,
+				174,
+				175,
+				176,
+				177,
+				178,
+				179,
+				180,
+				181,
+				182,
+				183,
+				184,
+				185,
+				186,
+				187,
+				188,
+				189,
+				190,
+				191,
+				192,
+				193,
+				194,
+				195,
+				196,
+				197,
+				198,
+				199,
+				200,
+				201,
+				202,
+				203,
+				204,
+				205,
+				206,
+				207,
+				208,
+				209,
+				210,
+				211,
+				212,
+				213,
+				214,
+				215,
+				216,
+				217,
+				231,
+				234
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis128l/aead_aegis128l.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis128l/aegis128l_aesni.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis128l/aegis128l_armcrypto.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis128l/aegis128l_soft.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis256/aead_aegis256.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis256/aegis256_aesni.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis256/aegis256_armcrypto.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aegis256/aegis256_soft.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aes256gcm/aesni/aead_aes256gcm_aesni.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/aes256gcm/aead_aes256gcm.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/chacha20poly1305/aead_chacha20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_aead/xchacha20poly1305/aead_xchacha20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_auth/crypto_auth.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_auth/hmacsha256/auth_hmacsha256.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_auth/hmacsha512/auth_hmacsha512.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_auth/hmacsha512256/auth_hmacsha512256.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_box/crypto_box.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_box/crypto_box_easy.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_box/crypto_box_seal.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_box/curve25519xsalsa20poly1305/box_curve25519xsalsa20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/ed25519_ref10.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_25_5/base.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_25_5/base2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_25_5/constants.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_25_5/fe.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_51/base.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_51/base2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_51/constants.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/ref10/fe_51/fe.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/hchacha20/core_hchacha20.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/hsalsa20/core_hsalsa20.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/hsalsa20/ref2/core_hsalsa20_ref2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/salsa/ref/core_salsa_ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/softaes/softaes.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/generichash_blake2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-avx2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-avx2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-sse41.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-sse41.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-ssse3.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-ssse3.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-load-avx2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-load-sse2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-load-sse41.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/blake2b/ref/generichash_blake2b.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_generichash/crypto_generichash.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_hash/crypto_hash.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_hash/sha256/hash_sha256.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_hash/sha512/cp/hash_sha512_cp.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_hash/sha512/hash_sha512.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_kdf/blake2b/kdf_blake2b.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_kdf/crypto_kdf.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_kdf/hkdf/kdf_hkdf_sha256.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_kdf/hkdf/kdf_hkdf_sha512.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_kx/crypto_kx.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/crypto_onetimeauth.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna32.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna64.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/onetimeauth_poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/onetimeauth_poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/sse2/poly1305_sse2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_onetimeauth/poly1305/sse2/poly1305_sse2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-core.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-core.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-encoding.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-encoding.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-avx2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-avx512f.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-ssse3.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/argon2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/blake2b-long.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/blake2b-long.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/blamka-round-avx2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/blamka-round-avx512f.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/blamka-round-ref.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/blamka-round-ssse3.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/pwhash_argon2i.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/argon2/pwhash_argon2id.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/crypto_pwhash.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/crypto_scalarmult.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/ref10/x25519_ref10.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/ref10/x25519_ref10.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/consts_namespace.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/curve25519_sandy2x.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/curve25519_sandy2x.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51_invert.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51_namespace.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe_frombytes_sandy2x.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/ladder.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/ladder_namespace.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/scalarmult_curve25519.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/curve25519/scalarmult_curve25519.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox_easy.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_secretbox/xsalsa20poly1305/secretbox_xsalsa20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_secretstream/xchacha20poly1305/secretstream_xchacha20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_shorthash/crypto_shorthash.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphash24_ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphash_ref.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_shorthash/siphash24/shorthash_siphash24.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_sign/crypto_sign.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_sign/ed25519/ref10/keypair.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_sign/ed25519/ref10/open.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_sign/ed25519/ref10/sign.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_sign/ed25519/ref10/sign_ed25519_ref10.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_sign/ed25519/sign_ed25519.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-avx2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-avx2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-ssse3.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-ssse3.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/u0.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/u1.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/u4.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/u8.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/ref/chacha20_ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/ref/chacha20_ref.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/stream_chacha20.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/chacha20/stream_chacha20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/crypto_stream.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/ref/salsa20_ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/ref/salsa20_ref.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/stream_salsa20.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/stream_salsa20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6/salsa20_xmm6.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6/salsa20_xmm6.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-avx2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-avx2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-sse2.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-sse2.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/u0.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/u1.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/u4.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/u8.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/xsalsa20/stream_xsalsa20.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_verify/verify.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/core.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_aead_aegis128l.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_aead_aegis256.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_aead_aes256gcm.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_aead_chacha20poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_aead_xchacha20poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_auth.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_auth_hmacsha256.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_auth_hmacsha512.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_auth_hmacsha512256.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_box.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_box_curve25519xchacha20poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_box_curve25519xsalsa20poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_core_ed25519.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_core_hchacha20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_core_hsalsa20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_core_ristretto255.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_core_salsa20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_core_salsa2012.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_core_salsa208.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_generichash.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_generichash_blake2b.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_hash.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_hash_sha256.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_hash_sha512.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_kdf.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_kdf_blake2b.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_kx.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_onetimeauth.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_onetimeauth_poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_pwhash.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_pwhash_argon2i.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_pwhash_argon2id.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_pwhash_scryptsalsa208sha256.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_scalarmult.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_scalarmult_curve25519.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_scalarmult_ed25519.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_scalarmult_ristretto255.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_secretbox.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_secretbox_xchacha20poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_secretbox_xsalsa20poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_secretstream_xchacha20poly1305.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_shorthash.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_shorthash_siphash24.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_sign.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_sign_ed25519.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_sign_edwards25519sha512batch.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_stream.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_stream_chacha20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_stream_salsa20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_stream_salsa2012.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_stream_salsa208.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_stream_xchacha20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_stream_xsalsa20.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_verify_16.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_verify_32.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/crypto_verify_64.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/export.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/chacha20_ietf_ext.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/common.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/ed25519_ref10.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/ed25519_ref10_fe_25_5.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/ed25519_ref10_fe_51.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/implementations.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/mutex.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/private/sse2_64_32.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/randombytes.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/randombytes_internal_random.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/randombytes_sysrandom.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/runtime.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/utils.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/include/sodium/version.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/randombytes/internal/randombytes_internal_random.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/randombytes/randombytes.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/randombytes/sysrandom/randombytes_sysrandom.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/sodium/codecs.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/sodium/core.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/sodium/runtime.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/sodium/utils.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/sodium/version.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_box/curve25519xchacha20poly1305/box_curve25519xchacha20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_box/curve25519xchacha20poly1305/box_seal_curve25519xchacha20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/core_ed25519.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_core/ed25519/core_ristretto255.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/crypto_scrypt-common.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/crypto_scrypt.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/nosse/pwhash_scryptsalsa208sha256_nosse.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pbkdf2-sha256.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pbkdf2-sha256.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pwhash_scryptsalsa208sha256.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/scrypt_platform.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/sse/pwhash_scryptsalsa208sha256_sse.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/ed25519/ref10/scalarmult_ed25519_ref10.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_scalarmult/ristretto255/ref10/scalarmult_ristretto255_ref10.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_secretbox/xchacha20poly1305/secretbox_xchacha20poly1305.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphashx24_ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_shorthash/siphash24/shorthash_siphashx24.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_sign/ed25519/ref10/obsolete.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa2012/ref/stream_salsa2012_ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa2012/stream_salsa2012.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa208/ref/stream_salsa208_ref.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/salsa208/stream_salsa208.c",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 5,
+			"compileGroupIndex" : 0,
+			"path" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/libsodium/src/libsodium/crypto_stream/xchacha20/stream_xchacha20.c",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

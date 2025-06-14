@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "_deps/libsodium-build/test",
+		"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/x86_64/_deps/libsodium-src/test"
+	}
+}

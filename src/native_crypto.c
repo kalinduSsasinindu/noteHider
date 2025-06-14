@@ -4,6 +4,14 @@
 #include "native_crypto.h" // Our own header file.
 #include "sodium.h" // The main header from the libsodium library.
 
+#if defined(__ANDROID__) || defined(__APPLE__)
+#define NH_OPSLIMIT crypto_pwhash_OPSLIMIT_MODERATE
+#define NH_MEMLIMIT crypto_pwhash_MEMLIMIT_MODERATE
+#else
+#define NH_OPSLIMIT crypto_pwhash_OPSLIMIT_SENSITIVE
+#define NH_MEMLIMIT crypto_pwhash_MEMLIMIT_SENSITIVE
+#endif
+
 // This is the implementation of the function we declared in the header.
 const char* get_libsodium_version_string() {
     // It's mandatory to initialize libsodium before using any other function.
@@ -28,8 +36,8 @@ const char* hash_password(const char* password) {
     if (crypto_pwhash_str(out,
                           password,
                           strlen(password),
-                          crypto_pwhash_OPSLIMIT_SENSITIVE,
-                          crypto_pwhash_MEMLIMIT_SENSITIVE) != 0) {
+                          NH_OPSLIMIT,
+                          NH_MEMLIMIT) != 0) {
         free(out);
         return NULL;
     }

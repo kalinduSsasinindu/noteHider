@@ -1,0 +1,841 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-RelWithDebInfo-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "_deps/libsodium-build",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-_deps.libsodium-build-RelWithDebInfo-d91a39bbb1f48550ecd3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/armeabi-v7a/_deps/libsodium-src",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "_deps/libsodium-build/test",
+					"jsonFile" : "directory-_deps.libsodium-build.test-RelWithDebInfo-b4f1bc4ac8487749d2f7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/armeabi-v7a/_deps/libsodium-src/test",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54,
+						55,
+						56,
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68,
+						69,
+						70,
+						71,
+						72,
+						73,
+						74,
+						75,
+						76,
+						77,
+						78,
+						79,
+						80,
+						81
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "native_crypto",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2
+					],
+					"name" : "sodium",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27,
+						28,
+						29,
+						30,
+						31,
+						32,
+						33,
+						34,
+						35,
+						36,
+						37,
+						38,
+						39,
+						40,
+						41,
+						42,
+						43,
+						44,
+						45,
+						46,
+						47,
+						48,
+						49,
+						50,
+						51,
+						52,
+						53,
+						54,
+						55,
+						56,
+						57,
+						58,
+						59,
+						60,
+						61,
+						62,
+						63,
+						64,
+						65,
+						66,
+						67,
+						68,
+						69,
+						70,
+						71,
+						72,
+						73,
+						74,
+						75,
+						76,
+						77,
+						78,
+						79,
+						80,
+						81
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "native_crypto_library::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-native_crypto_library-RelWithDebInfo-15f4dae49d53e31a1204.json",
+					"name" : "native_crypto_library",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "sodium::@bcc563657b3cb26f6c21",
+					"jsonFile" : "target-sodium-RelWithDebInfo-284bf76156d8db4002ac.json",
+					"name" : "sodium",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aegis128l::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aegis128l-RelWithDebInfo-439575a95920ab1170c3.json",
+					"name" : "test_aead_aegis128l",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aegis256::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aegis256-RelWithDebInfo-948a9f87a5d4a6652815.json",
+					"name" : "test_aead_aegis256",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aes256gcm::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aes256gcm-RelWithDebInfo-0c2e0002f0622d0d5b8f.json",
+					"name" : "test_aead_aes256gcm",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_aes256gcm2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_aes256gcm2-RelWithDebInfo-57b64bcec639c8b1d9fc.json",
+					"name" : "test_aead_aes256gcm2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_chacha20poly1305::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_chacha20poly1305-RelWithDebInfo-0725e0a19839d9c23a79.json",
+					"name" : "test_aead_chacha20poly1305",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_chacha20poly13052::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_chacha20poly13052-RelWithDebInfo-2fb33c2e2ca64939a574.json",
+					"name" : "test_aead_chacha20poly13052",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_aead_xchacha20poly1305::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_aead_xchacha20poly1305-RelWithDebInfo-77b9390c40c91e20bfca.json",
+					"name" : "test_aead_xchacha20poly1305",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth-RelWithDebInfo-68e270ea5ff67629e08a.json",
+					"name" : "test_auth",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth2-RelWithDebInfo-96e03a628f2d52889d4e.json",
+					"name" : "test_auth2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth3-RelWithDebInfo-385ff3de5cbb26088caf.json",
+					"name" : "test_auth3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth5::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth5-RelWithDebInfo-0654b138bd85dc23c375.json",
+					"name" : "test_auth5",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth6::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth6-RelWithDebInfo-31b0358aec8d3bc542f8.json",
+					"name" : "test_auth6",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_auth7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_auth7-RelWithDebInfo-ceed7683f527229a4b1e.json",
+					"name" : "test_auth7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box-RelWithDebInfo-12a4a9097a764aa353ab.json",
+					"name" : "test_box",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box2-RelWithDebInfo-c6e2eabaa374cfaa8a9f.json",
+					"name" : "test_box2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box7-RelWithDebInfo-ea40f2d2d6d98de786f9.json",
+					"name" : "test_box7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box8::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box8-RelWithDebInfo-7dc8fb53fce915ffe89c.json",
+					"name" : "test_box8",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_easy::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_easy-RelWithDebInfo-b8d2e69e596ad52e7f4c.json",
+					"name" : "test_box_easy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_easy2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_easy2-RelWithDebInfo-40587803f1719abcd84d.json",
+					"name" : "test_box_easy2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_seal::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_seal-RelWithDebInfo-2dae82a1ec0647dc6f92.json",
+					"name" : "test_box_seal",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_box_seed::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_box_seed-RelWithDebInfo-5640bb0a65df92821c3d.json",
+					"name" : "test_box_seed",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_chacha20::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_chacha20-RelWithDebInfo-33c1ba575e301dbd4fc9.json",
+					"name" : "test_chacha20",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_codecs::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_codecs-RelWithDebInfo-2b431d75487aca26c6ff.json",
+					"name" : "test_codecs",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core1::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core1-RelWithDebInfo-0866a17d06a052b39cb3.json",
+					"name" : "test_core1",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core2-RelWithDebInfo-e6849fde98f1040c214a.json",
+					"name" : "test_core2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core3-RelWithDebInfo-70f98d04c5b12d720bda.json",
+					"name" : "test_core3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core4::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core4-RelWithDebInfo-575a10f911e90fdc70e2.json",
+					"name" : "test_core4",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core5::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core5-RelWithDebInfo-628fd5b6ae718f32b365.json",
+					"name" : "test_core5",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core6::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core6-RelWithDebInfo-04f2a3a3bd4ae3d100c6.json",
+					"name" : "test_core6",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core_ed25519::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core_ed25519-RelWithDebInfo-bbe9d91b1117575c46c3.json",
+					"name" : "test_core_ed25519",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_core_ristretto255::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_core_ristretto255-RelWithDebInfo-701c66a22b1d320f8a90.json",
+					"name" : "test_core_ristretto255",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_ed25519_convert::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_ed25519_convert-RelWithDebInfo-3de5397ec5d589b73d04.json",
+					"name" : "test_ed25519_convert",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_generichash::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_generichash-RelWithDebInfo-728879e1843730777503.json",
+					"name" : "test_generichash",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_generichash2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_generichash2-RelWithDebInfo-6fb2d12e46856813f48c.json",
+					"name" : "test_generichash2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_generichash3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_generichash3-RelWithDebInfo-6892e793136e172230fb.json",
+					"name" : "test_generichash3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_hash::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_hash-RelWithDebInfo-cf7555880ee1c67facbe.json",
+					"name" : "test_hash",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_hash3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_hash3-RelWithDebInfo-9cc1809427b41f72a01e.json",
+					"name" : "test_hash3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_kdf::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_kdf-RelWithDebInfo-3249fd1a8d2375506640.json",
+					"name" : "test_kdf",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_kdf_hkdf::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_kdf_hkdf-RelWithDebInfo-eebb5de08f83d7bc1d0c.json",
+					"name" : "test_kdf_hkdf",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_keygen::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_keygen-RelWithDebInfo-50ce332e68ef8913298e.json",
+					"name" : "test_keygen",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_kx::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_kx-RelWithDebInfo-1060955bcdf5c94ebe7e.json",
+					"name" : "test_kx",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_metamorphic::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_metamorphic-RelWithDebInfo-70d35630f939fca2d1d5.json",
+					"name" : "test_metamorphic",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_misuse::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_misuse-RelWithDebInfo-3e2397b7221f7191a0fe.json",
+					"name" : "test_misuse",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_onetimeauth::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_onetimeauth-RelWithDebInfo-dc3b8b318dc8e48c4d39.json",
+					"name" : "test_onetimeauth",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_onetimeauth2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_onetimeauth2-RelWithDebInfo-aa8437cf36ed467f0fc9.json",
+					"name" : "test_onetimeauth2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_onetimeauth7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_onetimeauth7-RelWithDebInfo-a84dc8e280a51400010e.json",
+					"name" : "test_onetimeauth7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_argon2i::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_argon2i-RelWithDebInfo-c5f79f86b2bba216f8b0.json",
+					"name" : "test_pwhash_argon2i",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_argon2id::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_argon2id-RelWithDebInfo-ab3d7bd021818c14753e.json",
+					"name" : "test_pwhash_argon2id",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_scrypt::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_scrypt-RelWithDebInfo-21eec0a0446147743bcb.json",
+					"name" : "test_pwhash_scrypt",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_pwhash_scrypt_ll::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_pwhash_scrypt_ll-RelWithDebInfo-7ec319450d5b6bd8b9f8.json",
+					"name" : "test_pwhash_scrypt_ll",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_randombytes::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_randombytes-RelWithDebInfo-cbf7517a2a6caffedf11.json",
+					"name" : "test_randombytes",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult-RelWithDebInfo-648b2eb5e881e2729200.json",
+					"name" : "test_scalarmult",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult2-RelWithDebInfo-1946d2b92ebe0b49967a.json",
+					"name" : "test_scalarmult2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult5::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult5-RelWithDebInfo-8e5ee016372eef0e5dd7.json",
+					"name" : "test_scalarmult5",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult6::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult6-RelWithDebInfo-fef65b9b8117e3b74b4b.json",
+					"name" : "test_scalarmult6",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult7-RelWithDebInfo-03b85ed59bf866389ea0.json",
+					"name" : "test_scalarmult7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult8::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult8-RelWithDebInfo-ac720dc4ba65f0edc4a4.json",
+					"name" : "test_scalarmult8",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult_ed25519::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult_ed25519-RelWithDebInfo-5124e4337029ad4fe68e.json",
+					"name" : "test_scalarmult_ed25519",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_scalarmult_ristretto255::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_scalarmult_ristretto255-RelWithDebInfo-202d1719f5246f58f3e4.json",
+					"name" : "test_scalarmult_ristretto255",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox-RelWithDebInfo-d2650936e67c7ad661cc.json",
+					"name" : "test_secretbox",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox2-RelWithDebInfo-a9be179dfde56240457d.json",
+					"name" : "test_secretbox2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox7::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox7-RelWithDebInfo-670b19cea9095c2d0b3a.json",
+					"name" : "test_secretbox7",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox8::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox8-RelWithDebInfo-e663ee3ee7324345249c.json",
+					"name" : "test_secretbox8",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox_easy::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox_easy-RelWithDebInfo-603674e405bf8e83c824.json",
+					"name" : "test_secretbox_easy",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretbox_easy2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretbox_easy2-RelWithDebInfo-c67d62aa50bf06ad9612.json",
+					"name" : "test_secretbox_easy2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_secretstream_xchacha20poly1305::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_secretstream_xchacha20poly1305-RelWithDebInfo-e9c62b8ef5036e97b75e.json",
+					"name" : "test_secretstream_xchacha20poly1305",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_shorthash::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_shorthash-RelWithDebInfo-04de56a207c159e3fa82.json",
+					"name" : "test_shorthash",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sign::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sign-RelWithDebInfo-cbddf1112d9d0f155dbc.json",
+					"name" : "test_sign",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_siphashx24::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_siphashx24-RelWithDebInfo-6a7bb857c1e9b4652031.json",
+					"name" : "test_siphashx24",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_core::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_core-RelWithDebInfo-de9bb09ba8be39105088.json",
+					"name" : "test_sodium_core",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_utils::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_utils-RelWithDebInfo-5c9e4771db329797d99a.json",
+					"name" : "test_sodium_utils",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_utils2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_utils2-RelWithDebInfo-2cd42954d750455dfb44.json",
+					"name" : "test_sodium_utils2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_utils3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_utils3-RelWithDebInfo-f192d22e0753b7af5a35.json",
+					"name" : "test_sodium_utils3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_sodium_version::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_sodium_version-RelWithDebInfo-25f49439004cad4c4d2f.json",
+					"name" : "test_sodium_version",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream-RelWithDebInfo-58f8d321cdcf3776829b.json",
+					"name" : "test_stream",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream2::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream2-RelWithDebInfo-cc823436902dc8f0f7bb.json",
+					"name" : "test_stream2",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream3::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream3-RelWithDebInfo-d8c36b2222b50fec20f7.json",
+					"name" : "test_stream3",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_stream4::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_stream4-RelWithDebInfo-9d5ded8dd3a37ddb3022.json",
+					"name" : "test_stream4",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_verify1::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_verify1-RelWithDebInfo-d361ac4f3a35e00dbda2.json",
+					"name" : "test_verify1",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "test_xchacha20::@d57863900cec8f467f2b",
+					"jsonFile" : "target-test_xchacha20-RelWithDebInfo-2c276ba5cd1e20a9a82a.json",
+					"name" : "test_xchacha20",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/armeabi-v7a",
+		"source" : "C:/Users/kalin/Desktop/flutter sources/notehider/src"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

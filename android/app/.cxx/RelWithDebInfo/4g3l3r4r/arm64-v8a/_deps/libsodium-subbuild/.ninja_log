@@ -1,0 +1,21 @@
+# ninja log v5
+1	290	7716452151360464	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-mkdir	3c6e1bfa907e39ab
+1	290	7716452151360464	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-mkdir	3c6e1bfa907e39ab
+290	14244	7716452290266312	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-download	b1382c9b7a7a7346
+290	14244	7716452290266312	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-download	b1382c9b7a7a7346
+14245	15337	0	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-update	a8644f420543d6d0
+14245	15337	0	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-update	a8644f420543d6d0
+15337	15887	7716452307030197	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-patch	fbe5e016948010c0
+15337	15887	7716452307030197	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-patch	fbe5e016948010c0
+15887	16276	7716452310366721	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-configure	362f8d6d889e807a
+15887	16276	7716452310366721	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-configure	362f8d6d889e807a
+16276	16648	7716452314662726	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-build	cad7d5370d630a9
+16276	16648	7716452314662726	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-build	cad7d5370d630a9
+16648	16999	7716452318261795	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-install	8f466962e7bcdfec
+16648	16999	7716452318261795	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-install	8f466962e7bcdfec
+16999	17285	7716452321193832	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-test	f2021b1fc4d20cd1
+16999	17285	7716452321193832	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-test	f2021b1fc4d20cd1
+17285	17477	7716452323177384	CMakeFiles/libsodium-populate-complete	202516aa54017f7c
+17285	17477	7716452323177384	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-done	202516aa54017f7c
+17285	17477	7716452323177384	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/CMakeFiles/libsodium-populate-complete	202516aa54017f7c
+17285	17477	7716452323177384	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/RelWithDebInfo/4g3l3r4r/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-done	202516aa54017f7c

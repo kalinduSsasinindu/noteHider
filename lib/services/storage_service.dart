@@ -10,8 +10,9 @@ import 'crypto_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:flutter/services.dart';
 import 'crypto_ffi.dart';
+import 'native_integrity_ffi.dart';
+import 'hardware_crypto_bridge.dart';
 
 /// 🎖️ ENHANCED MILITARY-GRADE STORAGE SERVICE
 ///
@@ -58,6 +59,11 @@ class StorageService {
   static const String _biometricBindingKey = 'biometric_binding_v3';
   static const String _deviceIntegrityProofKey = 'device_integrity_proof_v3';
   static const String _antitamperSealKey = 'antitamper_seal_v3';
+  static const String _pepperTagKey = 'pepper_tag_v1';
+
+  // Hardware-wrapped keys
+  static const String _masterKeyHWKey = 'master_key_hw_v1';
+  static const String _deviceSaltHWKey = 'device_salt_hw_v1';
 
   StorageService({required CryptoService cryptoService})
       : _cryptoService = cryptoService;
@@ -182,6 +188,20 @@ class StorageService {
     await _ensureInitialized();
 
     try {
+      // Try hardware-wrapped first
+      try {
+        final wrapped = await _secureStorage.read(key: _masterKeyHWKey);
+        if (wrapped != null) {
+          final unwrapped = await HardwareCryptoBridge.instance
+              .unwrapBytes('master_key', wrapped);
+          print(
+              '🔒 [HW] Master key unwrapped successfully (${unwrapped.length} bytes)');
+          return unwrapped;
+        }
+      } catch (e) {
+        print('⚠️ Hardware unwrap failed, falling back: $e');
+      }
+
       final keyData = await _secureStorage.read(key: _masterKeyKey);
       if (keyData == null) return null;
 
@@ -763,24 +783,45 @@ class StorageService {
     await _ensureInitialized();
 
     try {
-      // First verify device integrity
+      // Fast path: pepper tag comparison (runs before heavy integrity checks)
+      try {
+        final storedTag = await _secureStorage.read(key: _pepperTagKey);
+        if (storedTag != null) {
+          final computedTag =
+              await HardwareCryptoBridge.instance.computePepperTag(password);
+          if (storedTag == computedTag) {
+            print('🔑 Pepper tag matched – fast unlock');
+            _failedAccesses = 0;
+            await _updateSecurityState();
+            return true;
+          }
+        }
+      } catch (e) {
+        print('⚠️ Pepper tag path failed: $e');
+      }
+
+      // Only now run device integrity (slow) if fast path did not return
+
       final isDeviceSecure = await verifyDeviceIntegrity();
       if (!isDeviceSecure) {
         print('🚨 Device integrity check failed - blocking access');
         return false;
       }
 
+      // Slow path – Argon2 verify
+
       // Generate device-bound key material
       final deviceSalt = await _generateDeviceBoundSalt();
       final enhancedPassword = _combinePasswordWithDevice(password, deviceSalt);
 
-      // Use enhanced password for verification
       final authHashJson = await _secureStorage.read(key: _authHashKey);
       if (authHashJson == null) return false;
 
-      final storedHash = MilitaryHashResult.fromJson(jsonDecode(authHashJson));
-      final isValid = await _cryptoService.verifyPasswordMilitary(
-          enhancedPassword, storedHash);
+      final storedMap = jsonDecode(authHashJson) as Map<String, dynamic>;
+      final isValid = await compute(_argonVerifyWorker, {
+        'pwd': enhancedPassword,
+        'stored': storedMap,
+      });
 
       if (isValid) {
         _failedAccesses = 0;
@@ -788,6 +829,13 @@ class StorageService {
 
         // Regenerate master key with device binding
         await _regenerateMasterKeyWithDeviceBinding(password);
+
+        // Update pepper tag (maybe it was missing)
+        try {
+          final newTag =
+              await HardwareCryptoBridge.instance.computePepperTag(password);
+          await _secureStorage.write(key: _pepperTagKey, value: newTag);
+        } catch (_) {}
       } else {
         _failedAccesses++;
         if (_failedAccesses >= _maxFailedAccesses) {
@@ -818,9 +866,10 @@ class StorageService {
       final deviceSalt = await _generateDeviceBoundSalt();
       final enhancedPassword = _combinePasswordWithDevice(password, deviceSalt);
 
-      // Generate military-grade hash with device binding
-      final hashResult =
-          await _cryptoService.hashPasswordMilitary(enhancedPassword);
+      // Heavy Argon2 hashing offloaded to isolate
+      final hashJson =
+          await compute(_hashPasswordWorker, {'pwd': enhancedPassword});
+      final hashResult = MilitaryHashResult.fromJson(hashJson);
 
       // Store authentication data
       await _secureStorage.write(
@@ -828,7 +877,7 @@ class StorageService {
         value: jsonEncode(hashResult.toJson()),
       );
 
-      // Generate master key with device binding
+      // Generate master key with device binding (also heavy)
       await _generateMasterKeyWithDeviceBinding(password);
 
       // Create security checkpoint
@@ -1062,6 +1111,20 @@ class StorageService {
     try {
       print('🧂 Generating device-bound cryptographic salt...');
 
+      // First try cached, hardware-wrapped salt
+      try {
+        final cachedWrapped = await _secureStorage.read(key: _deviceSaltHWKey);
+        if (cachedWrapped != null) {
+          final unwrapped = await HardwareCryptoBridge.instance
+              .unwrapBytes('device_salt', cachedWrapped);
+          print(
+              '🧂 [HW] Reusing cached device salt (${unwrapped.length} bytes)');
+          return unwrapped;
+        }
+      } catch (e) {
+        print('⚠️ Failed to unwrap cached device salt: $e');
+      }
+
       // Get comprehensive device DNA
       final deviceDNA = await _generateDeviceIntegrityHash();
 
@@ -1089,11 +1152,32 @@ class StorageService {
           utf8.encode('${layer2.toString()}|$timestamp|TEMPORAL_LAYER'));
       final layer4 = sha256.convert(
           utf8.encode('${layer3.toString()}|$environment|ENVIRONMENT_LAYER'));
-      final finalSalt = sha256
+
+      // Integrate attestation bitmask (native integrity probe)
+      int attestationBits = 0;
+      try {
+        attestationBits = NativeIntegrity.instance.probe();
+      } catch (_) {}
+
+      final saltPre = sha256
           .convert(utf8.encode('${layer4.toString()}|DEVICE_BOUND_SALT_FINAL'));
+      final combinedWithAttest = sha256.convert(utf8.encode(
+          '${saltPre.toString()}|ATT:${attestationBits.toRadixString(16)}'));
+
+      final finalBytes = Uint8List.fromList(combinedWithAttest.bytes);
+
+      // Store hardware-wrapped copy for future reference
+      try {
+        final wrapped = await HardwareCryptoBridge.instance
+            .wrapBytes('device_salt', finalBytes);
+        print('🧂 [HW] Device salt wrapped (${wrapped.length}b64)');
+        await _secureStorage.write(key: _deviceSaltHWKey, value: wrapped);
+      } catch (e) {
+        print('⚠️ Failed to store hardware-wrapped device salt: $e');
+      }
 
       print('🧂 Device-bound salt generated successfully');
-      return Uint8List.fromList(finalSalt.bytes);
+      return finalBytes;
     } catch (e) {
       print('🚨 Failed to generate device-bound salt: $e');
       // Fallback to crypto service salt with device markers
@@ -1166,19 +1250,30 @@ class StorageService {
       final enhancedPassword = _combinePasswordWithDevice(password, deviceSalt);
 
       final salt = _cryptoService.generateSalt();
-      final masterKey =
-          await _cryptoService.deriveMasterKey(enhancedPassword, salt);
+      // heavy derive in isolate
+      final masterKey = await compute(_deriveMasterKeyWorker, {
+        'pwd': enhancedPassword,
+        'salt': salt,
+      });
 
       await _secureStorage.write(
         key: _masterKeyKey,
         value: base64.encode([...salt, ...masterKey]),
       );
 
+      try {
+        final wrapped = await HardwareCryptoBridge.instance
+            .wrapBytes('master_key', masterKey);
+        print(
+            '🔒 [HW] Storing hardware-wrapped master key (${wrapped.length}b64)');
+        await _secureStorage.write(key: _masterKeyHWKey, value: wrapped);
+      } catch (e) {
+        print('⚠️ Failed to update hardware-wrapped master key: $e');
+      }
+
       // Store device binding info separately
       await _secureStorage.write(
-        key: 'device_binding_salt',
-        value: base64.encode(deviceSalt),
-      );
+          key: 'device_binding_salt', value: base64.encode(deviceSalt));
     } catch (e) {
       print('🚨 Failed to generate device-bound master key: $e');
       throw SecurityException('Device-bound key generation failed: $e');
@@ -1583,4 +1678,31 @@ class SecureFileInfo {
         'type': type,
         'addedAt': addedAt.toIso8601String(),
       };
+}
+
+// ---------------------------------------------------------------------------
+// Isolate helpers (must live at top-level)
+// ---------------------------------------------------------------------------
+
+Future<Map<String, dynamic>> _hashPasswordWorker(
+    Map<String, dynamic> data) async {
+  final pwd = data['pwd'] as String;
+  final crypto = CryptoService();
+  final res = await crypto.hashPasswordMilitary(pwd);
+  return res.toJson();
+}
+
+Future<Uint8List> _deriveMasterKeyWorker(Map<String, dynamic> data) async {
+  final pwd = data['pwd'] as String;
+  final salt = data['salt'] as Uint8List;
+  final crypto = CryptoService();
+  return await crypto.deriveMasterKey(pwd, salt);
+}
+
+Future<bool> _argonVerifyWorker(Map<String, dynamic> data) async {
+  final enhancedPwd = data['pwd'] as String;
+  final storedJson = data['stored'] as Map<String, dynamic>;
+  final crypto = CryptoService();
+  final storedHash = MilitaryHashResult.fromJson(storedJson);
+  return await crypto.verifyPasswordMilitary(enhancedPwd, storedHash);
 }
