@@ -1,16 +1,12 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:convert';
-import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:notehider/models/file_models.dart';
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/random/fortuna_random.dart';
 import 'package:pointycastle/digests/sha256.dart';
-import 'package:pointycastle/block/aes.dart';
-import 'package:pointycastle/block/modes/gcm.dart';
-import 'package:flutter/foundation.dart' as foundation;
 import 'crypto_ffi.dart';
 
 /// 🎖️ MILITARY-GRADE CRYPTOGRAPHIC SERVICE
@@ -269,25 +265,10 @@ class CryptoService {
     return _secureRandom.nextBytes(_ephemeralKeyLength);
   }
 
-  /// 🔧 CIPHER UTILITIES
-  Uint8List _generateIV() {
-    return _secureRandom.nextBytes(_ivLength);
-  }
+ 
 
-  BlockCipher _createCipher() {
-    return GCMBlockCipher(AESEngine());
-  }
 
-  /// ⏱️ CONSTANT-TIME COMPARISON (Anti-Timing Attack)
-  bool _constantTimeEquals(List<int> a, List<int> b) {
-    if (a.length != b.length) return false;
 
-    int result = 0;
-    for (int i = 0; i < a.length; i++) {
-      result |= a[i] ^ b[i];
-    }
-    return result == 0;
-  }
 
   /// 🧹 MILITARY-GRADE SECURE MEMORY CLEARING
   ///

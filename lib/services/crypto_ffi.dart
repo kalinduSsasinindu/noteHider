@@ -1,7 +1,9 @@
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:convert';
 
 import 'package:ffi/ffi.dart';
+import 'package:crypto/crypto.dart';
 
 // Define a C function signature for our native function.
 // It takes no arguments and returns a pointer to a UTF8 string.
@@ -68,20 +70,54 @@ class CryptoFFI {
   /// Loads the dynamic library from the correct path based on the platform.
   DynamicLibrary _loadDylib() {
     const libName = 'native_crypto_library';
+    String path;
+
     if (Platform.isAndroid || Platform.isLinux) {
-      return DynamicLibrary.open('lib$libName.so');
-    }
-    if (Platform.isIOS) {
+      path = 'lib$libName.so';
+    } else if (Platform.isIOS) {
       // iOS apps are statically linked, so we can open the process itself.
       return DynamicLibrary.executable();
+    } else if (Platform.isWindows) {
+      path = '$libName.dll';
+    } else if (Platform.isMacOS) {
+      path = 'lib$libName.dylib';
+    } else {
+      throw UnsupportedError('Unsupported platform for FFI');
     }
-    if (Platform.isWindows) {
-      return DynamicLibrary.open('$libName.dll');
+
+    // 🔒 Verify integrity of the native binary before loading it.
+    _verifyDylibChecksum(path);
+
+    return DynamicLibrary.open(path);
+  }
+
+  /// Computes SHA-256 of the dynamic library on disk. On first run we write a
+  /// side-car file `<lib>.sha256`. Subsequent launches compare against the
+  /// stored value and abort if it differs (indicating possible tampering).
+  void _verifyDylibChecksum(String dylibPath) {
+    // Skip on iOS – we are statically linked within the executable.
+    if (Platform.isIOS) return;
+
+    final file = File(dylibPath);
+    if (!file.existsSync()) {
+      throw StateError('Native library not found at $dylibPath');
     }
-    if (Platform.isMacOS) {
-      return DynamicLibrary.open('lib$libName.dylib');
+
+    final bytes = file.readAsBytesSync();
+    final currentHash = sha256.convert(bytes).toString();
+
+    final checksumFile = File('$dylibPath.sha256');
+    if (!checksumFile.existsSync()) {
+      // First launch: persist checksum lock-file next to the library.
+      checksumFile.writeAsStringSync(currentHash, flush: true);
+      return;
     }
-    throw UnsupportedError('Unsupported platform for FFI');
+
+    final storedHash = checksumFile.readAsStringSync();
+    if (storedHash != currentHash) {
+      throw StateError(
+          'Native library checksum mismatch – expected $storedHash, got $currentHash. Possible tampering detected.');
+    }
   }
 
   /// Calls the native function and converts the result to a Dart String.
@@ -106,6 +142,14 @@ class CryptoFFI {
     // IMPORTANT: Free the memory that was allocated by the C functions.
     // We must free both the password pointer and the hash pointer.
     _freeString(hashPointer);
+
+    // 🔐 Wipe password buffer before releasing it to the allocator to reduce
+    // the lifetime of secret material in memory.
+    final pwdLen = utf8.encode(password).length + 1; // +1 for null-terminator
+    final pwdView = passwordPointer.cast<Uint8>().asTypedList(pwdLen);
+    for (int i = 0; i < pwdView.length; i++) {
+      pwdView[i] = 0;
+    }
     calloc.free(passwordPointer);
 
     return hash;
@@ -121,6 +165,19 @@ class CryptoFFI {
     final isValid = _verifyPassword(hashPointer, passwordPointer);
 
     // IMPORTANT: Free the allocated memory.
+    // Wipe both buffers before freeing.
+    final hashLen = utf8.encode(hash).length + 1;
+    final hashView = hashPointer.cast<Uint8>().asTypedList(hashLen);
+    for (int i = 0; i < hashView.length; i++) {
+      hashView[i] = 0;
+    }
+
+    final pwdLen = utf8.encode(password).length + 1;
+    final pwdView = passwordPointer.cast<Uint8>().asTypedList(pwdLen);
+    for (int i = 0; i < pwdView.length; i++) {
+      pwdView[i] = 0;
+    }
+
     calloc.free(hashPointer);
     calloc.free(passwordPointer);
 
