@@ -24,4 +24,16 @@ bool verify_password(const char* hash, const char* password);
 // Frees a string that was allocated in C.
 void free_string(char* str);
 
+// Encrypts arbitrary bytes with libsodium (XChaCha20-Poly1305). Returns a
+// base-64 string (nonce + ciphertext + MAC) allocated via malloc. Caller must
+// free the returned pointer using free_string(). Returns NULL on failure.
+char* encrypt_bytes(const uint8_t* data, size_t len,
+                    const uint8_t* key, size_t key_len);
+
+// Decrypts a base-64 string produced by encrypt_bytes(). On success returns a
+// base-64 string containing the plaintext bytes. Caller must free the pointer
+// with free_string(). Returns NULL on failure (e.g. invalid MAC).
+char* decrypt_bytes(const char* enc_b64,
+                    const uint8_t* key, size_t key_len);
+
 #endif // NATIVE_CRYPTO_H 

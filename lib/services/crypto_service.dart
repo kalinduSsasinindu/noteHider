@@ -265,11 +265,6 @@ class CryptoService {
     return _secureRandom.nextBytes(_ephemeralKeyLength);
   }
 
- 
-
-
-
-
   /// 🧹 MILITARY-GRADE SECURE MEMORY CLEARING
   ///
   /// Triple-pass overwrite with different patterns
@@ -358,25 +353,21 @@ class CryptoService {
     return Uint8List.fromList(derived);
   }
 
+  /// 📦 Simple wrapper around native libsodium symmetric encryption.
+  /// Returns raw encrypted bytes (nonce + ciphertext + MAC) with no
+  /// separate IV / tag fields required.
   Future<EncryptedData> encryptData(Uint8List data, Uint8List masterKey) async {
-    final militaryData = await encryptDataMilitary(data, masterKey);
+    final encryptedBytes = _cryptoFFI.encryptBytes(data, masterKey);
     return EncryptedData(
-      encryptedBytes: Uint8List.fromList(
-          [...militaryData.cipherText, ...militaryData.authTag]),
-      iv: militaryData.iv,
-      authTag: militaryData.authTag,
+      encryptedBytes: encryptedBytes,
+      iv: Uint8List(0), // Not needed – nonce is embedded in ciphertext
+      authTag: Uint8List(0),
     );
   }
 
   Future<Uint8List> decryptData(
       EncryptedData encryptedData, Uint8List masterKey) async {
-    // For legacy compatibility, use basic decryption
-    final key = Key(masterKey);
-    final iv = IV(encryptedData.iv);
-    final encrypter = Encrypter(AES(key, mode: AESMode.gcm));
-
-    final encrypted = Encrypted(encryptedData.encryptedBytes);
-    return Uint8List.fromList(encrypter.decryptBytes(encrypted, iv: iv));
+    return _cryptoFFI.decryptBytes(encryptedData.encryptedBytes, masterKey);
   }
 
   // Updated file encryption methods with new FileMetadata structure
@@ -547,31 +538,14 @@ class CryptoService {
     if (_key == null) {
       throw Exception('Master key not set');
     }
-    final encryptedData = await encryptData(data, _key!);
-    return encryptedData.encryptedBytes;
+    return _cryptoFFI.encryptBytes(data, _key!);
   }
 
   Future<Uint8List> decryptBytes(Uint8List encryptedBytes) async {
     if (_key == null) {
       throw Exception('Master key not set');
     }
-
-    // Extract IV and encrypted content
-    if (encryptedBytes.length < 16) {
-      throw Exception('Invalid encrypted data length');
-    }
-
-    final iv = encryptedBytes.sublist(0, 16);
-    final authTag = encryptedBytes.sublist(encryptedBytes.length - 16);
-    final cipherText = encryptedBytes.sublist(16, encryptedBytes.length - 16);
-
-    final encryptedData = EncryptedData(
-      encryptedBytes: Uint8List.fromList([...cipherText, ...authTag]),
-      iv: iv,
-      authTag: authTag,
-    );
-
-    return await decryptData(encryptedData, _key!);
+    return _cryptoFFI.decryptBytes(encryptedBytes, _key!);
   }
 
   /// 🧮 HASH DATA FOR INTEGRITY
