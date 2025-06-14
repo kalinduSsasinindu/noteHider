@@ -36,9 +36,13 @@ class MultiFactorAuthBloc
     try {
       emit(state.copyWith(status: MultiFactorAuthStatus.configuring));
 
-      // For now, use simplified availability checks
-      final biometricAvailable = true; // Placeholder
-      final totpConfigured = false; // Placeholder
+      // Check actual service availability
+      final biometricAvailability = await _biometricService.checkAvailability();
+      final biometricAvailable =
+          biometricAvailability == BiometricAvailability.available;
+
+      final totpStatus = _totpService.getStatus();
+      final totpConfigured = totpStatus.isConfigured;
 
       // Determine required factors based on security profile
       final requiredFactors = _determineRequiredFactors(
@@ -80,11 +84,12 @@ class MultiFactorAuthBloc
     try {
       emit(state.copyWith(status: MultiFactorAuthStatus.biometricRequired));
 
-      // Simulate biometric authentication
-      // In real implementation, this would call the actual biometric service
-      final biometricResult = true; // Placeholder
+      // Call actual biometric service with required reason parameter
+      final biometricResult = await _biometricService.authenticate(
+        reason: event.reason,
+      );
 
-      add(CompleteBiometricAuth(biometricResult));
+      add(CompleteBiometricAuth(biometricResult.success));
     } catch (e) {
       emit(state.copyWith(
         status: MultiFactorAuthStatus.failed,
@@ -98,11 +103,10 @@ class MultiFactorAuthBloc
     Emitter<MultiFactorAuthState> emit,
   ) async {
     try {
-      // Simulate TOTP verification
-      // In real implementation, this would call the actual TOTP service
-      final isValid = event.code.length == 6; // Placeholder validation
+      // Call actual TOTP service for validation
+      final totpResult = await _totpService.verifyCode(event.code);
 
-      add(CompleteTOTPAuth(isValid));
+      add(CompleteTOTPAuth(totpResult.success));
     } catch (e) {
       emit(state.copyWith(
         status: MultiFactorAuthStatus.failed,
@@ -118,11 +122,10 @@ class MultiFactorAuthBloc
     try {
       emit(state.copyWith(status: MultiFactorAuthStatus.locationRequired));
 
-      // Simulate location verification
-      // In real implementation, this would call the actual location service
-      final locationValid = true; // Placeholder
+      // Call actual location service for verification
+      final locationResult = await _locationService.verifyLocation();
 
-      add(CompleteLocationAuth(locationValid));
+      add(CompleteLocationAuth(locationResult.isValid));
     } catch (e) {
       emit(state.copyWith(
         status: MultiFactorAuthStatus.failed,

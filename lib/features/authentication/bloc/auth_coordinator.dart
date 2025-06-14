@@ -268,3 +268,4 @@ class AuthCoordinatorState {
   bool get canAccessSecureArea =>
       status == AuthCoordinatorStatus.fullyAuthenticated;
 }
+ 

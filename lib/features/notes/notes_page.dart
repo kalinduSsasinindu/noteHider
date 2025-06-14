@@ -138,9 +138,6 @@ class _NotesPageState extends State<NotesPage> {
                     value: context.read<AuthBloc>(),
                   ),
                   BlocProvider.value(
-                    value: context.read<NotesBloc>(),
-                  ),
-                  BlocProvider.value(
                     value: context.read<AuthCoordinator>(),
                   ),
                 ],

@@ -375,9 +375,6 @@ class _AddEditNotesPageState extends State<AddEditNotesPage> {
               value: context.read<AuthBloc>(),
             ),
             BlocProvider.value(
-              value: context.read<NotesBloc>(),
-            ),
-            BlocProvider.value(
               value: context.read<AuthCoordinator>(),
             ),
           ],
