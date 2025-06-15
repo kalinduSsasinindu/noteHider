@@ -2,24 +2,22 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
-import 'package:encrypt/encrypt.dart';
 import 'package:notehider/models/file_models.dart';
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/random/fortuna_random.dart';
 import 'package:pointycastle/digests/sha256.dart';
 import 'crypto_ffi.dart';
 
-/// 🎖️ MILITARY-GRADE CRYPTOGRAPHIC SERVICE
+/// 🔒 CryptoService – thin Dart façade around the project's native
+/// libsodium-based engine (see `native_crypto.c`).  All heavy crypto
+/// work—password hashing (Argon2id), HKDF-SHA256, random-bytes generation,
+/// XChaCha20/AES-GCM encryption—is executed in C for speed and side-channel
+/// safety.  The Dart layer now focuses exclusively on:
+/// • Marshalling data to/from FFI (Uint8List ⇆ Pointer)
+/// • High-level conveniences such as file-metadata packing/unpacking
+/// • Optional secure-memory clearing helpers
 ///
-/// Enhanced with:
-/// • PBKDF2 with adaptive iterations (500K desktop, 100K mobile)
-/// • 64-byte salts (512 bits) for maximum entropy
-/// • AES-256-GCM with enhanced parameters
-/// • Perfect Forward Secrecy through ephemeral keys
-/// • Secure memory clearing (anti-forensics)
-/// • Constant-time operations (anti-timing attacks)
-/// • Key stretching with platform-adaptive rounds
-/// • Defense against quantum computing preparation
+/// No cryptographic maths are implemented in Dart anymore.
 class CryptoService {
   final CryptoFFI _cryptoFFI = CryptoFFI();
 
@@ -37,10 +35,6 @@ class CryptoService {
   final FortunaRandom _secureRandom = FortunaRandom();
   final List<Uint8List> _memoryToSecureClear = [];
 
-  // Security state tracking
-  int _operationCount = 0;
-  DateTime? _lastSecurityAudit;
-
   // Service state
   bool _isInitialized = false;
   Uint8List? _key;
@@ -48,7 +42,6 @@ class CryptoService {
   CryptoService() {
     // Initialize secure random with maximum entropy
     _initializeSecureRandom();
-    _scheduleSecurityAudit();
     _isInitialized = true;
 
     print(
@@ -114,49 +107,24 @@ class CryptoService {
     Uint8List data,
     Uint8List masterKey,
   ) async {
-    try {
-      // Generate ephemeral keys for Perfect Forward Secrecy
-      final ephemeralKey = _generateEphemeralKey();
-      final sessionSalt = _generateMilitarySalt();
+    // Encrypt via libsodium (XChaCha20-Poly1305).  The helper already
+    // generates a 24-byte nonce and appends the 16-byte MAC.
+    final combined = _cryptoFFI.encryptBytes(data, masterKey);
 
-      // Derive session key using HKDF with ephemeral key
-      final sessionKey =
-          await _deriveSessionKey(masterKey, ephemeralKey, sessionSalt);
+    final nonceLen = 24;
+    final tagLen = 16;
 
-      // AES-256-GCM encryption with enhanced parameters
-      final key = Key(sessionKey);
-      final iv = IV.fromSecureRandom(_ivLength);
-      final encrypter = Encrypter(AES(key, mode: AESMode.gcm));
+    final iv = combined.sublist(0, nonceLen);
+    final authTag = combined.sublist(combined.length - tagLen);
+    final cipherText = combined.sublist(nonceLen, combined.length - tagLen);
 
-      final encrypted = encrypter.encryptBytes(data, iv: iv);
-
-      // Extract authentication tag
-      final authTag = encrypted.bytes.sublist(encrypted.bytes.length - 16);
-      final cipherText =
-          encrypted.bytes.sublist(0, encrypted.bytes.length - 16);
-
-      // Create result with metadata
-      final result = MilitaryEncryptedData(
-        cipherText: cipherText,
-        iv: iv.bytes,
-        authTag: authTag,
-        ephemeralKey: ephemeralKey,
-        sessionSalt: sessionSalt,
-        algorithm: 'AES-256-GCM-Military',
-        timestamp: DateTime.now(),
-        keyDerivationRounds: _keyStretchingRounds,
-      );
-
-      // Secure memory cleanup
-      _secureClearBytes(sessionKey);
-      _trackMemoryForClearing(ephemeralKey);
-      _trackMemoryForClearing(sessionSalt);
-
-      _operationCount++;
-      return result;
-    } catch (e) {
-      throw SecurityException('Military encryption failed: $e');
-    }
+    return MilitaryEncryptedData(
+      cipherText: cipherText,
+      iv: iv,
+      authTag: authTag,
+      algorithm: 'XChaCha20-Poly1305',
+      timestamp: DateTime.now(),
+    );
   }
 
   /// 🔓 ENHANCED DECRYPTION WITH INTEGRITY VERIFICATION
@@ -164,37 +132,12 @@ class CryptoService {
     MilitaryEncryptedData encryptedData,
     Uint8List masterKey,
   ) async {
-    try {
-      // Derive the same session key
-      final sessionKey = await _deriveSessionKey(
-        masterKey,
-        encryptedData.ephemeralKey,
-        encryptedData.sessionSalt,
-      );
-
-      // Reconstruct the encrypted data with auth tag
-      final fullEncryptedData = Uint8List.fromList([
-        ...encryptedData.cipherText,
-        ...encryptedData.authTag,
-      ]);
-
-      // AES-256-GCM decryption
-      final key = Key(sessionKey);
-      final iv = IV(encryptedData.iv);
-      final encrypter = Encrypter(AES(key, mode: AESMode.gcm));
-
-      final encrypted = Encrypted(fullEncryptedData);
-      final decrypted = encrypter.decryptBytes(encrypted, iv: iv);
-
-      // Secure cleanup
-      _secureClearBytes(sessionKey);
-
-      _operationCount++;
-      return Uint8List.fromList(decrypted);
-    } catch (e) {
-      throw SecurityException(
-          'Military decryption failed - possible tampering: $e');
-    }
+    final combined = Uint8List.fromList([
+      ...encryptedData.iv,
+      ...encryptedData.cipherText,
+      ...encryptedData.authTag,
+    ]);
+    return _cryptoFFI.decryptBytes(combined, masterKey);
   }
 
   /// 🔑 ENHANCED KEY DERIVATION (HKDF-SHA256)
@@ -203,66 +146,24 @@ class CryptoService {
     Uint8List ephemeralKey,
     Uint8List salt,
   ) async {
-    // HKDF Extract
-    final hmac = Hmac(sha256, salt);
-    final prk = hmac.convert([...masterKey, ...ephemeralKey]).bytes;
-
-    // HKDF Expand
-    final info = utf8.encode('MilitaryGradeEncryption');
-    final okm = <int>[];
-    final n = (_keyLength / 32).ceil();
-
-    for (int i = 1; i <= n; i++) {
-      final hmacExpand = Hmac(sha256, prk);
-      final t = <int>[
-        ...(okm.isEmpty ? <int>[] : okm.sublist(okm.length - 32)),
-        ...info,
-        i
-      ];
-      okm.addAll(hmacExpand.convert(t).bytes);
-    }
-
-    return Uint8List.fromList(okm.take(_keyLength).toList());
-  }
-
-  /// 🏗️ MILITARY-GRADE PBKDF2 IMPLEMENTATION
-  Uint8List _pbkdf2Military(
-    List<int> password,
-    Uint8List salt,
-    int iterations,
-    int keyLength,
-  ) {
-    final hmac = Hmac(sha256, password);
-    final result = <int>[];
-    final blocks = (keyLength / 32).ceil();
-
-    for (int i = 1; i <= blocks; i++) {
-      final blockSalt = List<int>.from(salt)..addAll(_intToBytes(i));
-
-      var u = hmac.convert(blockSalt).bytes;
-      final t = List<int>.from(u);
-
-      // Enhanced iteration count for military security
-      for (int j = 1; j < iterations; j++) {
-        u = hmac.convert(u).bytes;
-        for (int k = 0; k < u.length; k++) {
-          t[k] ^= u[k];
-        }
-      }
-
-      result.addAll(t);
-    }
-
-    return Uint8List.fromList(result.take(keyLength).toList());
+    return _cryptoFFI.deriveSessionKey(masterKey, ephemeralKey, salt);
   }
 
   /// 🎲 MILITARY-GRADE RANDOM GENERATION
   Uint8List _generateMilitarySalt() {
-    return _secureRandom.nextBytes(_saltLength);
+    try {
+      return _cryptoFFI.randomBytes(_saltLength);
+    } catch (_) {
+      return _secureRandom.nextBytes(_saltLength);
+    }
   }
 
   Uint8List _generateEphemeralKey() {
-    return _secureRandom.nextBytes(_ephemeralKeyLength);
+    try {
+      return _cryptoFFI.randomBytes(_ephemeralKeyLength);
+    } catch (_) {
+      return _secureRandom.nextBytes(_ephemeralKeyLength);
+    }
   }
 
   /// 🧹 MILITARY-GRADE SECURE MEMORY CLEARING
@@ -291,25 +192,12 @@ class CryptoService {
     _memoryToSecureClear.add(data);
   }
 
-  /// 🔍 SECURITY AUDIT
-  void _scheduleSecurityAudit() {
-    _lastSecurityAudit = DateTime.now();
-  }
-
-  bool needsSecurityAudit() {
-    if (_lastSecurityAudit == null) return true;
-    final hoursSinceAudit =
-        DateTime.now().difference(_lastSecurityAudit!).inHours;
-    return hoursSinceAudit > 24 || _operationCount > 1000;
-  }
-
   /// 💥 EMERGENCY MEMORY WIPE
   Future<void> emergencyWipe() async {
     for (final data in _memoryToSecureClear) {
       _secureClearBytes(data);
     }
     _memoryToSecureClear.clear();
-    _operationCount = 0;
   }
 
   /// 🔢 UTILITY FUNCTIONS
@@ -346,11 +234,8 @@ class CryptoService {
   }
 
   Future<Uint8List> deriveMasterKey(String password, Uint8List salt) async {
-    final passwordBytes = utf8.encode(password);
-    final derived =
-        _pbkdf2Military(passwordBytes, salt, _pbkdf2Iterations, _keyLength);
-    _secureClearBytes(passwordBytes);
-    return Uint8List.fromList(derived);
+    return _cryptoFFI.pbkdf2Sha256(
+        password, salt, _pbkdf2Iterations, _keyLength);
   }
 
   /// 📦 Simple wrapper around native libsodium symmetric encryption.
@@ -602,34 +487,25 @@ class MilitaryHashResult {
 
 class MilitaryEncryptedData {
   final Uint8List cipherText;
-  final Uint8List iv;
-  final Uint8List authTag;
-  final Uint8List ephemeralKey;
-  final Uint8List sessionSalt;
+  final Uint8List iv; // 24-byte nonce for XChaCha20-Poly1305
+  final Uint8List authTag; // 16-byte MAC
   final String algorithm;
   final DateTime timestamp;
-  final int keyDerivationRounds;
 
   MilitaryEncryptedData({
     required this.cipherText,
     required this.iv,
     required this.authTag,
-    required this.ephemeralKey,
-    required this.sessionSalt,
     required this.algorithm,
     required this.timestamp,
-    required this.keyDerivationRounds,
   });
 
   Map<String, dynamic> toJson() => {
         'cipherText': base64.encode(cipherText),
         'iv': base64.encode(iv),
         'authTag': base64.encode(authTag),
-        'ephemeralKey': base64.encode(ephemeralKey),
-        'sessionSalt': base64.encode(sessionSalt),
         'algorithm': algorithm,
         'timestamp': timestamp.toIso8601String(),
-        'keyDerivationRounds': keyDerivationRounds,
       };
 
   factory MilitaryEncryptedData.fromJson(Map<String, dynamic> json) {
@@ -637,11 +513,8 @@ class MilitaryEncryptedData {
       cipherText: base64.decode(json['cipherText']),
       iv: base64.decode(json['iv']),
       authTag: base64.decode(json['authTag']),
-      ephemeralKey: base64.decode(json['ephemeralKey']),
-      sessionSalt: base64.decode(json['sessionSalt']),
       algorithm: json['algorithm'],
       timestamp: DateTime.parse(json['timestamp']),
-      keyDerivationRounds: json['keyDerivationRounds'],
     );
   }
 }

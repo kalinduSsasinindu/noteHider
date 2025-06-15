@@ -176,4 +176,147 @@ char* decrypt_bytes(const char* enc_b64,
     free(enc_bin);
 
     return b64_plain; // may be NULL if encoding failed
+}
+
+// === Added FFI helper implementations ===
+
+int random_bytes(uint8_t* buf, size_t len) {
+    if (sodium_init() < 0) return -1;
+    if (buf == NULL || len == 0) return -1;
+    randombytes_buf(buf, len);
+    return 0;
+}
+
+int secure_memzero(void* ptr, size_t len) {
+    if (ptr == NULL || len == 0) return 0;
+    sodium_memzero(ptr, len);
+    return 0;
+}
+
+int hkdf_sha256(const uint8_t* ikm, size_t ikm_len,
+                const uint8_t* salt, size_t salt_len,
+                const uint8_t* info, size_t info_len,
+                uint8_t* okm, size_t okm_len) {
+    if (sodium_init() < 0) return -1;
+    if (okm_len == 0 || okm == NULL) return -1;
+
+    const size_t hash_len = crypto_auth_hmacsha256_BYTES; // 32 bytes
+    const size_t n = (okm_len + hash_len - 1) / hash_len;
+    if (n > 255) return -1; // RFC 5869 limit
+
+    unsigned char _salt[crypto_auth_hmacsha256_KEYBYTES] = {0};
+    if (salt == NULL || salt_len == 0) {
+        salt = _salt;
+        salt_len = sizeof(_salt);
+    }
+
+    unsigned char prk[crypto_auth_hmacsha256_BYTES];
+    crypto_auth_hmacsha256_state state;
+    crypto_auth_hmacsha256_init(&state, salt, salt_len);
+    crypto_auth_hmacsha256_update(&state, ikm, ikm_len);
+    crypto_auth_hmacsha256_final(&state, prk);
+
+    unsigned char t[crypto_auth_hmacsha256_BYTES];
+    size_t t_len = 0;
+    size_t written = 0;
+
+    for (size_t i = 1; i <= n; i++) {
+        crypto_auth_hmacsha256_state st;
+        crypto_auth_hmacsha256_init(&st, prk, hash_len);
+        if (t_len > 0) {
+            crypto_auth_hmacsha256_update(&st, t, t_len);
+        }
+        if (info && info_len > 0) {
+            crypto_auth_hmacsha256_update(&st, info, info_len);
+        }
+        unsigned char c = (unsigned char)i;
+        crypto_auth_hmacsha256_update(&st, &c, 1);
+        crypto_auth_hmacsha256_final(&st, t);
+        size_t copy_len = (written + hash_len > okm_len) ? (okm_len - written) : hash_len;
+        memcpy(okm + written, t, copy_len);
+        written += copy_len;
+        t_len = hash_len;
+    }
+
+    // Zero sensitive data
+    sodium_memzero(prk, sizeof prk);
+    sodium_memzero(t, sizeof t);
+
+    return 0;
+}
+
+char* derive_session_key_b64(const uint8_t* master_key, size_t master_len,
+                             const uint8_t* ephemeral_key, size_t eph_len,
+                             const uint8_t* salt, size_t salt_len) {
+    if (master_key == NULL || master_len == 0 || eph_len == 0) return NULL;
+
+    unsigned char ikm[64];
+    size_t ikm_len = 0;
+    if (master_len + eph_len > sizeof(ikm)) {
+        // Fallback: allocate
+        unsigned char* dyn = malloc(master_len + eph_len);
+        if (!dyn) return NULL;
+        memcpy(dyn, master_key, master_len);
+        memcpy(dyn + master_len, ephemeral_key, eph_len);
+        ikm_len = master_len + eph_len;
+        // Derive key
+        unsigned char out[32];
+        if (hkdf_sha256(dyn, ikm_len, salt, salt_len, NULL, 0, out, sizeof(out)) != 0) {
+            free(dyn);
+            return NULL;
+        }
+        free(dyn);
+        char* b64 = _bin_to_b64(out, sizeof(out));
+        sodium_memzero(out, sizeof out);
+        return b64;
+    } else {
+        memcpy(ikm, master_key, master_len);
+        memcpy(ikm + master_len, ephemeral_key, eph_len);
+        ikm_len = master_len + eph_len;
+        unsigned char out[32];
+        if (hkdf_sha256(ikm, ikm_len, salt, salt_len, NULL, 0, out, sizeof(out)) != 0) {
+            return NULL;
+        }
+        char* b64 = _bin_to_b64(out, sizeof(out));
+        sodium_memzero(out, sizeof out);
+        sodium_memzero(ikm, sizeof ikm);
+        return b64;
+    }
+}
+
+char* random_bytes_b64(size_t len) {
+    if (sodium_init() < 0) return NULL;
+    unsigned char* buf = malloc(len);
+    if (!buf) return NULL;
+    randombytes_buf(buf, len);
+    char* b64 = _bin_to_b64(buf, len);
+    sodium_memzero(buf, len);
+    free(buf);
+    return b64;
+}
+
+// PBKDF2-HMAC-SHA256 key derivation (compatibility with legacy master key)
+char* pbkdf2_sha256_b64(const char* password,
+                        const uint8_t* salt, size_t salt_len,
+                        uint32_t iterations,
+                        size_t dk_len) {
+    if (password == NULL || salt == NULL || dk_len == 0) return NULL;
+    if (sodium_init() < 0) return NULL;
+
+    unsigned char* dk = malloc(dk_len);
+    if (!dk) return NULL;
+
+    if (crypto_pwhash(dk, dk_len,
+                       password, strlen(password),
+                       salt, iterations,
+                       crypto_pwhash_MEMLIMIT_INTERACTIVE,
+                       crypto_pwhash_alg_default()) != 0) {
+        free(dk);
+        return NULL;
+    }
+
+    char* b64 = _bin_to_b64(dk, dk_len);
+    sodium_memzero(dk, dk_len);
+    free(dk);
+    return b64;
 } 
