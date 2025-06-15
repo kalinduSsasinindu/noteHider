@@ -12,22 +12,19 @@ import 'crypto_ffi.dart';
 /// libsodium-based engine (see `native_crypto.c`).  All heavy crypto
 /// work—password hashing (Argon2id), HKDF-SHA256, random-bytes generation,
 /// XChaCha20/AES-GCM encryption—is executed in C for speed and side-channel
-/// safety.  The Dart layer now focuses exclusively on:
+/// safety.  The Dart layer  focuses exclusively on:
 /// • Marshalling data to/from FFI (Uint8List ⇆ Pointer)
 /// • High-level conveniences such as file-metadata packing/unpacking
 /// • Optional secure-memory clearing helpers
-///
-/// No cryptographic maths are implemented in Dart anymore.
+
 class CryptoService {
   final CryptoFFI _cryptoFFI = CryptoFFI();
 
   // 🔒 MOBILE-OPTIMIZED SECURITY CONSTANTS
   static const int _saltLength = 64; // 512-bit salt (military grade)
   static const int _keyLength = 32; // 256-bit keys
-  static const int _ivLength = 16; // 128-bit IV for AES-GCM
 
   // 📱 MOBILE-OPTIMIZED SECURITY PARAMETERS
-  static const int _pbkdf2Iterations = 100000; // Mobile optimized
   static const int _keyStretchingRounds = 1; // Mobile optimized
 
   static const int _ephemeralKeyLength = 32; // For Perfect Forward Secrecy
@@ -45,7 +42,7 @@ class CryptoService {
     _isInitialized = true;
 
     print(
-        '🎖️ Military-grade crypto initialized - Mobile optimized: $_pbkdf2Iterations iterations, $_keyStretchingRounds rounds');
+        '🎖️ Military-grade crypto initialized - Mobile optimized: $_keyStretchingRounds rounds');
   }
 
   /// 🎲 INITIALIZE CRYPTOGRAPHICALLY SECURE RANDOM
@@ -200,16 +197,6 @@ class CryptoService {
     _memoryToSecureClear.clear();
   }
 
-  /// 🔢 UTILITY FUNCTIONS
-  List<int> _intToBytes(int value) {
-    return [
-      (value >> 24) & 0xff,
-      (value >> 16) & 0xff,
-      (value >> 8) & 0xff,
-      value & 0xff,
-    ];
-  }
-
   // Legacy methods for backward compatibility
   Uint8List generateSalt() => _generateMilitarySalt();
 
@@ -225,7 +212,7 @@ class CryptoService {
       hash: storedHash,
       salt: salt,
       algorithm: 'PBKDF2-SHA256-Military',
-      iterations: _pbkdf2Iterations,
+      iterations: 0,
       rounds: 1, // Legacy single round
       version: 1,
       timestamp: DateTime.now(),
@@ -234,8 +221,7 @@ class CryptoService {
   }
 
   Future<Uint8List> deriveMasterKey(String password, Uint8List salt) async {
-    return _cryptoFFI.pbkdf2Sha256(
-        password, salt, _pbkdf2Iterations, _keyLength);
+    return _cryptoFFI.pbkdf2Sha256(password, salt, _keyLength);
   }
 
   /// 📦 Simple wrapper around native libsodium symmetric encryption.

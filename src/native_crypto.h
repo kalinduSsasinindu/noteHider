@@ -67,7 +67,6 @@ char* random_bytes_b64(size_t len);
 // encoded derived key (dk_len bytes). Caller frees with free_string().
 char* pbkdf2_sha256_b64(const char* password,
                         const uint8_t* salt, size_t salt_len,
-                        uint32_t iterations,
                         size_t dk_len);
 
 #endif // NATIVE_CRYPTO_H 

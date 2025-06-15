@@ -1,10 +1,10 @@
-package com.example.notehider
+package com.kalindu.notehider
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import android.util.Log
-import com.example.notehider.PepperBox
+import com.kalindu.notehider.PepperBox
 
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "notehider/integrity"

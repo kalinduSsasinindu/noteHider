@@ -298,7 +298,6 @@ char* random_bytes_b64(size_t len) {
 // PBKDF2-HMAC-SHA256 key derivation (compatibility with legacy master key)
 char* pbkdf2_sha256_b64(const char* password,
                         const uint8_t* salt, size_t salt_len,
-                        uint32_t iterations,
                         size_t dk_len) {
     if (password == NULL || salt == NULL || dk_len == 0) return NULL;
     if (sodium_init() < 0) return NULL;
@@ -306,11 +305,12 @@ char* pbkdf2_sha256_b64(const char* password,
     unsigned char* dk = malloc(dk_len);
     if (!dk) return NULL;
 
+    const uint64_t ops = crypto_pwhash_OPSLIMIT_INTERACTIVE;
+    const size_t mem  = crypto_pwhash_MEMLIMIT_INTERACTIVE;
     if (crypto_pwhash(dk, dk_len,
-                       password, strlen(password),
-                       salt, iterations,
-                       crypto_pwhash_MEMLIMIT_INTERACTIVE,
-                       crypto_pwhash_alg_default()) != 0) {
+                      password, strlen(password),
+                      salt, ops, mem,
+                      crypto_pwhash_alg_default()) != 0) {
         free(dk);
         return NULL;
     }

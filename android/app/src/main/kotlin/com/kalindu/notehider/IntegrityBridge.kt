@@ -1,4 +1,4 @@
-package com.example.notehider
+package com.kalindu.notehider
 
 object IntegrityBridge {
     init {

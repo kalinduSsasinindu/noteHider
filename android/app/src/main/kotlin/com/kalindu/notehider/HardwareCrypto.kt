@@ -1,4 +1,4 @@
-package com.example.notehider
+package com.kalindu.notehider
 
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec

@@ -61,10 +61,10 @@ typedef _DeriveSessionKeyB64Dart = Pointer<Utf8> Function(
     int saltLen);
 
 // Native PBKDF2
-typedef _Pbkdf2B64C = Pointer<Utf8> Function(Pointer<Utf8> pwd,
-    Pointer<Uint8> salt, IntPtr saltLen, Uint32 iters, IntPtr dkLen);
+typedef _Pbkdf2B64C = Pointer<Utf8> Function(
+    Pointer<Utf8> pwd, Pointer<Uint8> salt, IntPtr saltLen, IntPtr dkLen);
 typedef _Pbkdf2B64Dart = Pointer<Utf8> Function(
-    Pointer<Utf8> pwd, Pointer<Uint8> salt, int saltLen, int iters, int dkLen);
+    Pointer<Utf8> pwd, Pointer<Uint8> salt, int saltLen, int dkLen);
 
 /// A class to encapsulate the FFI calls to our native crypto library.
 class CryptoFFI {
@@ -359,13 +359,12 @@ class CryptoFFI {
     return base64.decode(b64);
   }
 
-  Uint8List pbkdf2Sha256(
-      String password, Uint8List salt, int iterations, int dkLen) {
+  Uint8List pbkdf2Sha256(String password, Uint8List salt, int dkLen) {
     final pwdPtr = password.toNativeUtf8();
     final saltPtr = calloc<Uint8>(salt.length);
     saltPtr.asTypedList(salt.length).setAll(0, salt);
 
-    final ptr = _pbkdf2B64(pwdPtr, saltPtr, salt.length, iterations, dkLen);
+    final ptr = _pbkdf2B64(pwdPtr, saltPtr, salt.length, dkLen);
 
     // wipe
     final pwdBytes = pwdPtr.cast<Uint8>().asTypedList(password.length + 1);
