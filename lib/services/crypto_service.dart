@@ -1,16 +1,13 @@
 import 'dart:math';
 import 'dart:typed_data';
 import 'dart:convert';
-import 'dart:io';
 import 'package:crypto/crypto.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:notehider/models/file_models.dart';
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/random/fortuna_random.dart';
 import 'package:pointycastle/digests/sha256.dart';
-import 'package:pointycastle/block/aes.dart';
-import 'package:pointycastle/block/modes/gcm.dart';
-import 'package:flutter/foundation.dart' as foundation;
+import 'crypto_ffi.dart';
 
 /// 🎖️ MILITARY-GRADE CRYPTOGRAPHIC SERVICE
 ///
@@ -24,6 +21,8 @@ import 'package:flutter/foundation.dart' as foundation;
 /// • Key stretching with platform-adaptive rounds
 /// • Defense against quantum computing preparation
 class CryptoService {
+  final CryptoFFI _cryptoFFI = CryptoFFI();
+
   // 🔒 MOBILE-OPTIMIZED SECURITY CONSTANTS
   static const int _saltLength = 64; // 512-bit salt (military grade)
   static const int _keyLength = 32; // 256-bit keys
@@ -76,40 +75,20 @@ class CryptoService {
   /// • Key stretching with multiple rounds
   /// • Memory-hard operations
   Future<MilitaryHashResult> hashPasswordMilitary(String password) async {
-    final salt = _generateMilitarySalt();
-    final passwordBytes = utf8.encode(password);
+    final nativeHashString = _cryptoFFI.hashPassword(password);
 
-    try {
-      // Multiple rounds of key derivation for enhanced security
-      Uint8List hash = passwordBytes;
-
-      for (int round = 0; round < _keyStretchingRounds; round++) {
-        hash = _pbkdf2Military(hash, salt, _pbkdf2Iterations, _keyLength);
-        // Track memory for secure clearing
-        _trackMemoryForClearing(Uint8List.fromList(hash));
-      }
-
-      // Immediately clear password from memory
-      _secureClearBytes(passwordBytes);
-
-      final result = MilitaryHashResult(
-        hash: base64.encode(hash),
-        salt: salt,
-        algorithm: 'PBKDF2-SHA256-Military',
-        iterations: _pbkdf2Iterations,
-        rounds: _keyStretchingRounds,
-        version: 3, // Military grade version
-        timestamp: DateTime.now(),
-      );
-
-      _trackMemoryForClearing(salt);
-      _operationCount++;
-
-      return result;
-    } catch (e) {
-      _secureClearBytes(passwordBytes);
-      throw SecurityException('Military password hashing failed: $e');
-    }
+    // We will adapt the MilitaryHashResult to work with the native format.
+    // For now, we store the raw hash string in the 'hash' field. The other
+    // fields are placeholders.
+    return MilitaryHashResult(
+      hash: nativeHashString,
+      salt: Uint8List(0), // Salt is included in the native hash string
+      algorithm: 'Argon2id-Native',
+      iterations: 0, // Cost factors are included in the native hash string
+      rounds: 0,
+      version: 4, // Native implementation version
+      timestamp: DateTime.now(),
+    );
   }
 
   /// 🛡️ ENHANCED PASSWORD VERIFICATION
@@ -119,30 +98,9 @@ class CryptoService {
     String password,
     MilitaryHashResult stored,
   ) async {
-    final passwordBytes = utf8.encode(password);
-
-    try {
-      // Recreate the exact same derivation process
-      Uint8List hash = passwordBytes;
-
-      for (int round = 0; round < stored.rounds; round++) {
-        hash =
-            _pbkdf2Military(hash, stored.salt, stored.iterations, _keyLength);
-      }
-
-      final storedHashBytes = base64.decode(stored.hash);
-      final isValid = _constantTimeEquals(hash, storedHashBytes);
-
-      // Secure memory cleanup
-      _secureClearBytes(passwordBytes);
-      _secureClearBytes(hash);
-
-      _operationCount++;
-      return isValid;
-    } catch (e) {
-      _secureClearBytes(passwordBytes);
-      return false;
-    }
+    // The native verify function handles everything.
+    // The `stored.hash` field now contains the full hash string from libsodium.
+    return _cryptoFFI.verifyPassword(stored.hash, password);
   }
 
   /// ⚡ DUAL-LAYER ENCRYPTION WITH PERFECT FORWARD SECRECY
@@ -307,26 +265,6 @@ class CryptoService {
     return _secureRandom.nextBytes(_ephemeralKeyLength);
   }
 
-  /// 🔧 CIPHER UTILITIES
-  Uint8List _generateIV() {
-    return _secureRandom.nextBytes(_ivLength);
-  }
-
-  BlockCipher _createCipher() {
-    return GCMBlockCipher(AESEngine());
-  }
-
-  /// ⏱️ CONSTANT-TIME COMPARISON (Anti-Timing Attack)
-  bool _constantTimeEquals(List<int> a, List<int> b) {
-    if (a.length != b.length) return false;
-
-    int result = 0;
-    for (int i = 0; i < a.length; i++) {
-      result |= a[i] ^ b[i];
-    }
-    return result == 0;
-  }
-
   /// 🧹 MILITARY-GRADE SECURE MEMORY CLEARING
   ///
   /// Triple-pass overwrite with different patterns
@@ -415,25 +353,21 @@ class CryptoService {
     return Uint8List.fromList(derived);
   }
 
+  /// 📦 Simple wrapper around native libsodium symmetric encryption.
+  /// Returns raw encrypted bytes (nonce + ciphertext + MAC) with no
+  /// separate IV / tag fields required.
   Future<EncryptedData> encryptData(Uint8List data, Uint8List masterKey) async {
-    final militaryData = await encryptDataMilitary(data, masterKey);
+    final encryptedBytes = _cryptoFFI.encryptBytes(data, masterKey);
     return EncryptedData(
-      encryptedBytes: Uint8List.fromList(
-          [...militaryData.cipherText, ...militaryData.authTag]),
-      iv: militaryData.iv,
-      authTag: militaryData.authTag,
+      encryptedBytes: encryptedBytes,
+      iv: Uint8List(0), // Not needed – nonce is embedded in ciphertext
+      authTag: Uint8List(0),
     );
   }
 
   Future<Uint8List> decryptData(
       EncryptedData encryptedData, Uint8List masterKey) async {
-    // For legacy compatibility, use basic decryption
-    final key = Key(masterKey);
-    final iv = IV(encryptedData.iv);
-    final encrypter = Encrypter(AES(key, mode: AESMode.gcm));
-
-    final encrypted = Encrypted(encryptedData.encryptedBytes);
-    return Uint8List.fromList(encrypter.decryptBytes(encrypted, iv: iv));
+    return _cryptoFFI.decryptBytes(encryptedData.encryptedBytes, masterKey);
   }
 
   // Updated file encryption methods with new FileMetadata structure
@@ -604,31 +538,14 @@ class CryptoService {
     if (_key == null) {
       throw Exception('Master key not set');
     }
-    final encryptedData = await encryptData(data, _key!);
-    return encryptedData.encryptedBytes;
+    return _cryptoFFI.encryptBytes(data, _key!);
   }
 
   Future<Uint8List> decryptBytes(Uint8List encryptedBytes) async {
     if (_key == null) {
       throw Exception('Master key not set');
     }
-
-    // Extract IV and encrypted content
-    if (encryptedBytes.length < 16) {
-      throw Exception('Invalid encrypted data length');
-    }
-
-    final iv = encryptedBytes.sublist(0, 16);
-    final authTag = encryptedBytes.sublist(encryptedBytes.length - 16);
-    final cipherText = encryptedBytes.sublist(16, encryptedBytes.length - 16);
-
-    final encryptedData = EncryptedData(
-      encryptedBytes: Uint8List.fromList([...cipherText, ...authTag]),
-      iv: iv,
-      authTag: authTag,
-    );
-
-    return await decryptData(encryptedData, _key!);
+    return _cryptoFFI.decryptBytes(encryptedBytes, _key!);
   }
 
   /// 🧮 HASH DATA FOR INTEGRITY

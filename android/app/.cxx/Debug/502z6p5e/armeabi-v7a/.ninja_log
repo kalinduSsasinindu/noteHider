@@ -1,0 +1,450 @@
+# ninja log v5
+1385	1742	7716294814901464	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_kdf/blake2b/kdf_blake2b.c.o	7ff21f32df94a3bf
+94	446	7716294802469364	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis256/aegis256_aesni.c.o	698184ed11e4bbfd
+59	664	7716294803173431	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis128l/aead_aegis128l.c.o	c017589e5372b521
+112	489	7716294802665482	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aes256gcm/aead_aes256gcm.c.o	7cc92f663d112455
+2114	2579	7716294822473377	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-ssse3.c.o	5a71e2641b9afbc2
+1742	2170	7716294818618226	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-avx512f.c.o	5ce203b593f2aeba
+587	884	7716294806551874	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_box/crypto_box_seal.c.o	dc940d5cfe3b3f68
+4539	5185	7716294847899156	_deps/libsodium-build/test/CMakeFiles/test_aead_xchacha20poly1305.dir/__/__/libsodium-src/libsodium/test/default/aead_xchacha20poly1305.c.o	2545757bd90bf599
+54	515	7716294802469364	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis128l/aegis128l_armcrypto.c.o	6810882f7a4ca735
+71	859	7716294804141989	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis128l/aegis128l_soft.c.o	649bc54d93a250b5
+51	538	7716294802469364	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis128l/aegis128l_aesni.c.o	65e9aa03485b9710
+99	632	7716294802625467	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aes256gcm/aesni/aead_aes256gcm_aesni.c.o	e6e4939056955e83
+4185	4625	7716294842819764	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pbkdf2-sha256.c.o	a0b9805cad91fbdb
+696	968	7716294807324891	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/hsalsa20/ref2/core_hsalsa20_ref2.c.o	2194db9b97805fe8
+10773	11267	7716294910635864	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_scrypt	463e3c63b9329337
+130	562	7716294802741075	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_auth/hmacsha256/auth_hmacsha256.c.o	a446ab7c44b1a59b
+1346	1711	7716294814965945	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_kdf/hkdf/kdf_hkdf_sha256.c.o	ab135fd121d62b47
+6594	7259	7716294870202789	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box7	833d5e060671ad81
+79	610	7716294802484542	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis256/aegis256_armcrypto.c.o	5c413e8c9001c648
+1446	1784	7716294814991302	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_hash/sha512/hash_sha512.c.o	dc665f7dbe2795a9
+8149	8760	7716294885224118	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_hash3	bb2c25d4e9c5fe28
+667	948	7716294807379326	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/hchacha20/core_hchacha20.c.o	85c47e4fe600a835
+9940	10308	7716294901264474	_deps/libsodium-build/test/CMakeFiles/test_stream3.dir/__/__/libsodium-src/libsodium/test/default/stream3.c.o	1dc923ebe06b6234
+563	783	7716294806043499	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_box/crypto_box.c.o	2bae043f8cf271f4
+5114	5712	7716294852905132	_deps/libsodium-build/test/CMakeFiles/test_chacha20.dir/__/__/libsodium-src/libsodium/test/default/chacha20.c.o	593dd07789898bf7
+65	587	7716294802907022	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis256/aead_aegis256.c.o	ca7579142ef87
+105	693	7716294803297755	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/chacha20poly1305/aead_chacha20poly1305.c.o	20330e630b27d0a2
+1618	2018	7716294817321270	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_onetimeauth/poly1305/onetimeauth_poly1305.c.o	797e2c7d6202a613
+8411	9071	7716294888435478	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_misuse	36bbd48494836889
+4481	5112	7716294847342949	_deps/libsodium-build/test/CMakeFiles/test_aead_aes256gcm2.dir/__/__/libsodium-src/libsodium/test/default/aead_aes256gcm2.c.o	fcc7dc5ad0b27ae9
+136	736	7716294803604900	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_auth/crypto_auth.c.o	9d0706d894d6859e
+84	827	7716294804023001	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/aegis256/aegis256_soft.c.o	75a9ce49437498f7
+1476	1815	7716294815011446	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_hash/sha256/hash_sha256.c.o	5f2b785c04844f32
+611	912	7716294807092030	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_box/curve25519xsalsa20poly1305/box_curve25519xsalsa20poly1305.c.o	b6e5a97edb8f7afc
+1714	2214	7716294818716161	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-avx2.c.o	bf28a57032d49aa4
+4592	5245	7716294848063835	_deps/libsodium-build/test/CMakeFiles/test_auth2.dir/__/__/libsodium-src/libsodium/test/default/auth2.c.o	6d9a15497cb891a6
+4114	4589	7716294842464631	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/scrypt_platform.c.o	5ad096153509ce64
+543	1344	7716294806751604	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_box/crypto_box_easy.c.o	6b0ad71f320228b3
+449	1114	7716294805561464	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_aead/xchacha20poly1305/aead_xchacha20poly1305.c.o	7d0834405f3799b5
+10237	10838	7716294906364731	_deps/libsodium-build/test/CMakeFiles/test_pwhash_scrypt_ll.dir/__/__/libsodium-src/libsodium/test/default/pwhash_scrypt_ll.c.o	6cfdccdaf07d2bb6
+8847	9527	7716294891670249	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult	9f6dfabbe1e0b4c3
+2094	2526	7716294822196494	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2.c.o	a016746956ae9dc7
+636	930	7716294806644073	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/hsalsa20/core_hsalsa20.c.o	7ed9042a6612c57a
+2550	3092	7716294826639581	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_sign/crypto_sign.c.o	1debf52715fd4bf
+516	996	7716294805802256	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_auth/hmacsha512256/auth_hmacsha512256.c.o	57d48055718efde5
+8971	9612	7716294893307921	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_argon2id	3dfef5c002d85d0a
+8428	8918	7716294887030532	_deps/libsodium-build/test/CMakeFiles/test_randombytes.dir/__/__/libsodium-src/libsodium/test/default/randombytes.c.o	115af033e5cc9765
+491	1252	7716294805717434	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_auth/hmacsha512/auth_hmacsha512.c.o	fea875562fe12e
+783	1285	7716294808676672	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/salsa/ref/core_salsa_ref.c.o	ce638d65c8ee1f9b
+837	1319	7716294808782681	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-avx2.c.o	17fec7dfef3e8746
+949	1473	7716294812100539	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/crypto_generichash.c.o	cbffc84ff461edc1
+860	1381	7716294809235309	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/softaes/softaes.c.o	a6b9dd71b351929e
+10713	11255	7716294910524043	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_verify1	ab3183a5315f97cd
+4289	4732	7716294844804906	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphashx24_ref.c.o	58ca9ba38140ee03
+890	1415	7716294810593124	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/generichash_blake2.c.o	50fb820599521839
+4986	5576	7716294851883387	_deps/libsodium-build/test/CMakeFiles/test_box_seal.dir/__/__/libsodium-src/libsodium/test/default/box_seal.c.o	c81c4c2f4f4e4066
+931	1444	7716294810626901	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-sse41.c.o	c9e4ed35ef56e21f
+7516	8187	7716294879055251	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult5	dfebced7a480d559
+1930	2548	7716294822354353	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/ref10/x25519_ref10.c.o	d2b4a893e44d4c0b
+969	1548	7716294811747540	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/generichash_blake2b.c.o	15bb300289dd4c7
+2478	2717	7716294824948196	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/scalarmult_curve25519.c.o	2c06e12415c3eabe
+1008	1589	7716294812039996	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-ssse3.c.o	2208a8d396b1b591
+7880	8348	7716294881646583	_deps/libsodium-build/test/CMakeFiles/test_kdf_hkdf.dir/__/__/libsodium-src/libsodium/test/default/kdf_hkdf.c.o	27b35a6518407238
+1190	1615	7716294813489825	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-ref.c.o	4d74bd756393d909
+2171	2738	7716294823360862	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/pwhash_argon2id.c.o	c467b4901dbc0aa4
+1564	1994	7716294816987194	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_kx/crypto_kx.c.o	7b1f82294912bfd4
+1289	1641	7716294813674603	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_hash/crypto_hash.c.o	889f95b51a8aec65
+1320	1682	7716294813714871	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_kdf/crypto_kdf.c.o	b352f0566445c3fb
+2215	2696	7716294823106249	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/blake2b-long.c.o	e1dd1f1126993c21
+17	106	7716299533499859	CMakeFiles/native_crypto_library.dir/native_crypto.c.o	b1cefb1fb2662401
+2020	2347	7716294820123935	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/curve25519_sandy2x.c.o	431d766096c8574
+913	1892	7716294814481073	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_generichash/blake2b/ref/blake2b-compress-ref.c.o	96d7bd3838d009e7
+1642	1929	7716294817299597	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_onetimeauth/crypto_onetimeauth.c.o	f2e558daef438a52
+5734	6285	7716294858748365	_deps/libsodium-build/test/CMakeFiles/test_core2.dir/__/__/libsodium-src/libsodium/test/default/core2.c.o	40977374d723b34d
+1256	1962	7716294815215699	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_hash/sha256/cp/hash_sha256_cp.c.o	bf22a5204d3270e6
+1418	2047	7716294817467053	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_hash/sha512/cp/hash_sha512_cp.c.o	54bd5da289d64b9c
+1591	2088	7716294817683447	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_onetimeauth/poly1305/donna/poly1305_donna.c.o	86a0939c984f15a6
+746	2113	7716294817979728	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/ed25519/ref10/ed25519_ref10.c.o	61cf766e9010dd39
+1684	2131	7716294818095840	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_kdf/hkdf/kdf_hkdf_sha512.c.o	f3de36e4a9d8966a
+7528	8031	7716294878058752	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult6	c547b8039b7af40d
+1816	2231	7716294819103902	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_onetimeauth/poly1305/sse2/poly1305_sse2.c.o	14f0eb2633de7735
+2808	3309	7716294829089882	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/sign_ed25519.c.o	7544fcfec4cabd27
+1790	2266	7716294820123935	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-core.c.o	4a2019689c7d5431
+1995	2404	7716294820356544	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/crypto_scalarmult.c.o	e5304fe15c557c00
+5877	6453	7716294861236374	_deps/libsodium-build/test/CMakeFiles/test_secretbox.dir/__/__/libsodium-src/libsodium/test/default/secretbox.c.o	7e1321d9973251e
+1850	2454	7716294820572365	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-encoding.c.o	8e3dfdc23442a1b8
+1975	2475	7716294820891186	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe_frombytes_sandy2x.c.o	aed31b26e39f871d
+2049	2505	7716294821951513	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/curve25519/sandy2x/fe51_invert.c.o	f2ef05e6a7511cc4
+2137	2613	7716294822697097	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/pwhash_argon2i.c.o	e1fe097241b6f8c0
+4506	5154	7716294848564442	_deps/libsodium-build/test/CMakeFiles/test_auth.dir/__/__/libsodium-src/libsodium/test/default/auth.c.o	51cf7c7e4a7318fc
+1894	2649	7716294822799517	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/argon2/argon2-fill-block-ref.c.o	f3d6add6238d4a00
+2232	2806	7716294823190486	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/crypto_pwhash.c.o	e199b8636f4bd685
+2303	2832	7716294823965574	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox.c.o	218f6ef8f785a796
+5935	6544	7716294861539932	_deps/libsodium-build/test/CMakeFiles/test_secretbox7.dir/__/__/libsodium-src/libsodium/test/default/secretbox7.c.o	3fa84d9a0ca5f5b
+2581	2872	7716294826582652	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/shorthash_siphash24.c.o	2e771193d7f191b8
+2349	2903	7716294825286984	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_secretstream/xchacha20poly1305/secretstream_xchacha20poly1305.c.o	74a6d0e584306ea6
+2455	2969	7716294825434901	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_secretbox/xsalsa20poly1305/secretbox_xsalsa20poly1305.c.o	a51b14fd7b89c264
+2413	3008	7716294825627871	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_secretbox/crypto_secretbox_easy.c.o	1a7a55b65ac25573
+8453	9060	7716294887948359	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kx	4f8eebd87a13c73a
+2506	3029	7716294825982607	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_shorthash/crypto_shorthash.c.o	44dc1433be99f5f1
+2528	3119	7716294827713397	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/keypair.c.o	306217642ca1663c
+3671	4095	7716294837164355	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/shorthash_siphashx24.c.o	71b69bd0a91c80b1
+2698	3171	7716294828152909	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/sign.c.o	8e255ec99a1136b3
+2658	3199	7716294828132887	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/open.c.o	45de04e4c1f7dc89
+2613	3232	7716294827995353	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_shorthash/siphash24/ref/shorthash_siphash24_ref.c.o	c589b00c40084008
+3009	3260	7716294830559923	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/crypto_stream.c.o	6f2a43934d4d27ae
+2718	3286	7716294828579200	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-avx2.c.o	82d52d0c555545f1
+8421	8846	7716294886612625	_deps/libsodium-build/test/CMakeFiles/test_scalarmult.dir/__/__/libsodium-src/libsodium/test/default/scalarmult.c.o	e36ad230e460d8d3
+4462	5085	7716294847237254	_deps/libsodium-build/test/CMakeFiles/test_aead_chacha20poly13052.dir/__/__/libsodium-src/libsodium/test/default/aead_chacha20poly13052.c.o	a73ca3a6b04327f0
+3092	3343	7716294831579090	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/xmm6/salsa20_xmm6.c.o	863c5ddfa8aebe5d
+2835	3369	7716294829649906	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/dolbeau/chacha20_dolbeau-ssse3.c.o	546a98bf9906bbba
+2873	3398	7716294830014763	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/stream_chacha20.c.o	3911dc35fde81c43
+2754	3419	7716294830044726	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/chacha20/ref/chacha20_ref.c.o	ebe33669cea88d91
+3201	3451	7716294832564023	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_verify/verify.c.o	af14323a4852cae6
+2977	3473	7716294830605401	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-avx2.c.o	bd8fabe459b36dcf
+2905	3506	7716294830799769	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/ref/salsa20_ref.c.o	fb04f296af8e1940
+3262	3561	7716294833319933	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/randombytes/randombytes.c.o	44e48db5c794b21b
+3034	3669	7716294831244994	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/stream_salsa20.c.o	b262589a67123f3b
+3319	3694	7716294834664682	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/sodium/utils.c.o	6a26d7ba8ee92cd
+3371	3731	7716294834869161	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/sodium/version.c.o	9dae63c41a58b82b
+3400	3771	7716294835460816	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_box/curve25519xchacha20poly1305/box_curve25519xchacha20poly1305.c.o	677b7a8111210b84
+9362	10054	7716294897627103	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult_ristretto255	c1a1eed910222060
+3128	3801	7716294832292117	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa20/xmm6int/salsa20_xmm6int-sse2.c.o	695919f6130bc2e1
+3420	3828	7716294835496195	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/sodium/runtime.c.o	cc5e428edc9924af
+9378	9772	7716294895691209	_deps/libsodium-build/test/CMakeFiles/test_sodium_core.dir/__/__/libsodium-src/libsodium/test/default/sodium_core.c.o	df625cc41919c219
+3452	3860	7716294835781848	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/xsalsa20/stream_xsalsa20.c.o	2281e0588820f5af
+3477	3899	7716294836603674	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_sign/ed25519/ref10/obsolete.c.o	b81bb94cda9bd213
+3512	3929	7716294836242139	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa208/ref/stream_salsa208_ref.c.o	20c3f7d27b74ecaf
+3233	3952	7716294833738989	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/sodium/codecs.c.o	1eabfc11c25f681b
+3619	3988	7716294837035929	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa2012/stream_salsa2012.c.o	c231d381b6a04620
+3173	4040	7716294834559023	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/randombytes/sysrandom/randombytes_sysrandom.c.o	714ade92883be3fa
+3694	4170	7716294837488001	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa2012/ref/stream_salsa2012_ref.c.o	9c2bcdd2f6cd280f
+5246	5829	7716294854557729	_deps/libsodium-build/test/CMakeFiles/test_box2.dir/__/__/libsodium-src/libsodium/test/default/box2.c.o	bada911df2f0e9f0
+3288	4224	7716294835034942	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/randombytes/internal/randombytes_internal_random.c.o	55d6baaf3d453855
+3344	4257	7716294835120572	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/sodium/core.c.o	7ed125a0f3149deb
+3741	4289	7716294838087700	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/salsa208/stream_salsa208.c.o	c830e6007371809d
+3771	4309	7716294838944849	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_stream/xchacha20/stream_xchacha20.c.o	99e56839ed1e2526
+3803	4338	7716294840779141	_deps/libsodium-build/test/CMakeFiles/test_aead_aegis128l.dir/__/__/libsodium-src/libsodium/test/default/aead_aegis128l.c.o	230a97cf662c5a07
+5164	5733	7716294854325675	_deps/libsodium-build/test/CMakeFiles/test_codecs.dir/__/__/libsodium-src/libsodium/test/default/codecs.c.o	4bec7a8c12f950a9
+3835	4381	7716294839983577	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/ed25519/core_ed25519.c.o	3c98f139c2c5bda3
+3867	4426	7716294840137609	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/crypto_scrypt-common.c.o	e7ec855891091427
+10555	11201	7716294910158051	_deps/libsodium-build/test/CMakeFiles/test_core_ristretto255.dir/__/__/libsodium-src/libsodium/test/default/core_ristretto255.c.o	a3506b16e287ee1f
+6413	6991	7716294866970517	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth3	54fd43eea48172e3
+3904	4459	7716294840789306	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/nosse/pwhash_scryptsalsa208sha256_nosse.c.o	c3cb4ab758534347
+3930	4481	7716294840568958	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_core/ed25519/core_ristretto255.c.o	4f255605f5856e9
+10045	10850	7716294904489119	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils3	67536f7c66a65dee
+7950	8410	7716294881945475	_deps/libsodium-build/test/CMakeFiles/test_misuse.dir/__/__/libsodium-src/libsodium/test/default/misuse.c.o	4a5bf1d884e972f6
+3953	4504	7716294840538973	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_box/curve25519xchacha20poly1305/box_seal_curve25519xchacha20poly1305.c.o	a496e649f86d6ab3
+4001	4536	7716294841760779	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/pwhash_scryptsalsa208sha256.c.o	f0ed72d96193b0fe
+4041	4564	7716294842358917	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/ed25519/ref10/scalarmult_ed25519_ref10.c.o	4e4d72af0f8bf81f
+4226	4657	7716294842819764	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_pwhash/scryptsalsa208sha256/sse/pwhash_scryptsalsa208sha256_sse.c.o	97c76c1ca67343be
+4268	4679	7716294843963323	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_secretbox/xchacha20poly1305/secretbox_xchacha20poly1305.c.o	92238496434a6207
+9408	9964	7716294896765276	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox8	413f6b0ee723450c
+4314	4886	7716294844387723	_deps/libsodium-build/CMakeFiles/sodium.dir/libsodium/src/libsodium/crypto_scalarmult/ristretto255/ref10/scalarmult_ristretto255_ref10.c.o	12d68436f04daf14
+4340	4940	7716294846571870	_deps/libsodium-build/test/CMakeFiles/test_aead_aes256gcm.dir/__/__/libsodium-src/libsodium/test/default/aead_aes256gcm.c.o	b7098ce89725b1
+6664	7215	7716294869251917	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_easy	efcbca7d2e79605
+4386	4985	7716294846350648	_deps/libsodium-build/test/CMakeFiles/test_aead_aegis256.dir/__/__/libsodium-src/libsodium/test/default/aead_aegis256.c.o	1cc22c56746bb8c8
+4429	5037	7716294846501466	_deps/libsodium-build/test/CMakeFiles/test_aead_chacha20poly1305.dir/__/__/libsodium-src/libsodium/test/default/aead_chacha20poly1305.c.o	328f02a870ebdc2d
+5367	5873	7716294855192657	_deps/libsodium-build/test/CMakeFiles/test_core5.dir/__/__/libsodium-src/libsodium/test/default/core5.c.o	9deba07231223ce6
+4565	5216	7716294847563843	_deps/libsodium-build/test/CMakeFiles/test_auth3.dir/__/__/libsodium-src/libsodium/test/default/auth3.c.o	7d156ef0c745085
+4628	5307	7716294849096808	_deps/libsodium-build/test/CMakeFiles/test_auth5.dir/__/__/libsodium-src/libsodium/test/default/auth5.c.o	6c15dc8b2f834900
+4659	5366	7716294848891135	_deps/libsodium-build/test/CMakeFiles/test_auth6.dir/__/__/libsodium-src/libsodium/test/default/auth6.c.o	b3bd882900a13d3
+4679	5438	7716294849697426	_deps/libsodium-build/test/CMakeFiles/test_box7.dir/__/__/libsodium-src/libsodium/test/default/box7.c.o	a3690dc9d05b9de1
+4788	5481	7716294850655153	_deps/libsodium-build/test/CMakeFiles/test_box_easy.dir/__/__/libsodium-src/libsodium/test/default/box_easy.c.o	4223b442d93db00b
+4955	5509	7716294852679252	_deps/libsodium-build/test/CMakeFiles/test_box8.dir/__/__/libsodium-src/libsodium/test/default/box8.c.o	3fba5f85790ab7d2
+5046	5643	7716294853539554	_deps/libsodium-build/test/CMakeFiles/test_box_easy2.dir/__/__/libsodium-src/libsodium/test/default/box_easy2.c.o	a9796a8d4b89224c
+5086	5683	7716294852566556	_deps/libsodium-build/test/CMakeFiles/test_box_seed.dir/__/__/libsodium-src/libsodium/test/default/box_seed.c.o	10e28b71566f8e75
+9186	9825	7716294895849425	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult2	291faed6817e4396
+5187	5768	7716294854743953	_deps/libsodium-build/test/CMakeFiles/test_box.dir/__/__/libsodium-src/libsodium/test/default/box.c.o	251db5d8ca35e7b5
+5217	5800	7716294854954252	_deps/libsodium-build/test/CMakeFiles/test_auth7.dir/__/__/libsodium-src/libsodium/test/default/auth7.c.o	9e960a382194cacf
+8541	9243	7716294889153086	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth7	39d1de1ced33ef9a
+107	228	7716299534700306	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/libnative_crypto_library.so	6307ed31c03a18a3
+5313	5857	7716294855125330	_deps/libsodium-build/test/CMakeFiles/test_core6.dir/__/__/libsodium-src/libsodium/test/default/core6.c.o	bb0e178cd42b9e92
+5440	5905	7716294855979551	_deps/libsodium-build/test/CMakeFiles/test_core4.dir/__/__/libsodium-src/libsodium/test/default/core4.c.o	cfeabcd982b8fa30
+6387	7032	7716294867692992	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_xchacha20poly1305	b74ea1450e56e641
+5482	5933	7716294856590509	_deps/libsodium-build/test/CMakeFiles/test_ed25519_convert.dir/__/__/libsodium-src/libsodium/test/default/ed25519_convert.c.o	bcd8cdfd8ccb8070
+5509	6003	7716294856912848	_deps/libsodium-build/test/CMakeFiles/test_generichash.dir/__/__/libsodium-src/libsodium/test/default/generichash.c.o	5f1b9af2d181788
+4888	6038	7716294851511265	_deps/libsodium-build/libsodium.a	78422a4ffd113a88
+5586	6070	7716294857435701	_deps/libsodium-build/test/CMakeFiles/test_generichash2.dir/__/__/libsodium-src/libsodium/test/default/generichash2.c.o	53631f0fa94c3962
+5644	6114	7716294858095542	_deps/libsodium-build/test/CMakeFiles/test_generichash3.dir/__/__/libsodium-src/libsodium/test/default/generichash3.c.o	b6a2d2f87f3c5a33
+5684	6195	7716294858221260	_deps/libsodium-build/test/CMakeFiles/test_hash.dir/__/__/libsodium-src/libsodium/test/default/hash.c.o	ba5acfa840224060
+6966	7516	7716294872790652	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth7	3ab30b3c622867d9
+5713	6229	7716294858802717	_deps/libsodium-build/test/CMakeFiles/test_core1.dir/__/__/libsodium-src/libsodium/test/default/core1.c.o	872e49780541854c
+9071	9573	7716294893249125	_deps/libsodium-build/test/CMakeFiles/test_shorthash.dir/__/__/libsodium-src/libsodium/test/default/shorthash.c.o	aa164a5562acf31a
+5773	6314	7716294859601877	_deps/libsodium-build/test/CMakeFiles/test_core3.dir/__/__/libsodium-src/libsodium/test/default/core3.c.o	29466bffa7e909f3
+5801	6352	7716294860085902	_deps/libsodium-build/test/CMakeFiles/test_scalarmult5.dir/__/__/libsodium-src/libsodium/test/default/scalarmult5.c.o	92fd6fb465716a0e
+5832	6385	7716294860018159	_deps/libsodium-build/test/CMakeFiles/test_scalarmult6.dir/__/__/libsodium-src/libsodium/test/default/scalarmult6.c.o	1c55b3e4a6ca450
+5858	6411	7716294860745572	_deps/libsodium-build/test/CMakeFiles/test_scalarmult7.dir/__/__/libsodium-src/libsodium/test/default/scalarmult7.c.o	83926687d4a9c446
+5907	6505	7716294861193384	_deps/libsodium-build/test/CMakeFiles/test_scalarmult8.dir/__/__/libsodium-src/libsodium/test/default/scalarmult8.c.o	5cea74d1e853b9ee
+6017	6578	7716294862322398	_deps/libsodium-build/test/CMakeFiles/test_secretbox2.dir/__/__/libsodium-src/libsodium/test/default/secretbox2.c.o	dbf90fe8fe2f2a1d
+6072	6624	7716294863256162	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aegis256	be5ebb963dae3f8a
+6144	6664	7716294864046760	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aegis128l	33c72d69f0d5f57
+6196	6670	7716294864208477	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aes256gcm	cfad1dcdb1534939
+6316	6768	7716294865429424	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_chacha20poly13052	c8c8308423218817
+10814	11277	7716294910864422	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core_ed25519	3faa6a12e7a87bfe
+6246	6800	7716294865572557	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aes256gcm2	3267c67be03450ce
+6286	6880	7716294866091283	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_chacha20poly1305	ad76e72acc683cba
+6353	6966	7716294866446034	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth	1243d521fa25f1bd
+9773	10580	7716294901991483	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_core	306118c49d9eb7
+6544	7042	7716294867965440	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box8	647ec225ee6e18f8
+6477	7197	7716294869156072	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth2	e3935474fb66635d
+6625	7207	7716294869382666	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_seal	ba5c330481301f84
+6991	7576	7716294873041784	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box2	8d9dbc7ea07248f
+6671	7227	7716294869347670	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_seed	8fda03f54462ca89
+6614	7240	7716294869590420	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_easy2	259df4222860300
+6507	7323	7716294869920478	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth5	88fd86b1e8b6002f
+10054	10451	7716294902509263	_deps/libsodium-build/test/CMakeFiles/test_stream2.dir/__/__/libsodium-src/libsodium/test/default/stream2.c.o	7c3672c883787175
+6769	7337	7716294870972091	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_chacha20	a15ddf04f21535c3
+6880	7486	7716294871586252	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box	904c1fa28d5a8da4
+7033	7527	7716294872497487	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core5	326053dd1de4d753
+11201	11585	7716294914190295	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core_ristretto255	accd133968113987
+6800	7535	7716294872022682	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth6	1c01d3b4daa3394e
+7042	7689	7716294873653821	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core4	33e910550a1074e3
+7259	7748	7716294875217613	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core2	4b888b30ef3075cf
+7240	7760	7716294875257638	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash2	a6dfb1ff160d6309
+7228	7768	7716294875207625	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash3	127a054e3703653a
+7208	7783	7716294875408582	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core6	98ff647f04e611a4
+7338	7873	7716294876448829	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_codecs	96d0a7e4f0467ee3
+8188	8733	7716294885213664	_deps/libsodium-build/test/CMakeFiles/test_pwhash_argon2i.dir/__/__/libsodium-src/libsodium/test/default/pwhash_argon2i.c.o	ee0af59acb2099fc
+7215	7880	7716294875959223	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_ed25519_convert	b4a60c2c79887a08
+7198	7950	7716294876610159	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash	e30c76bcefde5fd1
+10144	10711	7716294904509270	_deps/libsodium-build/test/CMakeFiles/test_verify1.dir/__/__/libsodium-src/libsodium/test/default/verify1.c.o	1543db0b8a3f921
+7323	8001	7716294877880221	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core1	3f2aaa5073ca1583
+7486	8011	7716294878058752	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core3	b5c1e91097e3da07
+7577	8019	7716294878058752	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult8	87b813240fd0c192
+7535	8039	7716294878214665	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult7	8c66ae1346477862
+7783	8148	7716294879422043	_deps/libsodium-build/test/CMakeFiles/test_hash3.dir/__/__/libsodium-src/libsodium/test/default/hash3.c.o	6787e29428da0223
+7768	8171	7716294879748580	_deps/libsodium-build/test/CMakeFiles/test_kdf.dir/__/__/libsodium-src/libsodium/test/default/kdf.c.o	8744f97504d1fca5
+7873	8296	7716294881008603	_deps/libsodium-build/test/CMakeFiles/test_keygen.dir/__/__/libsodium-src/libsodium/test/default/keygen.c.o	d436b278711b313
+7690	8318	7716294880356965	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox	1bf42a9e8bc77a5f
+7761	8421	7716294880548089	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_hash	e6603a11a3cb1eae
+7749	8427	7716294880837686	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox2	e7de48c5167f2074
+8001	8451	7716294882181131	_deps/libsodium-build/test/CMakeFiles/test_kx.dir/__/__/libsodium-src/libsodium/test/default/kx.c.o	773baf74ed771db2
+10259	11131	7716294908938358	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils	4027c229aea7308f
+8011	8481	7716294882813808	_deps/libsodium-build/test/CMakeFiles/test_metamorphic.dir/__/__/libsodium-src/libsodium/test/default/metamorphic.c.o	ed81ae8d302596a3
+8032	8508	7716294882883062	_deps/libsodium-build/test/CMakeFiles/test_onetimeauth2.dir/__/__/libsodium-src/libsodium/test/default/onetimeauth2.c.o	e9bf0bf44e48b36c
+8039	8541	7716294883371883	_deps/libsodium-build/test/CMakeFiles/test_onetimeauth7.dir/__/__/libsodium-src/libsodium/test/default/onetimeauth7.c.o	6328d80e8abdd5ed
+8020	8571	7716294883563516	_deps/libsodium-build/test/CMakeFiles/test_onetimeauth.dir/__/__/libsodium-src/libsodium/test/default/onetimeauth.c.o	5e53aee09ccbc13
+8171	8876	7716294885672041	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kdf	17cf360b60e70767
+8348	8925	7716294886791532	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kdf_hkdf	e9b64706957108c3
+9251	10519	7716294902780469	_deps/libsodium-build/test/CMakeFiles/test_sign.dir/__/__/libsodium-src/libsodium/test/default/sign.c.o	24915f3250eeaa16
+8296	8932	7716294886743260	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_keygen	d5e4db985680eeb
+8318	8970	7716294887743194	_deps/libsodium-build/test/CMakeFiles/test_pwhash_argon2id.dir/__/__/libsodium-src/libsodium/test/default/pwhash_argon2id.c.o	b6c140ba21c996fa
+8508	9050	7716294888007901	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth2	47267a0ddcfc7ef9
+8482	9141	7716294888634874	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_metamorphic	3c0f40bff9e438fe
+8760	9185	7716294889980799	_deps/libsodium-build/test/CMakeFiles/test_scalarmult2.dir/__/__/libsodium-src/libsodium/test/default/scalarmult2.c.o	1d89ca804d6e2ce3
+8571	9251	7716294889455059	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth	88e6121ea66a0fdd
+8876	9335	7716294890996647	_deps/libsodium-build/test/CMakeFiles/test_scalarmult_ed25519.dir/__/__/libsodium-src/libsodium/test/default/scalarmult_ed25519.c.o	1c75e58bccd1f8f5
+8926	9361	7716294891715721	_deps/libsodium-build/test/CMakeFiles/test_scalarmult_ristretto255.dir/__/__/libsodium-src/libsodium/test/default/scalarmult_ristretto255.c.o	a0319ef3eddababb
+8733	9378	7716294890758496	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_argon2i	a97463bbe93d5416
+8932	9407	7716294891735719	_deps/libsodium-build/test/CMakeFiles/test_secretbox8.dir/__/__/libsodium-src/libsodium/test/default/secretbox8.c.o	145342e3e8bed9ef
+9051	9476	7716294892133575	_deps/libsodium-build/test/CMakeFiles/test_secretbox_easy.dir/__/__/libsodium-src/libsodium/test/default/secretbox_easy.c.o	a4724cba81b385df
+9142	9597	7716294893665450	_deps/libsodium-build/test/CMakeFiles/test_secretstream_xchacha20poly1305.dir/__/__/libsodium-src/libsodium/test/default/secretstream_xchacha20poly1305.c.o	2f156272fe516267
+8918	9658	7716294893680590	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_randombytes	2eef200f1312189b
+9244	9709	7716294895102671	_deps/libsodium-build/test/CMakeFiles/test_secretbox_easy2.dir/__/__/libsodium-src/libsodium/test/default/secretbox_easy2.c.o	eca35fd68f284e09
+9061	9736	7716294893762811	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox7	398a57fff543bbe1
+9527	9929	7716294897487730	_deps/libsodium-build/test/CMakeFiles/test_sodium_utils2.dir/__/__/libsodium-src/libsodium/test/default/sodium_utils2.c.o	bab1f76952495e29
+9336	9939	7716294897201466	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult_ed25519	40f427dbfcf55f81
+9613	10044	7716294898524232	_deps/libsodium-build/test/CMakeFiles/test_sodium_utils3.dir/__/__/libsodium-src/libsodium/test/default/sodium_utils3.c.o	9f7170ba4f8d9aed
+9736	10134	7716294899359412	_deps/libsodium-build/test/CMakeFiles/test_stream.dir/__/__/libsodium-src/libsodium/test/default/stream.c.o	b789f567221b5f3a
+9477	10143	7716294897927439	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox_easy	fc998ddcb0dfbc24
+9825	10220	7716294900269900	_deps/libsodium-build/test/CMakeFiles/test_sodium_version.dir/__/__/libsodium-src/libsodium/test/default/sodium_version.c.o	50e05753283811af
+9574	10228	7716294898997792	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_shorthash	2cb2fdee9fa9623a
+9598	10237	7716294899906050	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretstream_xchacha20poly1305	ffb845cdd0592b88
+9659	10258	7716294900219882	_deps/libsodium-build/test/CMakeFiles/test_sodium_utils.dir/__/__/libsodium-src/libsodium/test/default/sodium_utils.c.o	4f7cb6eb678f1ae2
+9710	10288	7716294899860441	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox_easy2	c049e6742d6d593f
+9965	10425	7716294902061658	_deps/libsodium-build/test/CMakeFiles/test_stream4.dir/__/__/libsodium-src/libsodium/test/default/stream4.c.o	aa17d0ebce261a6d
+9930	10555	7716294902986523	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils2	f8ec4eaf5a4d7a7d
+10288	10772	7716294905794188	_deps/libsodium-build/test/CMakeFiles/test_pwhash_scrypt.dir/__/__/libsodium-src/libsodium/test/default/pwhash_scrypt.c.o	5eb589e9b2374609
+10228	10814	7716294906235037	_deps/libsodium-build/test/CMakeFiles/test_core_ed25519.dir/__/__/libsodium-src/libsodium/test/default/core_ed25519.c.o	acb7d03cdb2cd9f9
+10135	10942	7716294905794188	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream	650439481018f2b3
+10452	11122	7716294909029782	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream2	ebe9c8ce9a80e83d
+10220	11122	7716294908637127	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_version	fbfe7d0b9606f748
+10309	11134	7716294909113801	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream3	508729cf96d10715
+10521	11135	7716294909123789	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sign	b8b4f6ac8decbd93
+10581	11222	7716294910148020	_deps/libsodium-build/test/CMakeFiles/test_siphashx24.dir/__/__/libsodium-src/libsodium/test/default/siphashx24.c.o	d390da09a65db816
+10426	11243	7716294910380545	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream4	5bda0fb2975005f7
+10838	11261	7716294910524043	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_scrypt_ll	9e7f07797784ce89
+10850	11294	7716294911209484	_deps/libsodium-build/test/CMakeFiles/test_xchacha20.dir/__/__/libsodium-src/libsodium/test/default/xchacha20.c.o	24e6adb518849d99
+11223	11574	7716294912881197	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_siphashx24	48dd879e6d775b56
+11295	11596	7716294914247551	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_xchacha20	614abd2b5fed5715
+32	184	7716375749361564	CMakeFiles/native_crypto_library.dir/native_integrity.c.o	b0ea830138e04be7
+38	190	7716375749371662	CMakeFiles/native_crypto_library.dir/native_crypto.c.o	b1cefb1fb2662401
+191	369	7716375751102394	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/libnative_crypto_library.so	cdf13a96d459e7c
+76	925	7716432586226476	CMakeFiles/native_crypto_library.dir/native_crypto.c.o	b1cefb1fb2662401
+468	1295	7716432588969805	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_chacha20poly1305	ad76e72acc683cba
+129	1309	7716432589442076	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core_ristretto255	accd133968113987
+368	1322	7716432588939815	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_xchacha20	614abd2b5fed5715
+155	1333	7716432589387972	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core_ed25519	3faa6a12e7a87bfe
+451	1343	7716432588797362	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_chacha20poly13052	c8c8308423218817
+230	1368	7716432588929820	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_scrypt	463e3c63b9329337
+339	1381	7716432589708859	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_scrypt_ll	9e7f07797784ce89
+352	1393	7716432589397992	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_siphashx24	48dd879e6d775b56
+396	1461	7716432589892288	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aes256gcm	cfad1dcdb1534939
+311	1487	7716432589442076	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult_ristretto255	c1a1eed910222060
+324	1584	7716432589688894	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult_ed25519	40f427dbfcf55f81
+377	1629	7716432590377014	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aegis128l	33c72d69f0d5f57
+435	1642	7716432589421925	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aegis256	be5ebb963dae3f8a
+1322	2493	7716432598616817	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth	1243d521fa25f1bd
+1369	2615	7716432600031357	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth7	3ab30b3c622867d9
+1382	2641	7716432600637774	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth5	88fd86b1e8b6002f
+1462	2681	7716432601143145	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box	904c1fa28d5a8da4
+926	2730	7716432600718732	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/libnative_crypto_library.so	cdf13a96d459e7c
+1334	2764	7716432602261816	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth2	e3935474fb66635d
+1343	2836	7716432602923146	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth3	54fd43eea48172e3
+1644	2850	7716432602923146	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box8	647ec225ee6e18f8
+1309	2880	7716432602987895	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_xchacha20poly1305	b74ea1450e56e641
+1487	2974	7716432603975589	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box2	8d9dbc7ea07248f
+1296	3072	7716432602342169	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aes256gcm2	3267c67be03450ce
+1394	3082	7716432603475581	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth6	1c01d3b4daa3394e
+1630	3228	7716432605656180	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box7	833d5e060671ad81
+2731	3527	7716432609907418	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash3	127a054e3703653a
+1584	3537	7716432608564902	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_easy	efcbca7d2e79605
+2681	3594	7716432611304039	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_chacha20	a15ddf04f21535c3
+2764	3614	7716432611366216	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_hash	e6603a11a3cb1eae
+2616	3631	7716432611304039	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_seal	ba5c330481301f84
+2494	3720	7716432611214050	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_seed	8fda03f54462ca89
+2642	3733	7716432612457375	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_easy2	259df4222860300
+2837	3770	7716432613199142	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_hash3	bb2c25d4e9c5fe28
+2974	4097	7716432614493744	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core2	4b888b30ef3075cf
+2880	4192	7716432614988963	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_codecs	96d0a7e4f0467ee3
+3229	4260	7716432614698915	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core5	326053dd1de4d753
+2851	4316	7716432616117100	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core1	3f2aaa5073ca1583
+3083	4589	7716432617244926	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core3	b5c1e91097e3da07
+3073	4709	7716432617817019	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core4	33e910550a1074e3
+3527	4721	7716432622081365	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_ed25519_convert	b4a60c2c79887a08
+3631	4781	7716432624161612	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_randombytes	2eef200f1312189b
+3539	4816	7716432621675212	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core6	98ff647f04e611a4
+3733	4830	7716432621961383	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_argon2i	a97463bbe93d5416
+3720	4844	7716432622846914	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_argon2id	3dfef5c002d85d0a
+4263	4885	7716432625100968	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kx	4f8eebd87a13c73a
+3614	4895	7716432624466930	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash2	a6dfb1ff160d6309
+3595	4909	7716432623848591	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash	e30c76bcefde5fd1
+4098	4944	7716432624908787	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kdf	17cf360b60e70767
+3771	4954	7716432624446968	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kdf_hkdf	e9b64706957108c3
+4316	5573	7716432629289626	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_keygen	d5e4db985680eeb
+4193	5611	7716432627964387	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_metamorphic	3c0f40bff9e438fe
+4590	5714	7716432630605902	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth2	47267a0ddcfc7ef9
+4816	5726	7716432631275745	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream2	ebe9c8ce9a80e83d
+4721	5755	7716432631375855	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_misuse	36bbd48494836889
+4845	5839	7716432633232703	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream3	508729cf96d10715
+4831	5853	7716432633641152	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream	650439481018f2b3
+4887	5871	7716432633458234	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream4	5bda0fb2975005f7
+4910	5929	7716432635111976	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult2	291faed6817e4396
+4709	5971	7716432633854682	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth	88e6121ea66a0fdd
+4781	6093	7716432636136096	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth7	39d1de1ced33ef9a
+4954	6103	7716432636614278	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult	9f6dfabbe1e0b4c3
+4944	6113	7716432637448497	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult5	dfebced7a480d559
+4896	6203	7716432636305292	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_verify1	ab3183a5315f97cd
+5574	6667	7716432641233367	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult7	8c66ae1346477862
+5714	6700	7716432641233367	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult6	c547b8039b7af40d
+5930	6776	7716432641253882	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox_easy2	c049e6742d6d593f
+5611	6791	7716432642902526	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult8	87b813240fd0c192
+5756	6939	7716432641313504	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox	1bf42a9e8bc77a5f
+5871	6939	7716432643112537	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox7	398a57fff543bbe1
+5727	6955	7716432643052510	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox2	e7de48c5167f2074
+5972	7042	7716432646264811	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretstream_xchacha20poly1305	ffb845cdd0592b88
+6094	7057	7716432645055724	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_shorthash	2cb2fdee9fa9623a
+5840	7099	7716432646218012	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox8	413f6b0ee723450c
+6104	7122	7716432647437850	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sign	b8b4f6ac8decbd93
+5853	7138	7716432647245138	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox_easy	fc998ddcb0dfbc24
+6204	7143	7716432647135105	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils	4027c229aea7308f
+6113	7244	7716432648329040	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_core	306118c49d9eb7
+6668	7351	7716432650517972	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils3	67536f7c66a65dee
+6701	7357	7716432650447985	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils2	f8ec4eaf5a4d7a7d
+6776	7420	7716432651240701	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_version	fbfe7d0b9606f748
+34	221	7716441685153758	CMakeFiles/native_crypto_library.dir/native_crypto.c.o	b1cefb1fb2662401
+222	478	7716441687751941	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/libnative_crypto_library.so	cdf13a96d459e7c
+105	1128	7716449805900242	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/libnative_crypto_library.so	cdf13a96d459e7c
+183	1167	7716449804742105	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult_ristretto255	c1a1eed910222060
+272	1198	7716449806730239	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aegis128l	33c72d69f0d5f57
+122	1237	7716449806930253	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core_ristretto255	accd133968113987
+251	1251	7716449805840288	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_siphashx24	48dd879e6d775b56
+215	1267	7716449804901469	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_xchacha20	614abd2b5fed5715
+170	1323	7716449807284343	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core_ed25519	3faa6a12e7a87bfe
+264	1335	7716449807164324	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aes256gcm	cfad1dcdb1534939
+135	1363	7716449807936873	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_scrypt	463e3c63b9329337
+204	1384	7716449807396420	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult_ed25519	40f427dbfcf55f81
+302	1439	7716449807871886	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aegis256	be5ebb963dae3f8a
+315	1617	7716449808582886	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_aes256gcm2	3267c67be03450ce
+194	1684	7716449808801135	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_scrypt_ll	9e7f07797784ce89
+326	1776	7716449811119762	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_chacha20poly13052	c8c8308423218817
+1129	1859	7716449812924862	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_chacha20poly1305	ad76e72acc683cba
+1167	1871	7716449812910557	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_aead_xchacha20poly1305	b74ea1450e56e641
+1335	2057	7716449814317115	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_seed	8fda03f54462ca89
+1251	2086	7716449814654758	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth3	54fd43eea48172e3
+1199	2112	7716449814601098	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth	1243d521fa25f1bd
+1268	2132	7716449815439073	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_chacha20	a15ddf04f21535c3
+1324	2177	7716449814734992	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_seal	ba5c330481301f84
+1237	2217	7716449814807649	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth2	e3935474fb66635d
+1384	2239	7716449815439073	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth5	88fd86b1e8b6002f
+1440	2299	7716449817702373	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth6	1c01d3b4daa3394e
+1776	2366	7716449818505416	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_easy	efcbca7d2e79605
+1618	2387	7716449818420767	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box2	8d9dbc7ea07248f
+1364	2407	7716449818117885	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_auth7	3ab30b3c622867d9
+1685	2439	7716449818555416	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box	904c1fa28d5a8da4
+1860	2481	7716449819350158	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box7	833d5e060671ad81
+1872	2637	7716449820731121	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box8	647ec225ee6e18f8
+2058	2693	7716449821701862	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_box_easy2	259df4222860300
+2177	2731	7716449821731836	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_hash3	bb2c25d4e9c5fe28
+2086	2763	7716449822398524	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_ed25519_convert	b4a60c2c79887a08
+2133	2822	7716449822441359	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash2	a6dfb1ff160d6309
+2218	2833	7716449822883646	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_hash	e6603a11a3cb1eae
+2367	2847	7716449823086908	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core2	4b888b30ef3075cf
+2300	2889	7716449823378024	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_codecs	96d0a7e4f0467ee3
+2240	2898	7716449823539902	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash3	127a054e3703653a
+2112	2911	7716449824000129	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_generichash	e30c76bcefde5fd1
+2387	2963	7716449823940079	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core1	3f2aaa5073ca1583
+2408	3013	7716449824630033	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core4	33e910550a1074e3
+2482	3060	7716449825084201	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core5	326053dd1de4d753
+2440	3120	7716449826167774	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core3	b5c1e91097e3da07
+2638	3189	7716449826655123	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_core6	98ff647f04e611a4
+2693	3339	7716449828406475	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth7	39d1de1ced33ef9a
+2764	3351	7716449828274731	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_randombytes	2eef200f1312189b
+2822	3362	7716449828284733	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_argon2i	a97463bbe93d5416
+2848	3373	7716449828795638	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kdf_hkdf	e9b64706957108c3
+2732	3387	7716449828461576	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth2	47267a0ddcfc7ef9
+2833	3397	7716449828691109	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_pwhash_argon2id	3dfef5c002d85d0a
+2911	3411	7716449829045617	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_metamorphic	3c0f40bff9e438fe
+2899	3459	7716449829105636	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kx	4f8eebd87a13c73a
+2889	3478	7716449829575616	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_kdf	17cf360b60e70767
+2963	3537	7716449830039720	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_keygen	d5e4db985680eeb
+3013	3593	7716449830265116	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_onetimeauth	88e6121ea66a0fdd
+3061	3654	7716449831378002	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_misuse	36bbd48494836889
+3120	3746	7716449832093209	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_verify1	ab3183a5315f97cd
+3189	3804	7716449832339287	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream4	5bda0fb2975005f7
+3363	3832	7716449832886249	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult	9f6dfabbe1e0b4c3
+3351	3870	7716449833276218	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult5	dfebced7a480d559
+3398	3898	7716449833642436	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult8	87b813240fd0c192
+3387	3914	7716449833844833	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult7	8c66ae1346477862
+3374	3924	7716449834118977	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult6	c547b8039b7af40d
+3412	3934	7716449833997542	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox2	e7de48c5167f2074
+3339	3947	7716449834078681	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_scalarmult2	291faed6817e4396
+3460	3970	7716449834057552	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox	1bf42a9e8bc77a5f
+3478	4057	7716449834921844	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox8	413f6b0ee723450c
+3537	4126	7716449836193468	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox7	398a57fff543bbe1
+3594	4138	7716449836193468	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox_easy	fc998ddcb0dfbc24
+3655	4151	7716449836775977	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretstream_xchacha20poly1305	ffb845cdd0592b88
+3747	4268	7716449837548120	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_secretbox_easy2	c049e6742d6d593f
+3805	4332	7716449838035799	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_shorthash	2cb2fdee9fa9623a
+3833	4342	7716449838098140	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils	4027c229aea7308f
+3914	4343	7716449838557136	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils2	f8ec4eaf5a4d7a7d
+3934	4350	7716449838724195	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_utils3	67536f7c66a65dee
+3871	4353	7716449838815561	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_core	306118c49d9eb7
+3899	4358	7716449838875516	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sign	b8b4f6ac8decbd93
+3948	4373	7716449838985687	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream	650439481018f2b3
+3971	4374	7716449839085666	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream2	ebe9c8ce9a80e83d
+3924	4458	7716449840002562	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_sodium_version	fbfe7d0b9606f748
+4058	4470	7716449840031246	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/armeabi-v7a/test_stream3	508729cf96d10715

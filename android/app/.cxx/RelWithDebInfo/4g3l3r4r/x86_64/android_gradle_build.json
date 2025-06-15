@@ -1,0 +1,606 @@
+{
+  "buildFiles": [
+    "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\android\\app\\.cxx\\RelWithDebInfo\\4g3l3r4r\\x86_64\\_deps\\libsodium-src\\CMakeLists.txt",
+    "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\android\\app\\.cxx\\RelWithDebInfo\\4g3l3r4r\\x86_64\\_deps\\libsodium-src\\test\\CMakeLists.txt",
+    "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\src\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\kalin\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\android\\app\\.cxx\\RelWithDebInfo\\4g3l3r4r\\x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\kalin\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\android\\app\\.cxx\\RelWithDebInfo\\4g3l3r4r\\x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "native_crypto_library::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "native_crypto_library",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\libnative_crypto_library.so",
+      "runtimeFiles": []
+    },
+    "sodium::@bcc563657b3cb26f6c21": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "sodium",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\android\\app\\.cxx\\RelWithDebInfo\\4g3l3r4r\\x86_64\\_deps\\libsodium-build\\libsodium.a"
+    },
+    "test_aead_aegis128l::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_aead_aegis128l",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_aead_aegis128l",
+      "runtimeFiles": []
+    },
+    "test_aead_aegis256::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_aead_aegis256",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_aead_aegis256",
+      "runtimeFiles": []
+    },
+    "test_aead_aes256gcm::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_aead_aes256gcm",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_aead_aes256gcm",
+      "runtimeFiles": []
+    },
+    "test_aead_aes256gcm2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_aead_aes256gcm2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_aead_aes256gcm2",
+      "runtimeFiles": []
+    },
+    "test_aead_chacha20poly1305::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_aead_chacha20poly1305",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_aead_chacha20poly1305",
+      "runtimeFiles": []
+    },
+    "test_aead_chacha20poly13052::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_aead_chacha20poly13052",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_aead_chacha20poly13052",
+      "runtimeFiles": []
+    },
+    "test_aead_xchacha20poly1305::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_aead_xchacha20poly1305",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_aead_xchacha20poly1305",
+      "runtimeFiles": []
+    },
+    "test_auth::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_auth",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_auth",
+      "runtimeFiles": []
+    },
+    "test_auth2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_auth2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_auth2",
+      "runtimeFiles": []
+    },
+    "test_auth3::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_auth3",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_auth3",
+      "runtimeFiles": []
+    },
+    "test_auth5::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_auth5",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_auth5",
+      "runtimeFiles": []
+    },
+    "test_auth6::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_auth6",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_auth6",
+      "runtimeFiles": []
+    },
+    "test_auth7::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_auth7",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_auth7",
+      "runtimeFiles": []
+    },
+    "test_box::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box",
+      "runtimeFiles": []
+    },
+    "test_box2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box2",
+      "runtimeFiles": []
+    },
+    "test_box7::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box7",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box7",
+      "runtimeFiles": []
+    },
+    "test_box8::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box8",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box8",
+      "runtimeFiles": []
+    },
+    "test_box_easy::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box_easy",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box_easy",
+      "runtimeFiles": []
+    },
+    "test_box_easy2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box_easy2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box_easy2",
+      "runtimeFiles": []
+    },
+    "test_box_seal::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box_seal",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box_seal",
+      "runtimeFiles": []
+    },
+    "test_box_seed::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_box_seed",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_box_seed",
+      "runtimeFiles": []
+    },
+    "test_chacha20::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_chacha20",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_chacha20",
+      "runtimeFiles": []
+    },
+    "test_codecs::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_codecs",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_codecs",
+      "runtimeFiles": []
+    },
+    "test_core1::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core1",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core1",
+      "runtimeFiles": []
+    },
+    "test_core2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core2",
+      "runtimeFiles": []
+    },
+    "test_core3::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core3",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core3",
+      "runtimeFiles": []
+    },
+    "test_core4::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core4",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core4",
+      "runtimeFiles": []
+    },
+    "test_core5::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core5",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core5",
+      "runtimeFiles": []
+    },
+    "test_core6::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core6",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core6",
+      "runtimeFiles": []
+    },
+    "test_core_ed25519::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core_ed25519",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core_ed25519",
+      "runtimeFiles": []
+    },
+    "test_core_ristretto255::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_core_ristretto255",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_core_ristretto255",
+      "runtimeFiles": []
+    },
+    "test_ed25519_convert::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_ed25519_convert",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_ed25519_convert",
+      "runtimeFiles": []
+    },
+    "test_generichash::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_generichash",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_generichash",
+      "runtimeFiles": []
+    },
+    "test_generichash2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_generichash2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_generichash2",
+      "runtimeFiles": []
+    },
+    "test_generichash3::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_generichash3",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_generichash3",
+      "runtimeFiles": []
+    },
+    "test_hash::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_hash",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_hash",
+      "runtimeFiles": []
+    },
+    "test_hash3::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_hash3",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_hash3",
+      "runtimeFiles": []
+    },
+    "test_kdf::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_kdf",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_kdf",
+      "runtimeFiles": []
+    },
+    "test_kdf_hkdf::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_kdf_hkdf",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_kdf_hkdf",
+      "runtimeFiles": []
+    },
+    "test_keygen::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_keygen",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_keygen",
+      "runtimeFiles": []
+    },
+    "test_kx::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_kx",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_kx",
+      "runtimeFiles": []
+    },
+    "test_metamorphic::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_metamorphic",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_metamorphic",
+      "runtimeFiles": []
+    },
+    "test_misuse::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_misuse",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_misuse",
+      "runtimeFiles": []
+    },
+    "test_onetimeauth::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_onetimeauth",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_onetimeauth",
+      "runtimeFiles": []
+    },
+    "test_onetimeauth2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_onetimeauth2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_onetimeauth2",
+      "runtimeFiles": []
+    },
+    "test_onetimeauth7::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_onetimeauth7",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_onetimeauth7",
+      "runtimeFiles": []
+    },
+    "test_pwhash_argon2i::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_pwhash_argon2i",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_pwhash_argon2i",
+      "runtimeFiles": []
+    },
+    "test_pwhash_argon2id::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_pwhash_argon2id",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_pwhash_argon2id",
+      "runtimeFiles": []
+    },
+    "test_pwhash_scrypt::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_pwhash_scrypt",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_pwhash_scrypt",
+      "runtimeFiles": []
+    },
+    "test_pwhash_scrypt_ll::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_pwhash_scrypt_ll",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_pwhash_scrypt_ll",
+      "runtimeFiles": []
+    },
+    "test_randombytes::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_randombytes",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_randombytes",
+      "runtimeFiles": []
+    },
+    "test_scalarmult::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult",
+      "runtimeFiles": []
+    },
+    "test_scalarmult2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult2",
+      "runtimeFiles": []
+    },
+    "test_scalarmult5::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult5",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult5",
+      "runtimeFiles": []
+    },
+    "test_scalarmult6::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult6",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult6",
+      "runtimeFiles": []
+    },
+    "test_scalarmult7::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult7",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult7",
+      "runtimeFiles": []
+    },
+    "test_scalarmult8::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult8",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult8",
+      "runtimeFiles": []
+    },
+    "test_scalarmult_ed25519::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult_ed25519",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult_ed25519",
+      "runtimeFiles": []
+    },
+    "test_scalarmult_ristretto255::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_scalarmult_ristretto255",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_scalarmult_ristretto255",
+      "runtimeFiles": []
+    },
+    "test_secretbox::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_secretbox",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_secretbox",
+      "runtimeFiles": []
+    },
+    "test_secretbox2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_secretbox2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_secretbox2",
+      "runtimeFiles": []
+    },
+    "test_secretbox7::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_secretbox7",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_secretbox7",
+      "runtimeFiles": []
+    },
+    "test_secretbox8::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_secretbox8",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_secretbox8",
+      "runtimeFiles": []
+    },
+    "test_secretbox_easy::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_secretbox_easy",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_secretbox_easy",
+      "runtimeFiles": []
+    },
+    "test_secretbox_easy2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_secretbox_easy2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_secretbox_easy2",
+      "runtimeFiles": []
+    },
+    "test_secretstream_xchacha20poly1305::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_secretstream_xchacha20poly1305",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_secretstream_xchacha20poly1305",
+      "runtimeFiles": []
+    },
+    "test_shorthash::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_shorthash",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_shorthash",
+      "runtimeFiles": []
+    },
+    "test_sign::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_sign",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_sign",
+      "runtimeFiles": []
+    },
+    "test_siphashx24::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_siphashx24",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_siphashx24",
+      "runtimeFiles": []
+    },
+    "test_sodium_core::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_sodium_core",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_sodium_core",
+      "runtimeFiles": []
+    },
+    "test_sodium_utils::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_sodium_utils",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_sodium_utils",
+      "runtimeFiles": []
+    },
+    "test_sodium_utils2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_sodium_utils2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_sodium_utils2",
+      "runtimeFiles": []
+    },
+    "test_sodium_utils3::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_sodium_utils3",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_sodium_utils3",
+      "runtimeFiles": []
+    },
+    "test_sodium_version::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_sodium_version",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_sodium_version",
+      "runtimeFiles": []
+    },
+    "test_stream::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_stream",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_stream",
+      "runtimeFiles": []
+    },
+    "test_stream2::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_stream2",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_stream2",
+      "runtimeFiles": []
+    },
+    "test_stream3::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_stream3",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_stream3",
+      "runtimeFiles": []
+    },
+    "test_stream4::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_stream4",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_stream4",
+      "runtimeFiles": []
+    },
+    "test_verify1::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_verify1",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_verify1",
+      "runtimeFiles": []
+    },
+    "test_xchacha20::@d57863900cec8f467f2b": {
+      "toolchain": "toolchain",
+      "abi": "x86_64",
+      "artifactName": "test_xchacha20",
+      "output": "C:\\Users\\kalin\\Desktop\\flutter sources\\notehider\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\4g3l3r4r\\obj\\x86_64\\test_xchacha20",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "C:\\Users\\kalin\\AppData\\Local\\Android\\Sdk\\ndk\\23.1.7779620\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "C:\\Users\\kalin\\AppData\\Local\\Android\\Sdk\\ndk\\23.1.7779620\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

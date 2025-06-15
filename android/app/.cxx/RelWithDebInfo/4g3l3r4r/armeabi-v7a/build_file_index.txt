@@ -1,0 +1,3 @@
+C:\Users\kalin\Desktop\flutter sources\notehider\android\app\.cxx\RelWithDebInfo\4g3l3r4r\armeabi-v7a\_deps\libsodium-src\CMakeLists.txt
+C:\Users\kalin\Desktop\flutter sources\notehider\android\app\.cxx\RelWithDebInfo\4g3l3r4r\armeabi-v7a\_deps\libsodium-src\test\CMakeLists.txt
+C:\Users\kalin\Desktop\flutter sources\notehider\src\CMakeLists.txt

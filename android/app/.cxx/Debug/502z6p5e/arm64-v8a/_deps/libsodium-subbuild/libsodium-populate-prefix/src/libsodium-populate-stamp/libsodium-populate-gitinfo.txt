@@ -1,0 +1,3 @@
+repository='https://github.com/robinlinden/libsodium-cmake.git'
+module=''
+tag='origin'

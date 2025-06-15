@@ -68,8 +68,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       emit(state.copyWith(status: AuthStatus.loading));
 
-      // Use the existing setupPassword method from StorageService
-      await _storageService.setupPassword(event.password);
+      // Use device-binding password setup for stronger security
+      await _storageService.setupPasswordWithDeviceBinding(event.password);
 
       // Get the master key that was generated during setup
       final masterKey = await _storageService.getMasterKey();
@@ -97,8 +97,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       emit(state.copyWith(status: AuthStatus.loading));
 
-      // Use the existing verifyPassword method from StorageService
-      final isValid = await _storageService.verifyPassword(event.password);
+      // Verify with device-binding (password tied to device DNA)
+      final isValid =
+          await _storageService.verifyPasswordWithDeviceBinding(event.password);
 
       if (isValid) {
         // Get the master key for decryption
