@@ -137,10 +137,24 @@ class StorageService {
       final salt = _cryptoService.generateSalt();
       final masterKey = await _cryptoService.deriveMasterKey(password, salt);
 
+      // Plaintext master key is no longer persisted.  We only keep the 64-byte
+      // salt (needed for deterministic re-derivation) and the hardware-wrapped
+      // ciphertext.  This removes a significant downgrade path in case
+      // Keystore protection is bypassed.
       await _secureStorage.write(
-        key: _masterKeyKey,
-        value: base64.encode([...salt, ...masterKey]),
+        key: 'master_key_salt',
+        value: base64.encode(salt),
       );
+
+      try {
+        final wrapped = await HardwareCryptoBridge.instance
+            .wrapBytes('master_key', masterKey);
+        await _secureStorage.write(key: _masterKeyHWKey, value: wrapped);
+        print(
+            '🔒 [HW] Master key wrapped & stored during initial password setup');
+      } catch (e) {
+        print('⚠️ Failed to store hardware-wrapped master key: $e');
+      }
 
       // Create security checkpoint
       await _createSecurityCheckpoint();
@@ -198,16 +212,20 @@ class StorageService {
           return unwrapped;
         }
       } catch (e) {
-        print('⚠️ Hardware unwrap failed, falling back: $e');
+        // If the user has not authenticated (or StrongBox is locked), the
+        // unwrap call will throw.  We no longer downgrade to the plaintext
+        // master key stored in preferences—doing so would silently reduce the
+        // overall security level.  Instead we surface the failure so the UI
+        // can re-prompt the user.
+        print(
+            '⚠️ Hardware unwrap failed – user re-authentication required: $e');
+        return null;
       }
 
-      final keyData = await _secureStorage.read(key: _masterKeyKey);
-      if (keyData == null) return null;
+      // Legacy plaintext fallback removed – returning null enforces explicit
+      // user re-authentication rather than silently weakening security.
 
-      final combined = base64.decode(keyData);
-      if (combined.length < 96) return null; // 64 salt + 32 key minimum
-
-      return Uint8List.fromList(combined.sublist(64)); // Extract key part
+      return null;
     } catch (e) {
       print('🚨 Master key retrieval failed: $e');
       return null;
@@ -1248,26 +1266,29 @@ class StorageService {
       final deviceSalt = await _generateDeviceBoundSalt();
       final enhancedPassword = _combinePasswordWithDevice(password, deviceSalt);
 
-      final salt = _cryptoService.generateSalt();
-      // heavy derive in isolate
-      final masterKey = await compute(_deriveMasterKeyWorker, {
-        'pwd': enhancedPassword,
-        'salt': salt,
-      });
+      // Retrieve deterministic salt if we already generated one; otherwise
+      // create a fresh 64-byte salt and persist it.  Avoids the previous
+      // infinite-recursion bug when the salt did not yet exist.
+      String? saltB64 = await _secureStorage.read(key: 'master_key_salt');
+      Uint8List salt;
+      if (saltB64 == null) {
+        salt = _cryptoService.generateSalt();
+        saltB64 = base64.encode(salt);
+        await _secureStorage.write(key: 'master_key_salt', value: saltB64);
+      } else {
+        salt = Uint8List.fromList(base64.decode(saltB64));
+      }
 
-      await _secureStorage.write(
-        key: _masterKeyKey,
-        value: base64.encode([...salt, ...masterKey]),
-      );
+      final masterKey =
+          await _cryptoService.deriveMasterKey(enhancedPassword, salt);
 
       try {
         final wrapped = await HardwareCryptoBridge.instance
             .wrapBytes('master_key', masterKey);
-        print(
-            '🔒 [HW] Storing hardware-wrapped master key (${wrapped.length}b64)');
         await _secureStorage.write(key: _masterKeyHWKey, value: wrapped);
       } catch (e) {
-        print('⚠️ Failed to update hardware-wrapped master key: $e');
+        print(
+            '⚠️ Failed to update regenerated hardware-wrapped master key: $e');
       }
 
       // Store device binding info separately
@@ -1281,30 +1302,41 @@ class StorageService {
 
   Future<void> _regenerateMasterKeyWithDeviceBinding(String password) async {
     try {
-      final deviceSaltData =
-          await _secureStorage.read(key: 'device_binding_salt');
-      if (deviceSaltData == null) {
-        // Fallback to generating new device binding
+      // Load the deterministic salt used during the first key-derivation pass
+      final saltB64 = await _secureStorage.read(key: 'master_key_salt');
+      if (saltB64 == null) {
+        // No salt → treat as first-time generation.
         await _generateMasterKeyWithDeviceBinding(password);
         return;
       }
 
-      final deviceSalt = base64.decode(deviceSaltData);
+      // Retrieve (or lazily create) device-bound salt so that the password is
+      // still tied to the same device characteristics.
+      Uint8List deviceSalt;
+      final deviceSaltData =
+          await _secureStorage.read(key: 'device_binding_salt');
+      if (deviceSaltData == null) {
+        deviceSalt = await _generateDeviceBoundSalt();
+        await _secureStorage.write(
+            key: 'device_binding_salt', value: base64.encode(deviceSalt));
+      } else {
+        deviceSalt = base64.decode(deviceSaltData);
+      }
+
       final enhancedPassword = _combinePasswordWithDevice(password, deviceSalt);
 
-      final keyData = await _secureStorage.read(key: _masterKeyKey);
-      if (keyData == null) return;
-
-      final combined = base64.decode(keyData);
-      final salt = Uint8List.fromList(combined.sublist(0, 64));
+      final salt = Uint8List.fromList(base64.decode(saltB64));
 
       final masterKey =
           await _cryptoService.deriveMasterKey(enhancedPassword, salt);
 
-      await _secureStorage.write(
-        key: _masterKeyKey,
-        value: base64.encode([...salt, ...masterKey]),
-      );
+      try {
+        final wrapped = await HardwareCryptoBridge.instance
+            .wrapBytes('master_key', masterKey);
+        await _secureStorage.write(key: _masterKeyHWKey, value: wrapped);
+      } catch (e) {
+        print('⚠️ Failed to store regenerated hardware-wrapped master key: $e');
+      }
     } catch (e) {
       print('🚨 Failed to regenerate device-bound master key: $e');
     }
@@ -1689,13 +1721,6 @@ Future<Map<String, dynamic>> _hashPasswordWorker(
   final crypto = CryptoService();
   final res = await crypto.hashPasswordMilitary(pwd);
   return res.toJson();
-}
-
-Future<Uint8List> _deriveMasterKeyWorker(Map<String, dynamic> data) async {
-  final pwd = data['pwd'] as String;
-  final salt = data['salt'] as Uint8List;
-  final crypto = CryptoService();
-  return await crypto.deriveMasterKey(pwd, salt);
 }
 
 Future<bool> _argonVerifyWorker(Map<String, dynamic> data) async {

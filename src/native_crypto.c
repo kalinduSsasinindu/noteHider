@@ -305,8 +305,12 @@ char* pbkdf2_sha256_b64(const char* password,
     unsigned char* dk = malloc(dk_len);
     if (!dk) return NULL;
 
-    const uint64_t ops = crypto_pwhash_OPSLIMIT_INTERACTIVE;
-    const size_t mem  = crypto_pwhash_MEMLIMIT_INTERACTIVE;
+    // Use the same (moderate / sensitive) limits as the primary Argon2id
+    // password hashing path so that long-term secrets receive equal
+    // protection.  The exact values are selected at compile-time via
+    // NH_OPSLIMIT / NH_MEMLIMIT macros (see top of file).
+    const uint64_t ops = NH_OPSLIMIT;
+    const size_t mem  = NH_MEMLIMIT;
     if (crypto_pwhash(dk, dk_len,
                       password, strlen(password),
                       salt, ops, mem,

@@ -46,7 +46,17 @@ object PepperBox {
         )
             .setDigests(KeyProperties.DIGEST_SHA256)
             .setKeySize(256)
-            .setUserAuthenticationRequired(false)
+            .setUserAuthenticationRequired(true)
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    setUserAuthenticationParameters(
+                        30,
+                        KeyProperties.AUTH_DEVICE_CREDENTIAL or KeyProperties.AUTH_BIOMETRIC_STRONG
+                    )
+                    setUnlockedDeviceRequired(true)
+                    setUserAuthenticationValidWhileOnBody(false)
+                }
+            }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             builder.setIsStrongBoxBacked(true)
@@ -62,7 +72,14 @@ object PepperBox {
             )
                 .setDigests(KeyProperties.DIGEST_SHA256)
                 .setKeySize(256)
-                .setUserAuthenticationRequired(false)
+                .setUserAuthenticationRequired(true)
+                .apply {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        setUserAuthenticationParameters(30, KeyProperties.AUTH_DEVICE_CREDENTIAL or KeyProperties.AUTH_BIOMETRIC_STRONG)
+                        setUnlockedDeviceRequired(true)
+                        setUserAuthenticationValidWhileOnBody(false)
+                    }
+                }
             keyGenerator.init(fb.build())
         }
         Log.d("PepperBox", "Generated new pepper key")
