@@ -76,6 +76,23 @@ class MainActivity : FlutterFragmentActivity() {
                             result.error("PEPPER_ERROR", e.message, null)
                         }
                     }
+                    "getKeyAttestation" -> {
+                        // Returns a base-64 list of DER certificates that
+                        // prove the AES key's origin (TEE / StrongBox). The
+                        // Flutter layer can forward this to a backend or
+                        // verify the root locally.
+                        try {
+                            val alias = call.argument<String>("alias") ?: "default"
+                            val chain = HardwareCrypto.exportAttestationChain(alias)
+                            result.success(chain)
+                        } catch (e: Exception) {
+                            val code = when (e.message) {
+                                "NO_KEY" -> "NO_KEY"
+                                else -> "ATTEST_ERROR"
+                            }
+                            result.error(code, e.message, null)
+                        }
+                    }
                     else -> result.notImplemented()
                 }
             }

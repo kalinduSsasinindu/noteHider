@@ -8,6 +8,13 @@
 #define INTEGRITY_SU_BINARY_FOUND     0x02
 #define INTEGRITY_FRIDA_DETECTED      0x04
 #define INTEGRITY_PLAY_VERDICT_FAIL   0x08
+// Extended checks
+#define INTEGRITY_SELINUX_PERMISSIVE   0x10
+#define INTEGRITY_MAGISK_DETECTED     0x20
+#define INTEGRITY_XPOSED_DETECTED     0x40
+// 0x10  SELinux is in permissive mode (enforcing expected)
+// 0x20  Magisk systemless root or its mountpoints detected
+// 0x40  Xposed / LSPosed or similar hooking framework detected
 // Add more flags as needed.
 
 #ifdef __cplusplus

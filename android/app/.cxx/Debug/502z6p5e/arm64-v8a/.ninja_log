@@ -446,3 +446,6 @@
 9894	10870	7717929693850795	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/arm64-v8a/test_core_ed25519	1cfed75088d7e2c8
 75	11207	7717929697667947	CMakeFiles/native_crypto_library.dir/native_crypto.c.o	1a624b34bcf81419
 11208	11640	7717929702032140	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/arm64-v8a/libnative_crypto_library.so	f312856f77d8c639
+61	456	7717957281830265	CMakeFiles/native_crypto_library.dir/native_crypto.c.o	1a624b34bcf81419
+47	1020	7717957287377484	CMakeFiles/native_crypto_library.dir/native_integrity.c.o	d1ea0281d88956b
+1021	1398	7717957291040069	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/arm64-v8a/libnative_crypto_library.so	f312856f77d8c639

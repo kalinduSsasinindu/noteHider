@@ -64,6 +64,12 @@ class StorageService {
   static const String _masterKeyHWKey = 'master_key_hw_v1';
   static const String _deviceSaltHWKey = 'device_salt_hw_v1';
 
+  // In-memory cache – cleared on app lock / logout
+  Uint8List? _masterKeyCache;
+
+  // Length of master key derived via PBKDF2 / Argon2 (bytes)
+  static const int _MASTER_KEY_LEN = 32;
+
   StorageService({required CryptoService cryptoService})
       : _cryptoService = cryptoService;
 
@@ -201,6 +207,12 @@ class StorageService {
     await _ensureInitialized();
 
     try {
+      // Fast in-memory path – avoids extra biometric prompts during the same
+      // session.
+      if (_masterKeyCache != null && _masterKeyCache!.isNotEmpty) {
+        return _masterKeyCache;
+      }
+
       // Try hardware-wrapped first
       try {
         final wrapped = await _secureStorage.read(key: _masterKeyHWKey);
@@ -209,6 +221,9 @@ class StorageService {
               .unwrapBytes('master_key', wrapped);
           print(
               '🔒 [HW] Master key unwrapped successfully (${unwrapped.length} bytes)');
+
+          // Cache for the remainder of the session
+          _masterKeyCache = unwrapped;
           return unwrapped;
         }
       } catch (e) {
@@ -345,6 +360,7 @@ class StorageService {
     try {
       // Clear only session-related data, keep persistent storage
       _failedAccesses = 0;
+      _masterKeyCache = null;
       await _updateSecurityState();
     } catch (e) {
       print('🚨 Session data clear failed: $e');
@@ -845,7 +861,8 @@ class StorageService {
         await _updateSecurityState();
 
         // Regenerate master key with device binding
-        await _regenerateMasterKeyWithDeviceBinding(password);
+        await _regenerateMasterKeyWithDeviceBinding(password,
+            precomputedSalt: deviceSalt);
 
         // Update pepper tag (maybe it was missing)
         try {
@@ -895,7 +912,8 @@ class StorageService {
       );
 
       // Generate master key with device binding (also heavy)
-      await _generateMasterKeyWithDeviceBinding(password);
+      await _generateMasterKeyWithDeviceBinding(password,
+          precomputedSalt: deviceSalt);
 
       // Create security checkpoint
       await _createSecurityCheckpoint();
@@ -1261,10 +1279,11 @@ class StorageService {
   }
 
   /// 🔑 DEVICE-BOUND MASTER KEY GENERATION
-  Future<void> _generateMasterKeyWithDeviceBinding(String password) async {
+  Future<void> _generateMasterKeyWithDeviceBinding(String password,
+      {required Uint8List precomputedSalt}) async {
     try {
-      final deviceSalt = await _generateDeviceBoundSalt();
-      final enhancedPassword = _combinePasswordWithDevice(password, deviceSalt);
+      final enhancedPassword =
+          _combinePasswordWithDevice(password, precomputedSalt);
 
       // Retrieve deterministic salt if we already generated one; otherwise
       // create a fresh 64-byte salt and persist it.  Avoids the previous
@@ -1279,8 +1298,12 @@ class StorageService {
         salt = Uint8List.fromList(base64.decode(saltB64));
       }
 
-      final masterKey =
-          await _cryptoService.deriveMasterKey(enhancedPassword, salt);
+      // Derive master key in an isolate so the UI thread remains responsive.
+      final masterKey = await compute(_pbkdf2Worker, {
+        'pwd': enhancedPassword,
+        'salt': base64.encode(salt),
+        'len': _MASTER_KEY_LEN,
+      });
 
       try {
         final wrapped = await HardwareCryptoBridge.instance
@@ -1293,20 +1316,26 @@ class StorageService {
 
       // Store device binding info separately
       await _secureStorage.write(
-          key: 'device_binding_salt', value: base64.encode(deviceSalt));
+          key: 'device_binding_salt', value: base64.encode(precomputedSalt));
+
+      // Cache for immediate use so subsequent getMasterKey() calls skip
+      // an extra unwrap.
+      _masterKeyCache = masterKey;
     } catch (e) {
       print('🚨 Failed to generate device-bound master key: $e');
       throw SecurityException('Device-bound key generation failed: $e');
     }
   }
 
-  Future<void> _regenerateMasterKeyWithDeviceBinding(String password) async {
+  Future<void> _regenerateMasterKeyWithDeviceBinding(String password,
+      {required Uint8List precomputedSalt}) async {
     try {
       // Load the deterministic salt used during the first key-derivation pass
       final saltB64 = await _secureStorage.read(key: 'master_key_salt');
       if (saltB64 == null) {
         // No salt → treat as first-time generation.
-        await _generateMasterKeyWithDeviceBinding(password);
+        await _generateMasterKeyWithDeviceBinding(password,
+            precomputedSalt: precomputedSalt);
         return;
       }
 
@@ -1327,8 +1356,12 @@ class StorageService {
 
       final salt = Uint8List.fromList(base64.decode(saltB64));
 
-      final masterKey =
-          await _cryptoService.deriveMasterKey(enhancedPassword, salt);
+      // Derive master key in an isolate so the UI thread remains responsive.
+      final masterKey = await compute(_pbkdf2Worker, {
+        'pwd': enhancedPassword,
+        'salt': base64.encode(salt),
+        'len': _MASTER_KEY_LEN,
+      });
 
       try {
         final wrapped = await HardwareCryptoBridge.instance
@@ -1337,6 +1370,8 @@ class StorageService {
       } catch (e) {
         print('⚠️ Failed to store regenerated hardware-wrapped master key: $e');
       }
+
+      _masterKeyCache = masterKey;
     } catch (e) {
       print('🚨 Failed to regenerate device-bound master key: $e');
     }
@@ -1729,4 +1764,14 @@ Future<bool> _argonVerifyWorker(Map<String, dynamic> data) async {
   final crypto = CryptoService();
   final storedHash = MilitaryHashResult.fromJson(storedJson);
   return await crypto.verifyPasswordMilitary(enhancedPwd, storedHash);
+}
+
+Future<Uint8List> _pbkdf2Worker(Map<String, dynamic> data) async {
+  final pwd = data['pwd'] as String;
+  final salt = data['salt'] as String;
+  final len = data['len'] as int;
+  final crypto = CryptoService();
+  final res = await crypto.deriveMasterKey(
+      pwd, Uint8List.fromList(base64.decode(salt)));
+  return res.sublist(0, len);
 }

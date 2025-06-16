@@ -56,7 +56,16 @@ object PepperBox {
                     setUnlockedDeviceRequired(true)
                     setUserAuthenticationValidWhileOnBody(false)
                 }
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                    setUserAuthenticationValidityDurationSeconds(0)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    setInvalidatedByBiometricEnrollment(true)
+                }
             }
+            .setAttestationChallenge(ByteArray(16).also { java.security.SecureRandom().nextBytes(it) })
+            // Attestation enables server-side or client-side pinning that the
+            // HMAC key is actually stored inside secure hardware.
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             builder.setIsStrongBoxBacked(true)

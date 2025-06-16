@@ -133,6 +133,23 @@ object HardwareCrypto {
                     setUnlockedDeviceRequired(true)
                 }
             }
+            // On API 23-28 we need to explicitly invalidate the key if the
+            // biometric set changes and reduce the on-body unlock window.
+            .apply {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                    // Force re-auth every single time (no cached 30-s window)
+                    this.setUserAuthenticationValidityDurationSeconds(0)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    // Biometric enrolment should nuke the key.
+                    this.setInvalidatedByBiometricEnrollment(true)
+                }
+            }
+            // --- Key Attestation ---
+            // Request a certificate chain proving the key lives in TEE / StrongBox.
+            // The random nonce is echoed back inside the attestation so we can
+            // bind each chain to a particular app launch.
+            .setAttestationChallenge(ByteArray(16).also { java.security.SecureRandom().nextBytes(it) })
 
         var useStrongBox = false
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -189,4 +206,18 @@ object HardwareCrypto {
         } catch (_: Exception) {}
     }
     // endregion
+
+    /** Returns the PEM-encoded certificate chain of the AES key so that the
+     *  Flutter layer (or a backend) can verify StrongBox / TEE provenance.
+     *  Throws if the alias does not exist or the platform does not support
+     *  Key Attestation. */
+    fun exportAttestationChain(alias: String = DEFAULT_ALIAS): List<String> {
+        val ks = KeyStore.getInstance(ANDROID_KEYSTORE).apply { load(null) }
+        val chain = ks.getCertificateChain(alias)
+            ?: throw IllegalStateException("NO_KEY")
+
+        return chain.map { cert ->
+            Base64.encodeToString(cert.encoded, Base64.NO_WRAP)
+        }
+    }
 } 

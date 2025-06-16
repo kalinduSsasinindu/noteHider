@@ -66,6 +66,13 @@ typedef _Pbkdf2B64C = Pointer<Utf8> Function(
 typedef _Pbkdf2B64Dart = Pointer<Utf8> Function(
     Pointer<Utf8> pwd, Pointer<Uint8> salt, int saltLen, int dkLen);
 
+// Secure memzero helper (wipes native buffers)
+// C signature: int secure_memzero(void* ptr, size_t len);
+// We expose it as a `void` because libsodium never fails (always returns 0) –
+// in Dart we don't need the return value.
+typedef _SecureMemzeroC = Void Function(Pointer<Uint8> data, IntPtr dataLen);
+typedef _SecureMemzeroDart = void Function(Pointer<Uint8> data, int dataLen);
+
 /// A class to encapsulate the FFI calls to our native crypto library.
 class CryptoFFI {
   // Singleton pattern to ensure the library is loaded only once.
@@ -82,6 +89,7 @@ class CryptoFFI {
   late final _RandomBytesB64Dart _randomBytesB64;
   late final _DeriveSessionKeyB64Dart _deriveSessionKeyB64;
   late final _Pbkdf2B64Dart _pbkdf2B64;
+  late final _SecureMemzeroDart _secureMemzero;
 
   CryptoFFI._internal() {
     _dylib = _loadDylib();
@@ -130,6 +138,11 @@ class CryptoFFI {
     _pbkdf2B64 = _dylib
         .lookup<NativeFunction<_Pbkdf2B64C>>('pbkdf2_sha256_b64')
         .asFunction<_Pbkdf2B64Dart>();
+
+    // Secure memzero helper (wipes native buffers)
+    _secureMemzero = _dylib
+        .lookup<NativeFunction<_SecureMemzeroC>>('secure_memzero')
+        .asFunction<_SecureMemzeroDart>();
   }
 
   /// Loads the dynamic library from the correct path based on the platform.
@@ -383,5 +396,17 @@ class CryptoFFI {
     final b64 = ptr.toDartString();
     _freeString(ptr);
     return base64.decode(b64);
+  }
+
+  /// Securely wipes [data] in native space to reduce the residency time of
+  /// plaintext secrets. The Dart List memory is first copied into a malloc()'d
+  /// buffer so we can pass a raw pointer to libsodium's sodium_memzero(), then
+  /// the copy is destroyed. NOTE: This cannot wipe the original Dart object –
+  /// only reduce exposure of temporary native copies.
+  void secureMemzero(Uint8List data) {
+    final ptr = calloc<Uint8>(data.length);
+    ptr.asTypedList(data.length).setAll(0, data);
+    _secureMemzero(ptr, data.length);
+    calloc.free(ptr);
   }
 }

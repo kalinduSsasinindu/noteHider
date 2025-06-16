@@ -446,3 +446,6 @@
 5733	7342	7717929870000223	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/x86_64/test_scalarmult_ed25519	6efc1cdaba3cfe43
 6559	7402	7717929870945484	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/x86_64/test_pwhash_scrypt	b928a566b2edbac3
 6493	7435	7717929870955470	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/x86_64/test_pwhash_scrypt_ll	80a50f9aaf9c757f
+88	367	7717957309074311	CMakeFiles/native_crypto_library.dir/native_crypto.c.o	997349130e1cd662
+102	435	7717957309797497	CMakeFiles/native_crypto_library.dir/native_integrity.c.o	9d5ef15c74bb431c
+436	653	7717957312012133	C:/Users/kalin/Desktop/flutter sources/notehider/build/app/intermediates/cxx/Debug/502z6p5e/obj/x86_64/libnative_crypto_library.so	f45812f6f7d9b34e

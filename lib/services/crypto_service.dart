@@ -165,22 +165,24 @@ class CryptoService {
 
   /// 🧹 MILITARY-GRADE SECURE MEMORY CLEARING
   ///
-  /// Triple-pass overwrite with different patterns
+  /// Prior to v3.2 we performed a 3-pass overwrite (DoD 5220.22-M style) in
+  /// pure Dart.  Because the Dart GC may copy/move objects, those passes were
+  /// *best-effort* only.  We now call libsodium's `sodium_memzero()` through
+  /// FFI which issues a volatile memset that the compiler cannot optimise
+  /// away and which executes in constant-time, giving considerably stronger
+  /// guarantees that plaintext key material does not linger in native RAM.
+  ///
+  /// When the incoming buffer is NOT a `Uint8List` (e.g. an int list created
+  /// elsewhere) we fall back to a single zero-fill so that at least one copy
+  /// is cleared.
   void _secureClearBytes(List<int> data) {
-    // DoD 5220.22-M standard: 3-pass overwrite
-    for (int pass = 0; pass < 3; pass++) {
+    // Use libsodium's constant-time wipe via FFI for stronger guarantees.
+    if (data is Uint8List) {
+      _cryptoFFI.secureMemzero(data);
+    } else {
+      // Fallback to in-place overwrite if the buffer is not a Uint8List.
       for (int i = 0; i < data.length; i++) {
-        switch (pass) {
-          case 0:
-            data[i] = 0x00; // All zeros
-            break;
-          case 1:
-            data[i] = 0xFF; // All ones
-            break;
-          case 2:
-            data[i] = _secureRandom.nextUint32() & 0xFF; // Random
-            break;
-        }
+        data[i] = 0;
       }
     }
   }
