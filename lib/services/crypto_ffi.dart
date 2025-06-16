@@ -40,6 +40,32 @@ typedef _DecryptBytesC = Pointer<Utf8> Function(
 typedef _DecryptBytesDart = Pointer<Utf8> Function(
     Pointer<Utf8> cipher, Pointer<Uint8> key, int keyLen);
 
+// Native random bytes base64
+typedef _RandomBytesB64C = Pointer<Utf8> Function(IntPtr len);
+typedef _RandomBytesB64Dart = Pointer<Utf8> Function(int len);
+
+// Native HKDF session key derivation – returns base64 key
+typedef _DeriveSessionKeyB64C = Pointer<Utf8> Function(
+    Pointer<Uint8> master,
+    IntPtr masterLen,
+    Pointer<Uint8> eph,
+    IntPtr ephLen,
+    Pointer<Uint8> salt,
+    IntPtr saltLen);
+typedef _DeriveSessionKeyB64Dart = Pointer<Utf8> Function(
+    Pointer<Uint8> master,
+    int masterLen,
+    Pointer<Uint8> eph,
+    int ephLen,
+    Pointer<Uint8> salt,
+    int saltLen);
+
+// Native PBKDF2
+typedef _Pbkdf2B64C = Pointer<Utf8> Function(
+    Pointer<Utf8> pwd, Pointer<Uint8> salt, IntPtr saltLen, IntPtr dkLen);
+typedef _Pbkdf2B64Dart = Pointer<Utf8> Function(
+    Pointer<Utf8> pwd, Pointer<Uint8> salt, int saltLen, int dkLen);
+
 /// A class to encapsulate the FFI calls to our native crypto library.
 class CryptoFFI {
   // Singleton pattern to ensure the library is loaded only once.
@@ -53,6 +79,9 @@ class CryptoFFI {
   late final _FreeStringDart _freeString;
   late final _EncryptBytesDart _encryptBytes;
   late final _DecryptBytesDart _decryptBytes;
+  late final _RandomBytesB64Dart _randomBytesB64;
+  late final _DeriveSessionKeyB64Dart _deriveSessionKeyB64;
+  late final _Pbkdf2B64Dart _pbkdf2B64;
 
   CryptoFFI._internal() {
     _dylib = _loadDylib();
@@ -88,6 +117,19 @@ class CryptoFFI {
     _decryptBytes = _dylib
         .lookup<NativeFunction<_DecryptBytesC>>('decrypt_bytes')
         .asFunction<_DecryptBytesDart>();
+
+    // --- New helpers ---
+    _randomBytesB64 = _dylib
+        .lookup<NativeFunction<_RandomBytesB64C>>('random_bytes_b64')
+        .asFunction<_RandomBytesB64Dart>();
+
+    _deriveSessionKeyB64 = _dylib
+        .lookup<NativeFunction<_DeriveSessionKeyB64C>>('derive_session_key_b64')
+        .asFunction<_DeriveSessionKeyB64Dart>();
+
+    _pbkdf2B64 = _dylib
+        .lookup<NativeFunction<_Pbkdf2B64C>>('pbkdf2_sha256_b64')
+        .asFunction<_Pbkdf2B64Dart>();
   }
 
   /// Loads the dynamic library from the correct path based on the platform.
@@ -271,5 +313,75 @@ class CryptoFFI {
     _freeString(plainPtr);
 
     return base64.decode(plainBase64);
+  }
+
+  Uint8List randomBytes(int len) {
+    final ptr = _randomBytesB64(len);
+    if (ptr.address == 0) {
+      throw StateError('random_bytes_b64 failed');
+    }
+    final b64 = ptr.toDartString();
+    _freeString(ptr);
+    return base64.decode(b64);
+  }
+
+  Uint8List deriveSessionKey(Uint8List master, Uint8List eph, Uint8List salt) {
+    final masterPtr = calloc<Uint8>(master.length);
+    final ephPtr = calloc<Uint8>(eph.length);
+    final saltPtr = calloc<Uint8>(salt.length);
+
+    masterPtr.asTypedList(master.length).setAll(0, master);
+    ephPtr.asTypedList(eph.length).setAll(0, eph);
+    saltPtr.asTypedList(salt.length).setAll(0, salt);
+
+    final ptr = _deriveSessionKeyB64(
+        masterPtr, master.length, ephPtr, eph.length, saltPtr, salt.length);
+
+    // Wipe and free input buffers
+    for (int i = 0; i < master.length; i++) {
+      masterPtr[i] = 0;
+    }
+    for (int i = 0; i < eph.length; i++) {
+      ephPtr[i] = 0;
+    }
+    for (int i = 0; i < salt.length; i++) {
+      saltPtr[i] = 0;
+    }
+    calloc.free(masterPtr);
+    calloc.free(ephPtr);
+    calloc.free(saltPtr);
+
+    if (ptr.address == 0) {
+      throw StateError('derive_session_key_b64 failed');
+    }
+    final b64 = ptr.toDartString();
+    _freeString(ptr);
+    return base64.decode(b64);
+  }
+
+  Uint8List pbkdf2Sha256(String password, Uint8List salt, int dkLen) {
+    final pwdPtr = password.toNativeUtf8();
+    final saltPtr = calloc<Uint8>(salt.length);
+    saltPtr.asTypedList(salt.length).setAll(0, salt);
+
+    final ptr = _pbkdf2B64(pwdPtr, saltPtr, salt.length, dkLen);
+
+    // wipe
+    final pwdBytes = pwdPtr.cast<Uint8>().asTypedList(password.length + 1);
+    for (int i = 0; i < pwdBytes.length; i++) {
+      pwdBytes[i] = 0;
+    }
+    calloc.free(pwdPtr);
+    for (int i = 0; i < salt.length; i++) {
+      saltPtr[i] = 0;
+    }
+    calloc.free(saltPtr);
+
+    if (ptr.address == 0) {
+      throw StateError('pbkdf2_sha256_b64 failed');
+    }
+    final b64 = ptr.toDartString();
+    _freeString(ptr);
+    return base64.decode(b64);
   }
 }
