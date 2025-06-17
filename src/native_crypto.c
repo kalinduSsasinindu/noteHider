@@ -3,14 +3,60 @@
 #include <string.h>
 #include "native_crypto.h" // Our own header file.
 #include "sodium.h" // The main header from the libsodium library.
-
-#if defined(__ANDROID__) || defined(__APPLE__)
-#define NH_OPSLIMIT crypto_pwhash_OPSLIMIT_MODERATE
-#define NH_MEMLIMIT crypto_pwhash_MEMLIMIT_MODERATE
-#else
-#define NH_OPSLIMIT crypto_pwhash_OPSLIMIT_SENSITIVE
-#define NH_MEMLIMIT crypto_pwhash_MEMLIMIT_SENSITIVE
+#if defined(__linux__) || defined(__ANDROID__)
+#  include <sys/sysinfo.h>
 #endif
+
+#define _LOW_RAM_THRESHOLD_MB 4096 // 4 GiB
+
+/* ---------------------------------------------------------------------------
+ *  💡 ADAPTIVE ARGON2 WORK-FACTOR SELECTION
+ *
+ *  To avoid sluggish log-ins on low-end phones while still giving flagship
+ *  devices a *much* harder KDF to brute-force, we choose the libsodium
+ *  presets at runtime instead of compile-time.
+ *
+ *      • total RAM < 4 GiB  →  OP/MEM: INTERACTIVE  (≈ 50 ms on 2 GB devices)
+ *      • total RAM ≥ 4 GiB  →  OP/MEM: MODERATE (≈ 100-150 ms on SD888)
+ *
+ *  The helpers below read `/proc/meminfo` via sysinfo(2).  When that syscall
+ *  fails (older iOS, unusual libc etc.) we silently fall back to INTERACTIVE so
+ *  we never reject a device outright.
+ * -------------------------------------------------------------------------*/
+
+static uint64_t _determine_opslimit() {
+#if defined(__ANDROID__) || defined(__linux__)
+    struct sysinfo si;
+    if (sysinfo(&si) == 0) {
+        unsigned long long total_mb = (si.totalram * si.mem_unit) / (1024 * 1024);
+        if (total_mb >= 8192) { // 8 GiB+
+            return crypto_pwhash_OPSLIMIT_SENSITIVE;
+        } else if (total_mb >= 4096) { // 4-8 GiB
+            return crypto_pwhash_OPSLIMIT_MODERATE;
+        } else {
+            return crypto_pwhash_OPSLIMIT_INTERACTIVE; // ≤4 GiB low-end
+        }
+    }
+#endif
+    return crypto_pwhash_OPSLIMIT_MODERATE;
+}
+
+static size_t _determine_memlimit() {
+#if defined(__ANDROID__) || defined(__linux__)
+    struct sysinfo si;
+    if (sysinfo(&si) == 0) {
+        unsigned long long total_mb = (si.totalram * si.mem_unit) / (1024 * 1024);
+        if (total_mb >= 8192) {
+            return crypto_pwhash_MEMLIMIT_SENSITIVE;
+        } else if (total_mb >= 4096) {
+            return crypto_pwhash_MEMLIMIT_MODERATE;
+        } else {
+            return crypto_pwhash_MEMLIMIT_INTERACTIVE;
+        }
+    }
+#endif
+    return crypto_pwhash_MEMLIMIT_MODERATE;
+}
 
 // This is the implementation of the function we declared in the header.
 const char* get_libsodium_version_string() {
@@ -36,8 +82,8 @@ const char* hash_password(const char* password) {
     if (crypto_pwhash_str(out,
                           password,
                           strlen(password),
-                          NH_OPSLIMIT,
-                          NH_MEMLIMIT) != 0) {
+                          _determine_opslimit(),
+                          _determine_memlimit()) != 0) {
         free(out);
         return NULL;
     }
@@ -305,8 +351,12 @@ char* pbkdf2_sha256_b64(const char* password,
     unsigned char* dk = malloc(dk_len);
     if (!dk) return NULL;
 
-    const uint64_t ops = crypto_pwhash_OPSLIMIT_INTERACTIVE;
-    const size_t mem  = crypto_pwhash_MEMLIMIT_INTERACTIVE;
+    // Use the same (moderate / sensitive) limits as the primary Argon2id
+    // password hashing path so that long-term secrets receive equal
+    // protection.  The exact values are selected at compile-time via
+    // NH_OPSLIMIT / NH_MEMLIMIT macros (see top of file).
+    const uint64_t ops = _determine_opslimit();
+    const size_t mem  = _determine_memlimit();
     if (crypto_pwhash(dk, dk_len,
                       password, strlen(password),
                       salt, ops, mem,

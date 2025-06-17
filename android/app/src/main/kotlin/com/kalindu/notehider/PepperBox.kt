@@ -46,7 +46,26 @@ object PepperBox {
         )
             .setDigests(KeyProperties.DIGEST_SHA256)
             .setKeySize(256)
-            .setUserAuthenticationRequired(false)
+            .setUserAuthenticationRequired(true)
+            .apply {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    setUserAuthenticationParameters(
+                        30,
+                        KeyProperties.AUTH_DEVICE_CREDENTIAL or KeyProperties.AUTH_BIOMETRIC_STRONG
+                    )
+                    setUnlockedDeviceRequired(true)
+                    setUserAuthenticationValidWhileOnBody(false)
+                }
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+                    setUserAuthenticationValidityDurationSeconds(0)
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    setInvalidatedByBiometricEnrollment(true)
+                }
+            }
+            .setAttestationChallenge(ByteArray(16).also { java.security.SecureRandom().nextBytes(it) })
+            // Attestation enables server-side or client-side pinning that the
+            // HMAC key is actually stored inside secure hardware.
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             builder.setIsStrongBoxBacked(true)
@@ -62,7 +81,14 @@ object PepperBox {
             )
                 .setDigests(KeyProperties.DIGEST_SHA256)
                 .setKeySize(256)
-                .setUserAuthenticationRequired(false)
+                .setUserAuthenticationRequired(true)
+                .apply {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                        setUserAuthenticationParameters(30, KeyProperties.AUTH_DEVICE_CREDENTIAL or KeyProperties.AUTH_BIOMETRIC_STRONG)
+                        setUnlockedDeviceRequired(true)
+                        setUserAuthenticationValidWhileOnBody(false)
+                    }
+                }
             keyGenerator.init(fb.build())
         }
         Log.d("PepperBox", "Generated new pepper key")

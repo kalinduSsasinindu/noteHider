@@ -1,7 +1,6 @@
 import 'dart:ffi';
 import 'dart:io';
 
-import 'package:ffi/ffi.dart';
 
 /// Loads the native_crypto_library and exposes the quick integrity probe.
 class NativeIntegrity {

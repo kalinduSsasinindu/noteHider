@@ -65,6 +65,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     SetupPassword event,
     Emitter<AuthState> emit,
   ) async {
+    if (state.status == AuthStatus.loading ||
+        state.status == AuthStatus.authenticated) {
+      // Ignore duplicate requests while already processing or done.
+      return;
+    }
     try {
       emit(state.copyWith(status: AuthStatus.loading));
 

@@ -57,11 +57,50 @@ static int _frida_server_present() {
     return 0;
 }
 
+// Check if SELinux is enforcing (0 = permissive, 1 = enforcing)
+static int _selinux_permissive() {
+#ifdef COMMENT
+/*
+ * Returns 1 when the device runs with SELinux set to Permissive mode – a
+ * strong indicator of a compromised security posture.  For performance and
+ * portability we simply read the one-byte flag from
+ *   /sys/fs/selinux/enforce  ("1" = enforcing, "0" = permissive).
+ * On non-Linux platforms the check is skipped.
+ */
+#endif
+#if defined(__ANDROID__) || defined(__linux__)
+    FILE *f = fopen("/sys/fs/selinux/enforce", "r");
+    if (!f) return 1; // Treat unknown as permissive (unsafe)
+    int ch = fgetc(f);
+    fclose(f);
+    return (ch == '0');
+#else
+    return 0; // Not applicable
+#endif
+}
+
+static int _magisk_present() {
+    return _file_exists("/sbin/.magisk") || _file_exists("/data/adb/magisk");
+}
+
+static int _xposed_present() {
+    const char *paths[] = {
+        "/system/bin/app_process64_xposed", "/system/framework/XposedBridge.jar",
+        "/system/lib/libxposed.so", NULL};
+    for (int i = 0; paths[i]; ++i) {
+        if (_file_exists(paths[i])) return 1;
+    }
+    return 0;
+}
+
 uint32_t quick_probe_native() {
     uint32_t flags = 0;
     if (_is_debugger_attached()) flags |= INTEGRITY_DEBUGGER_ATTACHED;
     if (_has_su_binary())       flags |= INTEGRITY_SU_BINARY_FOUND;
     if (_frida_server_present()) flags |= INTEGRITY_FRIDA_DETECTED;
     if (!_playIntegrityOK)      flags |= INTEGRITY_PLAY_VERDICT_FAIL;
+    if (_selinux_permissive())  flags |= INTEGRITY_SELINUX_PERMISSIVE;
+    if (_magisk_present())      flags |= INTEGRITY_MAGISK_DETECTED;
+    if (_xposed_present())      flags |= INTEGRITY_XPOSED_DETECTED;
     return flags;
 } 
