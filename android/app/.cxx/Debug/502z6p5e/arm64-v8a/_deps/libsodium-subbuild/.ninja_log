@@ -1,13 +1,14 @@
 # ninja log v5
 1	387	7716958992456162	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-mkdir	bce2a1878b1b8e45
-1	387	7716958992456162	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-mkdir	bce2a1878b1b8e45
-387	9932	7716959087859954	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-download	f5cb68bac629c363
-387	9932	7716959087859954	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-download	f5cb68bac629c363
 9934	10427	0	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-update	ed2e6b5f00eada5c
-9934	10427	0	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-update	ed2e6b5f00eada5c
-10427	10575	7716959094333797	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-patch	6507718adeee611c
 10427	10575	7716959094333797	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-patch	6507718adeee611c
 10576	10774	7716959096352387	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-configure	74e547c38210da1
+1	387	7716958992456162	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-mkdir	bce2a1878b1b8e45
+11229	11406	7716959102685344	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/CMakeFiles/libsodium-populate-complete	9ba7ab5e43e802fa
+387	9932	7716959087859954	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-download	f5cb68bac629c363
+9934	10427	0	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-update	ed2e6b5f00eada5c
+387	9932	7716959087859954	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-download	f5cb68bac629c363
+10427	10575	7716959094333797	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-patch	6507718adeee611c
 10576	10774	7716959096352387	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-configure	74e547c38210da1
 10775	10954	7716959098143060	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-build	895fe9f87a646c8f
 10775	10954	7716959098143060	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-build	895fe9f87a646c8f
@@ -17,5 +18,20 @@
 11091	11228	7716959100929739	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-test	c61fa4dfbc88c844
 11229	11406	7716959102685344	CMakeFiles/libsodium-populate-complete	9ba7ab5e43e802fa
 11229	11406	7716959102685344	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-done	9ba7ab5e43e802fa
-11229	11406	7716959102685344	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/CMakeFiles/libsodium-populate-complete	9ba7ab5e43e802fa
 11229	11406	7716959102685344	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-done	9ba7ab5e43e802fa
+1	378	0	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-update	ed2e6b5f00eada5c
+1	378	0	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-update	ed2e6b5f00eada5c
+378	484	7718522465120388	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-patch	6507718adeee611c
+378	484	7718522465120388	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-patch	6507718adeee611c
+484	595	7718522466288869	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-configure	74e547c38210da1
+484	595	7718522466288869	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-configure	74e547c38210da1
+595	709	7718522467331126	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-build	895fe9f87a646c8f
+595	709	7718522467331126	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-build	895fe9f87a646c8f
+710	823	7718522468450682	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-install	af8996e3d1a9d0c9
+710	823	7718522468450682	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-install	af8996e3d1a9d0c9
+823	938	7718522469605380	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-test	c61fa4dfbc88c844
+823	938	7718522469605380	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-test	c61fa4dfbc88c844
+938	1105	7718522471312592	CMakeFiles/libsodium-populate-complete	9ba7ab5e43e802fa
+938	1105	7718522471312592	libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-done	9ba7ab5e43e802fa
+938	1105	7718522471312592	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/CMakeFiles/libsodium-populate-complete	9ba7ab5e43e802fa
+938	1105	7718522471312592	C:/Users/kalin/Desktop/flutter sources/notehider/android/app/.cxx/Debug/502z6p5e/arm64-v8a/_deps/libsodium-subbuild/libsodium-populate-prefix/src/libsodium-populate-stamp/libsodium-populate-done	9ba7ab5e43e802fa

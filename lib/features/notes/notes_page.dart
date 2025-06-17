@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'dart:async';
 import 'bloc/notes_bloc.dart';
 import 'bloc/notes_event.dart';
 import 'bloc/notes_state.dart';
@@ -28,7 +27,6 @@ class NotesPage extends StatefulWidget {
 
 class _NotesPageState extends State<NotesPage> {
   final TextEditingController _searchController = TextEditingController();
-  Timer? _debounceTimer;
   bool _isSelectionMode = false;
   Set<String> _selectedNoteIds = {};
 
@@ -45,19 +43,14 @@ class _NotesPageState extends State<NotesPage> {
   void _onSearchChanged() {
     final searchText = _searchController.text;
 
-    // Perform immediate search for better UX
+    // Perform immediate search filtering
     context.read<NotesBloc>().add(SearchNotes(searchText));
+  }
 
-    // Cancel previous timer
-    _debounceTimer?.cancel();
-
-    // Only check password after user stops typing for 300ms
-    if (searchText.trim().isNotEmpty) {
-      _debounceTimer = Timer(const Duration(milliseconds: 1000), () {
-        if (mounted && searchText.trim().isNotEmpty) {
-          context.read<AuthBloc>().add(VerifyPassword(searchText.trim()));
-        }
-      });
+  void _onSearchSubmitted(String searchText) {
+    final trimmed = searchText.trim();
+    if (trimmed.isNotEmpty) {
+      context.read<AuthBloc>().add(VerifyPassword(trimmed));
     }
   }
 
@@ -194,6 +187,8 @@ class _NotesPageState extends State<NotesPage> {
             isDense: true,
             contentPadding: EdgeInsets.zero,
           ),
+          textInputAction: TextInputAction.search,
+          onSubmitted: _onSearchSubmitted,
         ),
       ),
     );
@@ -573,7 +568,6 @@ class _NotesPageState extends State<NotesPage> {
 
   @override
   void dispose() {
-    _debounceTimer?.cancel();
     _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
     super.dispose();
